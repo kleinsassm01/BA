@@ -1,0 +1,55 @@
+2026-04-07 13:30:31 | INFO | tfim_nqs | NQS for 1D Transverse Field Ising Model
+2026-04-07 13:30:31 | INFO | tfim_nqs | System: N=10, h=1.000
+2026-04-07 13:30:31 | INFO | tfim_nqs | Scan: 17 J values from -3.000 to 3.000
+2026-04-07 13:30:31 | INFO | tfim_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-07 13:30:31 | INFO | tfim_nqs | Training point 1/17 | J=-3.000 | h=1.000
+2026-04-07 13:31:05 | INFO | tfim_nqs | Finished J=-3.000 | E/N(NQS)=-3.083706 | E/N(exact)=-3.083930 | err=0.007% | m2=0.9704 | n2=0.0030
+2026-04-07 13:31:05 | INFO | tfim_nqs | Training point 2/17 | J=-2.550 | h=1.000
+2026-04-07 13:31:27 | INFO | tfim_nqs | Finished J=-2.550 | E/N(NQS)=-2.648186 | E/N(exact)=-2.649024 | err=0.032% | m2=0.9655 | n2=0.0038
+2026-04-07 13:31:27 | INFO | tfim_nqs | Training point 3/17 | J=-2.100 | h=1.000
+2026-04-07 13:31:48 | INFO | tfim_nqs | Finished J=-2.100 | E/N(NQS)=-2.220870 | E/N(exact)=-2.220861 | err=0.000% | m2=0.9369 | n2=0.0059
+2026-04-07 13:31:48 | INFO | tfim_nqs | Training point 4/17 | J=-1.650 | h=1.000
+2026-04-07 13:32:09 | INFO | tfim_nqs | Finished J=-1.650 | E/N(NQS)=-1.805247 | E/N(exact)=-1.805538 | err=0.016% | m2=0.8963 | n2=0.0100
+2026-04-07 13:32:09 | INFO | tfim_nqs | Training point 5/17 | J=-1.200 | h=1.000
+2026-04-07 13:32:33 | INFO | tfim_nqs | Finished J=-1.200 | E/N(NQS)=-1.421870 | E/N(exact)=-1.421775 | err=0.007% | m2=0.7906 | n2=0.0178
+2026-04-07 13:32:33 | INFO | tfim_nqs | Training point 6/17 | J=-0.750 | h=1.000
+2026-04-07 13:32:57 | INFO | tfim_nqs | Finished J=-0.750 | E/N(NQS)=-1.147110 | E/N(exact)=-1.147214 | err=0.009% | m2=0.3012 | n2=0.0476
+2026-04-07 13:32:57 | INFO | tfim_nqs | Training point 7/17 | J=-0.300 | h=1.000
+2026-04-07 13:33:20 | INFO | tfim_nqs | Finished J=-0.300 | E/N(NQS)=-1.022618 | E/N(exact)=-1.022630 | err=0.001% | m2=0.1404 | n2=0.0762
+2026-04-07 13:33:20 | INFO | tfim_nqs | Training point 8/17 | J=-0.100 | h=1.000
+2026-04-07 13:33:42 | INFO | tfim_nqs | Finished J=-0.100 | E/N(NQS)=-1.002489 | E/N(exact)=-1.002502 | err=0.001% | m2=0.1166 | n2=0.0905
+2026-04-07 13:33:42 | INFO | tfim_nqs | Training point 9/17 | J=0.000 | h=1.000
+2026-04-07 13:34:03 | INFO | tfim_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.0997 | n2=0.1000
+2026-04-07 13:34:03 | INFO | tfim_nqs | Training point 10/17 | J=0.100 | h=1.000
+2026-04-07 13:34:25 | INFO | tfim_nqs | Finished J=0.100 | E/N(NQS)=-1.002484 | E/N(exact)=-1.002502 | err=0.002% | m2=0.1017 | n2=0.1205
+2026-04-07 13:34:25 | INFO | tfim_nqs | Training point 11/17 | J=0.300 | h=1.000
+2026-04-07 13:34:47 | INFO | tfim_nqs | Finished J=0.300 | E/N(NQS)=-1.022598 | E/N(exact)=-1.022630 | err=0.003% | m2=0.0712 | n2=0.1423
+2026-04-07 13:34:47 | INFO | tfim_nqs | Training point 12/17 | J=0.750 | h=1.000
+2026-04-07 13:35:12 | INFO | tfim_nqs | Finished J=0.750 | E/N(NQS)=-1.147111 | E/N(exact)=-1.147214 | err=0.009% | m2=0.0463 | n2=0.3246
+2026-04-07 13:35:12 | INFO | tfim_nqs | Training point 13/17 | J=1.200 | h=1.000
+2026-04-07 13:35:35 | INFO | tfim_nqs | Finished J=1.200 | E/N(NQS)=-1.421614 | E/N(exact)=-1.421775 | err=0.011% | m2=0.0198 | n2=0.7665
+2026-04-07 13:35:35 | INFO | tfim_nqs | Training point 14/17 | J=1.650 | h=1.000
+2026-04-07 13:35:57 | INFO | tfim_nqs | Finished J=1.650 | E/N(NQS)=-1.805902 | E/N(exact)=-1.805538 | err=0.020% | m2=0.0093 | n2=0.8876
+2026-04-07 13:35:57 | INFO | tfim_nqs | Training point 15/17 | J=2.100 | h=1.000
+2026-04-07 13:36:18 | INFO | tfim_nqs | Finished J=2.100 | E/N(NQS)=-2.221122 | E/N(exact)=-2.220861 | err=0.012% | m2=0.0059 | n2=0.9419
+2026-04-07 13:36:18 | INFO | tfim_nqs | Training point 16/17 | J=2.550 | h=1.000
+2026-04-07 13:36:40 | INFO | tfim_nqs | Finished J=2.550 | E/N(NQS)=-2.648247 | E/N(exact)=-2.649024 | err=0.029% | m2=0.0044 | n2=0.9541
+2026-04-07 13:36:40 | INFO | tfim_nqs | Training point 17/17 | J=3.000 | h=1.000
+2026-04-07 13:37:00 | INFO | tfim_nqs | Finished J=3.000 | E/N(NQS)=-3.083715 | E/N(exact)=-3.083930 | err=0.007% | m2=0.0022 | n2=0.9791
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-3.000 | E/N=-3.083706 | exact=-3.083930 | err=0.007% | m2=0.9704 | n2=0.0030 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-2.550 | E/N=-2.648186 | exact=-2.649024 | err=0.032% | m2=0.9655 | n2=0.0038 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-2.100 | E/N=-2.220870 | exact=-2.220861 | err=0.000% | m2=0.9369 | n2=0.0059 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-1.650 | E/N=-1.805247 | exact=-1.805538 | err=0.016% | m2=0.8963 | n2=0.0100 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-1.200 | E/N=-1.421870 | exact=-1.421775 | err=0.007% | m2=0.7906 | n2=0.0178 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-0.750 | E/N=-1.147110 | exact=-1.147214 | err=0.009% | m2=0.3012 | n2=0.0476 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-0.300 | E/N=-1.022618 | exact=-1.022630 | err=0.001% | m2=0.1404 | n2=0.0762 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J=-0.100 | E/N=-1.002489 | exact=-1.002502 | err=0.001% | m2=0.1166 | n2=0.0905 | phase=FERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.0997 | n2=0.1000 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 0.100 | E/N=-1.002484 | exact=-1.002502 | err=0.002% | m2=0.1017 | n2=0.1205 | phase=PARA
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 0.300 | E/N=-1.022598 | exact=-1.022630 | err=0.003% | m2=0.0712 | n2=0.1423 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 0.750 | E/N=-1.147111 | exact=-1.147214 | err=0.009% | m2=0.0463 | n2=0.3246 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 1.200 | E/N=-1.421614 | exact=-1.421775 | err=0.011% | m2=0.0198 | n2=0.7665 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 1.650 | E/N=-1.805902 | exact=-1.805538 | err=0.020% | m2=0.0093 | n2=0.8876 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 2.100 | E/N=-2.221122 | exact=-2.220861 | err=0.012% | m2=0.0059 | n2=0.9419 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 2.550 | E/N=-2.648247 | exact=-2.649024 | err=0.029% | m2=0.0044 | n2=0.9541 | phase=ANTIFERRO
+2026-04-07 13:37:00 | INFO | tfim_nqs | J= 3.000 | E/N=-3.083715 | exact=-3.083930 | err=0.007% | m2=0.0022 | n2=0.9791 | phase=ANTIFERRO
