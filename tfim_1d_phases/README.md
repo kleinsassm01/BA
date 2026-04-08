@@ -124,7 +124,7 @@ Details: https://theory.leeds.ac.uk/interaction-distance/applications/ising/map-
 The 1D transverse-field Ising model (TFIM) can be mapped to a system of free fermions via the Jordan–Wigner transformation. The mapping from spin operators to spinless fermions is given by
 
 $$
-c_j = \left( \prod_{l<j} \sigma^x_l \right) \frac{\sigma^z_j + i \sigma^y_j}{2}.
+c_j = \bigl( \prod_{l<j} \sigma^x_l \bigr) \frac{\sigma^z_j + i \sigma^y_j}{2}.
 $$
 
 After performing a Fourier transform to momentum space, the Hamiltonian decouples into independent $2 \times 2$ blocks for each momentum $k$:
