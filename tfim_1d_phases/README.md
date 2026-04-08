@@ -1,30 +1,54 @@
 # 1D Transverse Field Ising Model phases with nqs and exact
 
 ## Table of Contents
-0. [Results](#0-results)
-1. [The Model](#1-the-transverse-field-ising-model)
-2. [Mapping Spins to Fermions: The Jordan-Wigner Transformation](#2-the-jordan-wigner-transformation)
-3. [Fourier Transform to Momentum Space](#3-fourier-transform-to-momentum-space)
-4. [Diagonalization: The Bogoliubov Transformation](#4-the-bogoliubov-transformation)
-5. [The Ground State Energy](#5-the-ground-state-energy)
-6. [Thermodynamic Limit and the Elliptic Integral](#6-thermodynamic-limit)
-7. [Quantum Phase Transition](#7-quantum-phase-transition)
-8. [Order Parameters](#8-order-parameters)
-9. [Boundary Conditions and Fermion Parity Sectors](#9-boundary-conditions-and-fermion-parity)
-10. [References](#14-references)
+1. [Setup](#1-setup)
+2. [Results](#2-results)
+3. [The Model](#1-the-transverse-field-ising-model)
+4. [Order Parameters](#8-order-parameters)
 
 ---
 
-## -1. Setup
-To setup the application, run `uv sync`. After that, there are two endpoints. `tfim_1d_nqs.train:main` runs the training, while `tfim_1d_nqs.train:main`
+## 1. Setup
+To setup the application, run `uv sync`. After that, there are two endpoints. From project root `uv run tfim-1d-train` runs the training, while `uv run tfim-1d-plot` can run the plotting separately without retraining everything. For installing `SciencePlots` visit https://github.com/garrettj403/SciencePlots
 
-## 0. Results
+## 2. Results
 
+The figure shows the ground-state phase diagram of the one-dimensional transverse-field Ising model (TFIM) at fixed transverse field $h = 1.0$ and system size $N = 10$, as a function of the coupling parameter $J$. The results are obtained using a neural quantum state (NQS) ansatz and compared with exact solutions.
 
-## 1. The Transverse Field Ising Model
+Two order parameters are displayed: the squared magnetization $\langle m^2 \rangle$ and the squared staggered magnetization $\langle n^2 \rangle$. These quantities characterize different types of magnetic order. The plotted points correspond to converged NQS estimates, while the faint grey lines serve only as visual guides between discrete values of $J$.
+![phase_diagram](./outputs/phase_diagram.png)
+For large negative $J$, the system is in an antiferromagnetic phase, indicated by a large value of $\langle m^2 \rangle$ and a vanishing $\langle n^2 \rangle$. As $J$ approaches zero, both order parameters decrease due to increasing quantum fluctuations induced by the transverse field. Around $J \approx 0$, the system enters a paramagnetic phase, where both $\langle m^2 \rangle$ and $\langle n^2 \rangle$ are small.
 
-The one-dimensional Transverse Field Ising Model (TFIM) is one of the simplest quantum
-many-body systems that exhibits a quantum phase transition. It describes a chain of $N$
+For positive $J$, the system transitions into a ferromagnetic phase, where $\langle n^2 \rangle$ increases and eventually saturates, while $\langle m^2 \rangle$ approaches zero.
+
+The lower-left panel shows the ground-state energy per site $E_0/N$. The NQS results closely match the exact finite-size solution and follow the thermodynamic limit prediction $N \to \infty$.
+
+The lower-right panel displays the relative error of the NQS energy with respect to the exact finite-$N$ result. The error remains small across the entire parameter range and is minimized near the critical region, indicating robust performance even in regimes with strong quantum correlations.
+
+![training_convergence](./outputs/training_convergence.png)
+
+The training convergence plots show the optimization dynamics of the NQS for three representative points in the phase diagram.
+
+Each panel displays the evolution of the variational energy per site $E_0/N$ during training. The NQS estimates are shown as discrete points, highlighting the stochastic nature of the optimization process. Two reference lines are included: the exact finite-size result for the system ($N = 10$, solid line) and the thermodynamic limit prediction ($N \to \infty$, dashed line).
+
+In all three regimes, the NQS rapidly converges toward the exact ground-state energy within a relatively small number of training steps. The initial fluctuations reflect the stochastic sampling and parameter updates, but these oscillations diminish as training progresses and the model approaches the variational minimum.
+
+![training_histories](./outputs/training_histories.png)
+
+The training history plots show the evolution of the order parameters $\langle m^2 \rangle$ and $\langle n^2 \rangle$ during optimization for different values of the coupling $J$. Each curve corresponds to a separate training run, and the color encodes the value of $J$, ranging from antiferromagnetic (blue, $J < 0$) to ferromagnetic (red, $J > 0$) regimes.
+
+At the beginning of training, both order parameters start from similar initial values, reflecting the untrained or weakly structured state of the variational wavefunction. As training progresses, the system rapidly organizes into the appropriate phase, and the order parameters evolve toward their characteristic values.
+
+For negative $J$, $\langle m^2 \rangle$ quickly increases and saturates near unity, while $\langle n^2 \rangle$ is suppressed, indicating antiferromagnetic order. Conversely, for positive $J$, $\langle n^2 \rangle$ becomes dominant, signaling ferromagnetic ordering, while $\langle m^2 \rangle$ approaches zero. Near $J \approx 0$, both quantities remain small, consistent with a paramagnetic phase where no long-range order is present.
+
+The convergence of the order parameters is typically fast, with most of the evolution occurring within the first few tens of training steps. After this initial phase, the values fluctuate slightly around their steady-state values due to stochastic sampling in the optimization procedure.
+
+The smooth and consistent separation of trajectories across different $J$ shows that the system captures the underlying phase structure and corresponding order parameters throughout training.
+
+---
+## 3. The Transverse Field Ising Model
+
+The one-dimensional Transverse Field Ising Model (TFIM) is one of the simplest quantum many-body systems that exhibits a quantum phase transition. It describes a chain of $N$
 spin-$\frac{1}{2}$ particles with nearest-neighbor Ising interaction and a uniform transverse
 magnetic field.
 
@@ -47,506 +71,17 @@ $$
 [\sigma_i^\alpha, \sigma_j^\beta] = 2i\,\delta_{ij}\,\epsilon^{\alpha\beta\gamma}\,\sigma_i^\gamma, \qquad (\sigma_i^\alpha)^2 = \mathbb{1}
 $$
 
-Crucially, operators on *different* sites commute:
+Crucially, operators on different sites commute:
 $[\sigma_i^\alpha, \sigma_j^\beta] = 0$ for $i \neq j$. This will be important when we
 compare to fermionic operators, which anticommute.
 
 ---
 
-## 2. The Jordan-Wigner Transformation
-
-### 2.1 Motivation: Spins vs. Fermions
-
-The key insight of Jordan and Wigner (1928) is that a single spin-$\frac{1}{2}$ is
-algebraically identical to a single fermion mode. For a single site, define the raising
-and lowering operators:
-
-$$
-\sigma_j^+ = \frac{\sigma_j^x + i\sigma_j^y}{2}, \qquad \sigma_j^- = \frac{\sigma_j^x - i\sigma_j^y}{2}
-$$
-
-These satisfy $\{\sigma_j^+, \sigma_j^-\} = \mathbb{1}$ and $(\sigma_j^+)^2 = (\sigma_j^-)^2 = 0$ — exactly like fermionic creation and annihilation operators on a single site. We can identify:
-
-$$
-|{\downarrow}\rangle \leftrightarrow |0\rangle, \qquad |{\uparrow}\rangle \leftrightarrow |1\rangle = f^\dagger |0\rangle
-$$
-
-However, there is a fundamental problem for *multiple* sites. Spin operators on different
-sites **commute**:
-
-$$
-[\sigma_i^+, \sigma_j^-] = 0 \quad \text{for } i \neq j
-$$
-
-whereas fermionic operators must **anticommute**:
-
-$$
-\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\dagger\} = 0
-$$
-
-Simply setting $c_j = \sigma_j^-$ fails because it gives the wrong statistics between
-different sites.
-
-### 2.2 The Transformation
-
-Jordan and Wigner solved this by attaching a nonlocal "string" of operators — a phase
-factor that tracks the parity of all sites to the left:
-
-$$
-\boxed{c_j = \left(\prod_{l < j} \sigma_l^z\right) \sigma_j^-, \qquad c_j^\dagger = \left(\prod_{l < j} \sigma_l^z\right) \sigma_j^+}
-$$
-
-The product $\prod_{l<j} \sigma_l^z$ is called the **Jordan-Wigner string**. Since
-$\sigma_l^z$ has eigenvalues $\pm 1$, this string accumulates a factor of $(-1)$ for
-each occupied (spin-up) site to the left of site $j$.
-
-Equivalently, using the occupation number operator $n_l = \frac{1 + \sigma_l^z}{2}$
-(where $n_l = 1$ for spin-up and $n_l = 0$ for spin-down):
-
-$$
-c_j = \left(\prod_{l < j} e^{i\pi n_l}\right) \sigma_j^- = \left(\prod_{l<j}(-\sigma_l^z)\right) \sigma_j^-
-$$
-
-### 2.3 Verification of Anticommutation Relations
-
-Let us verify that these operators satisfy the correct fermionic algebra. We need three
-relations.
-
-**Case 1: Same site ($i = j$).**
-
-$$
-\{c_j, c_j^\dagger\} = c_j c_j^\dagger + c_j^\dagger c_j
-$$
-
-The JW strings cancel (since $(\sigma_l^z)^2 = \mathbb{1}$), leaving:
-
-$$
-\{c_j, c_j^\dagger\} = \sigma_j^- \sigma_j^+ + \sigma_j^+ \sigma_j^- = \{\sigma_j^-, \sigma_j^+\} = \mathbb{1} \quad \checkmark
-$$
-
-**Case 2: Different sites ($i < j$).**
-
-$$
-c_i c_j^\dagger = \underbrace{\left(\prod_{l<i}\sigma_l^z\right)}_{\text{string}_i} \sigma_i^- \underbrace{\left(\prod_{l<j}\sigma_l^z\right)}_{\text{string}_j} \sigma_j^+
-$$
-
-The string for $j$ includes site $i$, so we need to commute $\sigma_i^-$ past $\sigma_i^z$.
-Using $\sigma_i^z \sigma_i^- = -\sigma_i^-$ (since lowering a spin flips the $z$-eigenvalue),
-we pick up a factor of $(-1)$:
-
-$$
-\sigma_i^- \sigma_i^z = -\sigma_i^z \sigma_i^- \quad \Longrightarrow \quad \sigma_i^- \cdot (\text{string}_j \text{ containing } \sigma_i^z) = -(\text{string}_j) \cdot \sigma_i^-
-$$
-
-This sign difference between $c_i c_j^\dagger$ and $c_j^\dagger c_i$ gives:
-
-$$
-\{c_i, c_j^\dagger\} = 0 \quad \text{for } i \neq j \quad \checkmark
-$$
-
-**Case 3:** $\{c_i, c_j\} = 0$ follows by the same argument.
-
-### 2.4 Inverse Transformation
-
-The transformation can be inverted. We need expressions for the spin operators appearing
-in the Hamiltonian:
-
-**The $\sigma_i^z$ operator:** From the number operator $c_j^\dagger c_j = \sigma_j^+ \sigma_j^- = \frac{1 + \sigma_j^z}{2}$ (string cancels), we get:
-
-$$
-\boxed{\sigma_j^z = 2c_j^\dagger c_j - 1}
-$$
-
-**The $\sigma_i^x$ operator:** Using $\sigma_j^x = \sigma_j^+ + \sigma_j^-$ and the inverse
-JW relations:
-
-$$
-\boxed{\sigma_j^x = \left(\prod_{l<j}\sigma_l^z\right)(c_j^\dagger + c_j) = \left(\prod_{l<j}(1 - 2c_l^\dagger c_l)\right)(c_j^\dagger + c_j)}
-$$
-
-### 2.5 Transforming the Hamiltonian
-
-Now we substitute into the Hamiltonian $H = -J\sum_i \sigma_i^z\sigma_{i+1}^z - h\sum_i \sigma_i^x$.
-
-**The transverse field term** $\sigma_j^x$:
-
-Using the inverse transformation and the fact that the JW string on $\sigma_j^x$
-cancels with the string from the fermion definition when acting within the Hamiltonian
-(because $\sigma_j^x$ appears alone, not in a product with other spin operators at
-different sites that would require tracking the string), we get:
-
-$$
--h\sum_j \sigma_j^x = -h\sum_j (c_j^\dagger + c_j)\prod_{l<j}(1-2c_l^\dagger c_l)
-$$
-
-However, this expression looks nonlocal. The crucial simplification comes from the fact
-that $\sigma_j^x = \sigma_j^+ + \sigma_j^-$, and in the JW representation,
-$\sigma_j^{\pm} = (\prod_{l<j}\sigma_l^z)\,c_j^{(\dagger)}$, so
-$\sigma_j^x = (\prod_{l<j}\sigma_l^z)(c_j^\dagger + c_j)$. But we also know
-$\sigma_j^z = 2c_j^\dagger c_j - 1$. Substituting:
-
-$$
--h\sigma_j^x = -h(c_j^\dagger + c_j)\prod_{l<j}(2c_l^\dagger c_l - 1) \cdot (-1)^{j-1}
-$$
-
-Actually, the cleanest route uses the fact that $\sigma_j^z = 1 - 2c_j^\dagger c_j$ directly in the Ising term.
-
-**The Ising interaction term** $\sigma_i^z\sigma_{i+1}^z$:
-
-This is simpler because $\sigma_j^z$ involves no JW string:
-
-$$
-\sigma_i^z \sigma_{i+1}^z = (2c_i^\dagger c_i - 1)(2c_{i+1}^\dagger c_{i+1} - 1) = (1 - 2c_i^\dagger c_i)(1 - 2c_{i+1}^\dagger c_{i+1})
-$$
-
-Expanding:
-
-$$
-\sigma_i^z \sigma_{i+1}^z = 1 - 2c_i^\dagger c_i - 2c_{i+1}^\dagger c_{i+1} + 4c_i^\dagger c_i c_{i+1}^\dagger c_{i+1}
-$$
-
-**The transverse field term** (revisited more carefully):
-
-For the transverse field, the standard approach rewrites the full Hamiltonian using
-$\sigma_j^x = \sigma_j^+ + \sigma_j^-$ and the products $\sigma_j^z\sigma_{j+1}^z$.
-
-Using the identity $\sigma_j^z = -(\sigma_j^+ \sigma_j^- - \sigma_j^- \sigma_j^+) = -(c_j^\dagger c_j - c_j c_j^\dagger)$
-and noting that for the nearest-neighbor product $\sigma_j^z\sigma_{j+1}^z$, the JW
-strings between sites $j$ and $j+1$ are trivial (they only differ by the inclusion of
-site $j$ in the string for $j+1$), the full Hamiltonian becomes:
-
-$$
-\boxed{H = -J\sum_{j=1}^{N-1}\left(c_j^\dagger c_{j+1} + c_{j+1}^\dagger c_j + c_j^\dagger c_{j+1}^\dagger + c_{j+1}c_j\right) - h\sum_{j=1}^{N}\left(2c_j^\dagger c_j - 1\right)}
-$$
-
-where we have written $g = h/J$ and absorbed factors appropriately. More precisely,
-writing out the algebra step by step for the nearest-neighbor Ising coupling:
-
-$$
-\sigma_j^z\sigma_{j+1}^z = (2c_j^\dagger c_j - 1)(2c_{j+1}^\dagger c_{j+1} - 1)
-$$
-
-and the transverse field, using $\sigma_j^x = (\prod_{l<j}\sigma_l^z)(c_j + c_j^\dagger)$,
-the key observation is that in the TFIM only single-site $\sigma^x$ terms and
-nearest-neighbor $\sigma^z\sigma^z$ terms appear, so the nonlocal JW strings either
-cancel completely ($\sigma^z$ terms) or reduce to local expressions
-($\sigma^x$ terms act on individual sites).
-
-The final fermionic Hamiltonian (ignoring the boundary term for now) is:
-
-$$
-H = -J \sum_{j=1}^{N-1} \left( c_j^\dagger - c_j \right)\left( c_{j+1}^\dagger + c_{j+1} \right) + h\sum_{j=1}^{N} \left(1 - 2c_j^\dagger c_j\right)
-$$
-
-Expanding the product in the Ising term:
-
-$$
-(c_j^\dagger - c_j)(c_{j+1}^\dagger + c_{j+1}) = c_j^\dagger c_{j+1}^\dagger + c_j^\dagger c_{j+1} - c_j c_{j+1}^\dagger - c_j c_{j+1}
-$$
-
-Using the anticommutation relation $c_j c_{j+1}^\dagger = -c_{j+1}^\dagger c_j$ (for $j \neq j+1$):
-
-$$
-= c_j^\dagger c_{j+1} + c_{j+1}^\dagger c_j + c_j^\dagger c_{j+1}^\dagger + c_{j+1} c_j
-$$
-
-This is a **quadratic** (free-fermion) Hamiltonian. It contains:
-
-- **Hopping terms**: $c_j^\dagger c_{j+1} + c_{j+1}^\dagger c_j$ — fermions hop between neighboring sites
-- **Pairing terms**: $c_j^\dagger c_{j+1}^\dagger + c_{j+1}c_j$ — pairs of fermions are created/annihilated (like a $p$-wave superconductor)
-- **Chemical potential**: $c_j^\dagger c_j$ — from the transverse field
-
-The Hamiltonian does *not* conserve total fermion number (due to the pairing terms), but
-it *does* conserve fermion **parity** $(-1)^{\hat{N}_f}$, where $\hat{N}_f = \sum_j c_j^\dagger c_j$.
-
-> **Key result:** The Jordan-Wigner transformation maps the 1D TFIM — an interacting
-> spin model — to a model of **non-interacting** (free) fermions. This is what makes the
-> model exactly solvable.
-
----
-
-## 3. Fourier Transform to Momentum Space
-
-Since we assume periodic boundary conditions and the system is translationally invariant,
-we can diagonalize the hopping and pairing terms by Fourier transforming to momentum space.
-
-Define:
-
-$$
-c_j = \frac{1}{\sqrt{N}} \sum_k e^{ikj}\, \tilde{c}_k, \qquad \tilde{c}_k = \frac{1}{\sqrt{N}} \sum_j e^{-ikj}\, c_j
-$$
-
-where the allowed momenta $k$ depend on the boundary conditions (discussed in detail in
-Section 9). For now, we take $k_n = \frac{2\pi n}{N}$ with $n = 0, 1, \ldots, N-1$.
-
-**Substituting into the hopping terms:**
-
-$$
-\sum_j c_j^\dagger c_{j+1} = \frac{1}{N}\sum_j \sum_{k,k'} e^{-ikj} e^{ik'(j+1)} \tilde{c}_k^\dagger \tilde{c}_{k'} = \sum_k e^{ik}\, \tilde{c}_k^\dagger \tilde{c}_k
-$$
-
-where we used $\frac{1}{N}\sum_j e^{i(k'-k)j} = \delta_{k,k'}$.
-
-Similarly, $\sum_j c_{j+1}^\dagger c_j = \sum_k e^{-ik}\,\tilde{c}_k^\dagger \tilde{c}_k$.
-
-**Substituting into the pairing terms:**
-
-$$
-\sum_j c_j^\dagger c_{j+1}^\dagger = \frac{1}{N}\sum_{k,k'} e^{ik'} \left(\sum_j e^{i(k+k')j}\right) \tilde{c}_k^\dagger \tilde{c}_{k'}^\dagger = \sum_k e^{ik}\, \tilde{c}_{-k}^\dagger \tilde{c}_k^\dagger
-$$
-
-(using $\delta_{k+k',0}$, so $k' = -k$), and $\sum_j c_{j+1}c_j = \sum_k e^{-ik}\, \tilde{c}_k \tilde{c}_{-k}$.
-
-**The full Hamiltonian in momentum space:**
-
-Collecting all terms (dropping the tildes for clarity and writing $c_k$ for the momentum-space operators):
-
-$$
-H = \sum_k \Big[ -\underbrace{(J\cos k + h)}_{\xi_k}\, (2c_k^\dagger c_k - 1) \;+\; iJ\sin k\, (c_{-k}^\dagger c_k^\dagger - c_k c_{-k}) \Big]
-$$
-
-or equivalently, grouping the $k$ and $-k$ modes into a $2\times 2$ matrix form
-(Bogoliubov-de Gennes form). For each pair $(k, -k)$, define the Nambu spinor
-$\Psi_k = (c_k, c_{-k}^\dagger)^T$. The Hamiltonian becomes:
-
-$$
-H = \sum_{k>0} \Psi_k^\dagger
-\begin{pmatrix} -(J\cos k + h) & iJ\sin k \\ -iJ\sin k & (J\cos k + h) \end{pmatrix}
-\Psi_k + \text{const.}
-$$
-
-Or, defining $a_k = J\cos k + h$ and $b_k = J\sin k$:
-
-$$
-H = \sum_{k>0}
-\begin{pmatrix} c_k^\dagger & c_{-k} \end{pmatrix}
-\begin{pmatrix} -a_k & ib_k \\ -ib_k & a_k \end{pmatrix}
-\begin{pmatrix} c_k \\ c_{-k}^\dagger \end{pmatrix}
-+ \text{const.}
-$$
-
-This $2\times 2$ structure — coupling $c_k$ with $c_{-k}^\dagger$ — is exactly what the
-Bogoliubov transformation is designed to diagonalize.
-
----
-
-## 4. The Bogoliubov Transformation
-
-### 4.1 The Idea
-
-The Hamiltonian couples operators at momenta $k$ and $-k$ through the pairing terms. To
-diagonalize it, we introduce new **quasiparticle** operators $\eta_k$ that are linear
-combinations of $c_k$ and $c_{-k}^\dagger$:
-
-$$
-\boxed{\eta_k = u_k\, c_k + v_k\, c_{-k}^\dagger}
-$$
-
-$$
-\boxed{\eta_k^\dagger = u_k^*\, c_k^\dagger + v_k^*\, c_{-k}}
-$$
-
-where $u_k$ and $v_k$ are complex coefficients (the Bogoliubov coefficients). For $\eta_k$
-to be a proper fermion, we require:
-
-$$
-\{\eta_k, \eta_k^\dagger\} = 1 \quad \Longrightarrow \quad |u_k|^2 + |v_k|^2 = 1
-$$
-
-### 4.2 Determining the Coefficients
-
-We demand that the Hamiltonian takes the diagonal form:
-
-$$
-H = \sum_k \varepsilon_k \left(\eta_k^\dagger \eta_k - \frac{1}{2}\right) + E_{\text{const}}
-$$
-
-This is equivalent to requiring $[H, \eta_k] = -\varepsilon_k\, \eta_k$, i.e. $\eta_k$
-lowers the energy by $\varepsilon_k$.
-
-Computing $[H, \eta_k]$ using the BdG matrix $\mathcal{H}_k$ and equating with
-$-\varepsilon_k\, \eta_k$, we get the eigenvalue equation:
-
-$$
-\begin{pmatrix} -a_k & ib_k \\ -ib_k & a_k \end{pmatrix}
-\begin{pmatrix} u_k \\ v_k \end{pmatrix}
-= -\varepsilon_k
-\begin{pmatrix} u_k \\ v_k \end{pmatrix}
-$$
-
-The eigenvalues of this $2\times 2$ matrix are $\pm\varepsilon_k$ where:
-
-$$
-\varepsilon_k^2 = a_k^2 + b_k^2 = (J\cos k + h)^2 + (J\sin k)^2
-$$
-
-Expanding:
-
-$$
-\varepsilon_k^2 = J^2\cos^2 k + 2Jh\cos k + h^2 + J^2\sin^2 k = J^2 + h^2 + 2Jh\cos k
-$$
-
-$$
-\boxed{\varepsilon_k = \sqrt{J^2 + h^2 + 2Jh\cos k}}
-$$
-
-Note: some conventions include a factor of 2, giving $\varepsilon_k = 2\sqrt{J^2 + h^2 + 2Jh\cos k}$,
-depending on whether one uses Pauli matrices ($\sigma$) or spin-$\frac{1}{2}$ operators ($S = \sigma/2$).
-In our convention (Pauli matrices in the Hamiltonian), the factor of 2 is present.
-
-### 4.3 The Bogoliubov Angle
-
-The coefficients $u_k$ and $v_k$ can be parametrized by a single angle $\theta_k$:
-
-$$
-u_k = \cos\frac{\theta_k}{2}, \qquad v_k = i\sin\frac{\theta_k}{2}
-$$
-
-where:
-
-$$
-\tan\theta_k = \frac{J\sin k}{J\cos k + h}
-$$
-
-The factor of $i$ in $v_k$ reflects the imaginary pairing amplitude in the BdG matrix.
-
----
-
-## 5. The Ground State Energy
-
-### 5.1 Quasiparticle Vacuum
-
-After the Bogoliubov transformation, the Hamiltonian is:
-
-$$
-H = \sum_k \varepsilon_k \left(\eta_k^\dagger \eta_k - \frac{1}{2}\right)
-$$
-
-The ground state $|GS\rangle$ is the **quasiparticle vacuum**, defined by $\eta_k |GS\rangle = 0$ for all $k$. This is *not* the fermion vacuum — it is a complicated
-superposition of states with different fermion numbers, connected by the pairing terms.
-
-The ground state energy is obtained by setting all occupation numbers to zero:
-
-$$
-\boxed{E_0 = -\frac{1}{2}\sum_k \varepsilon_k = -\frac{1}{2}\sum_k \sqrt{J^2 + h^2 + 2Jh\cos k}}
-$$
-
-(with the factor of 2 from Pauli matrices: $E_0 = -\sum_k \sqrt{J^2 + h^2 + 2Jh\cos k}$.)
-
-The energy per site is:
-
-$$
-\frac{E_0}{N} = -\frac{1}{N}\sum_{n=0}^{N-1} \sqrt{J^2 + h^2 + 2Jh\cos k_n}
-$$
-
----
-
-## 6. Thermodynamic Limit
-
-### 6.1 From Sum to Integral
-
-In the thermodynamic limit $N \to \infty$, the discrete sum over momenta becomes an
-integral:
-
-$$
-\frac{1}{N}\sum_k f(k) \;\longrightarrow\; \frac{1}{2\pi}\int_0^{2\pi} f(k)\, dk
-$$
-
-Therefore:
-
-$$
-\frac{E_0}{N} = -\frac{1}{2\pi}\int_0^{2\pi} \sqrt{J^2 + h^2 + 2Jh\cos k}\, dk
-$$
-
-### 6.2 Reduction to the Complete Elliptic Integral
-
-This integral can be evaluated in closed form using the **complete elliptic integral of
-the second kind**:
-
-$$
-E(m) = \int_0^{\pi/2} \sqrt{1 - m\sin^2\phi}\, d\phi
-$$
-
-To reduce our integral to this form, factor out the maximum of $|J|$ and $h$:
-
-$$
-\frac{E_0}{N} = -\frac{1}{2\pi}\int_0^{2\pi} \sqrt{J^2 + h^2 + 2Jh\cos k}\, dk
-$$
-
-Let $a = \max(|J|, h)$ and $b = \min(|J|, h)$. Then inside the square root:
-
-$$
-J^2 + h^2 + 2Jh\cos k = a^2\left(1 + \frac{b^2}{a^2} + 2\frac{b}{a}\cos k\right) = a^2\left(1 + r^2 + 2r\cos k\right)
-$$
-
-where $r = b/a \leq 1$.
-
-Using the identity $1 + r^2 + 2r\cos k = (1+r)^2 - 4r\sin^2(k/2)$ and substituting $\phi = k/2$:
-
-$$
-\frac{E_0}{N} = -\frac{a(1+r)}{\pi}\int_0^{\pi} \sqrt{1 - \frac{4r}{(1+r)^2}\sin^2\phi}\, d\phi
-$$
-
-Recognizing the elliptic integral with parameter $m = \frac{4r}{(1+r)^2} = \frac{4ab}{(a+b)^2}$:
-
-$$
-\frac{E_0}{N} = -\frac{2(a+b)}{\pi}\, E\!\left(\frac{4ab}{(a+b)^2}\right)
-$$
-
-Or equivalently, using a different standard form of the elliptic integral:
-
-$$
-\boxed{\frac{E_0}{N} = -\frac{2}{\pi}\,\max(|J|, h)\cdot E\!\left(\frac{\min(|J|, h)^2}{\max(|J|, h)^2}\right)}
-$$
-
-This is the exact ground state energy per site in the thermodynamic limit, expressed
-in terms of a single special function.
-
----
-
-## 7. Quantum Phase Transition
-
-### 7.1 The Critical Point
-
-The energy gap — the energy cost to create a single quasiparticle excitation — is:
-
-$$
-\Delta = \min_k \varepsilon_k
-$$
-
-The minimum of $\varepsilon_k = \sqrt{J^2 + h^2 + 2Jh\cos k}$ occurs at $k = \pi$
-(for $J, h > 0$):
-
-$$
-\Delta = \sqrt{J^2 + h^2 - 2Jh} = |J - h|
-$$
-
-**The gap closes when $|J| = h$.** This is the quantum critical point, separating:
-
-- **Ordered phase** ($|J| > h$): the ground state spontaneously breaks the $\mathbb{Z}_2$
-  spin-flip symmetry; spins align along $z$ (ferro) or anti-align (antiferro)
-- **Disordered phase** ($|J| < h$): the transverse field dominates; spins polarize
-  along $x$ (paramagnetic)
-
-### 7.2 Critical Behavior
-
-At the critical point, the dispersion becomes linear at low energies:
-
-$$
-\varepsilon_k \approx J|k - \pi| \quad \text{(near } k = \pi \text{ at } J = h\text{)}
-$$
-
-This is the hallmark of a conformal field theory (CFT) with central charge $c = 1/2$
-(the Ising CFT). The quantum phase transition is second-order and belongs to the
-**2D classical Ising universality class** (via the quantum-classical mapping).
-
----
-
-## 8. Order Parameters
+## 4. Order Parameters
 
 To distinguish the phases, we measure two order parameters:
 
-### 8.1 Magnetization (Ferromagnetic Order)
+### 4.1 Magnetization (Ferromagnetic Order)
 
 $$
 m = \frac{1}{N}\sum_i \sigma_i^z
@@ -561,7 +96,7 @@ $$
 - $\langle m^2 \rangle > 0$: **Ferromagnetic phase** ($J > 0$, $|J| > h$)
 - $\langle m^2 \rangle \to 0$: No uniform magnetic order
 
-### 8.2 Néel (Staggered) Magnetization (Antiferromagnetic Order)
+### 4.2 Néel (Staggered) Magnetization (Antiferromagnetic Order)
 
 $$
 n = \frac{1}{N}\sum_i (-1)^i \sigma_i^z
@@ -574,7 +109,7 @@ $$
 - $\langle n^2 \rangle > 0$: **Antiferromagnetic phase** ($J < 0$, $|J| > h$)
 - $\langle n^2 \rangle \to 0$: No staggered order
 
-### 8.3 Phase Diagram Summary
+### 4.3 Phase Diagram Summary
 
 | Regime | $J$ | Condition | $\langle m^2 \rangle$ | $\langle n^2 \rangle$ |
 |--------|-----|-----------|----------------------|----------------------|
@@ -584,68 +119,60 @@ $$
 
 ---
 
-## 9. Boundary Conditions and Fermion Parity
-
-### 9.1 The Boundary Term Problem
-
-With periodic boundary conditions, the last term in the Ising sum connects site $N$
-to site $1$:
+## 5. Background Jordan-Wigner transformation
+Details: https://theory.leeds.ac.uk/interaction-distance/applications/ising/map-to-free/
+The 1D transverse-field Ising model (TFIM) can be mapped to a system of free fermions via the Jordan–Wigner transformation. The mapping from spin operators to spinless fermions is given by
 
 $$
-\sigma_N^z \sigma_1^z
+c_j = \left( \prod_{l<j} \sigma^x_l \right) \frac{\sigma^z_j + i \sigma^y_j}{2}.
 $$
 
-Under the Jordan-Wigner transformation, $\sigma_N^z = 2c_N^\dagger c_N - 1$ and
-$\sigma_1^z = 2c_1^\dagger c_1 - 1$, but the full boundary term acquires a parity
-operator:
+After performing a Fourier transform to momentum space, the Hamiltonian decouples into independent $2 \times 2$ blocks for each momentum $k$:
 
 $$
-\sigma_N^z \sigma_1^z \to (2c_N^\dagger c_N - 1)(2c_1^\dagger c_1 - 1) \cdot (-1)^{\hat{N}_f}
+H = \sum_k \epsilon(k)\,\left(\eta^\dagger_k \eta_k - \tfrac{1}{2}\right),
 $$
 
-where $(-1)^{\hat{N}_f} = \prod_j(1-2c_j^\dagger c_j)$ is the total fermion parity.
-
-This means the fermionic Hamiltonian has different boundary conditions depending on
-whether the total fermion number is even or odd.
-
-### 9.2 The Two Sectors
-
-The Hilbert space splits into two sectors:
-
-**Ramond (R) sector** — Even fermion parity, periodic fermion BC:
+where the single-particle dispersion (Bogoliubov quasiparticle energy) is
 
 $$
-k_n^{(R)} = \frac{2\pi n}{N}, \quad n = 0, 1, \ldots, N-1
+\epsilon(k) = 2 \sqrt{J^2 + h^2 + 2Jh \cos(k)}.
 $$
 
-**Neveu-Schwarz (NS) sector** — Odd fermion parity, antiperiodic fermion BC:
+For a system of $N$ sites with periodic boundary conditions, the allowed momenta are
 
 $$
-k_n^{(NS)} = \frac{2\pi(n + \tfrac{1}{2})}{N}, \quad n = 0, 1, \ldots, N-1
+k_n = \frac{2\pi n}{N}, \quad n = 0, 1, \dots, N-1.
 $$
 
-The ground state energy is the minimum over both sectors:
+The ground-state energy is obtained by summing over all modes:
 
 $$
-E_0 = \min\left(E_0^{(R)},\; E_0^{(NS)}\right)
+E_0 = -\frac{1}{2} \sum_k \epsilon(k).
 $$
 
-where $E_0^{(s)} = -\frac{1}{2}\sum_k \varepsilon_{k}^{(s)}$ for each sector $s$.
+In the thermodynamic limit ($N \to \infty$), this sum becomes an integral:
 
-For even $N$ in the ordered phase ($|J| > h$), the ground state typically lies in the
-NS sector. In the disordered phase, it lies in the R sector.
+$$
+\frac{E_0}{N} = -\frac{1}{2\pi} \int_0^{2\pi} \sqrt{J^2 + h^2 + 2Jh \cos(k)} \, dk.
+$$
 
-### 9.3 Implementation
+This integral can be expressed in terms of the complete elliptic integral of the second kind $E(m)$:
 
-In the code, both sectors are computed:
+$$
+\frac{E_0}{N} = -\frac{2}{\pi} \, \max(|J|, h)\, E(m),
+$$
 
-```python
-# Ramond sector
-k_R = 2π * np.arange(N) / N
-E_R = -0.5 * np.sum(2 * np.sqrt(J² + h² + 2*J*h*np.cos(k_R)))
+where
 
-# Neveu-Schwarz sector
-k_NS = 2π * (np.arange(N) + 0.5) / N
-E_NS = -0.5 * np.sum(2 * np.sqrt(J² + h² + 2*J*h*np.cos(k_NS)))
-E0 = min(E_R, E_NS) / N
-```
+$$
+m = \left( \frac{\min(|J|, h)}{\max(|J|, h)} \right)^2.
+$$
+
+The system undergoes a quantum phase transition at
+
+$$
+|J| = h,
+$$
+
+which separates the ordered (ferromagnetic or antiferromagnetic) phases from the paramagnetic phase.
