@@ -64,7 +64,7 @@ $$
 [\sigma_i^\alpha, \sigma_j^\beta] = 2i\,\delta_{ij}\,\epsilon^{\alpha\beta\gamma}\,\sigma_i^\gamma, \qquad (\sigma_i^\alpha)^2 = \mathbb{1}
 $$
 
-Crucially, operators on different sites commute: $[\sigma_i^\alpha, \sigma_j^\beta] = 0$ for $i \neq j$. This will be important when we compare to fermionic operators, which anticommute.
+Crucially, operators on different sites commute: $[\sigma_i^\alpha, \sigma_j^\beta] = 0$ for $i \neq j$. This will be important during comparison to fermionic operators, which anticommute.
 
 ---
 
@@ -110,7 +110,7 @@ $$
 
 ### 4.4 Higher Moments
 
-In addition to $\langle m^2 \rangle$ and $\langle n^2 \rangle$ we also record the fourth moment of the uniform magnetization,
+In addition to $\langle m^2 \rangle$ and $\langle n^2 \rangle$, the fourth moment of the uniform magnetization is also recordered,
 
 $$
 \langle m^4 \rangle = \left\langle \left(\tfrac{1}{N}\sum_i \sigma_i^z\right)^{\!4}\,\right\rangle,
@@ -236,7 +236,7 @@ $$
 
 where $\sigma_\mathcal{O}$ is the population standard deviation. A large $\tau_\text{int}$ therefore degrades the effective sample size and inflates the statistical error of every measured quantity, including the energy gradient that drives the NQS optimization.
 
-The autocorrelation time is estimated via the standard automated-windowing procedure of Sokal. For a time series $x_1, x_2, \dots, x_T$ we first compute the normalized autocovariance
+The autocorrelation time is estimated via the standard automated-windowing procedure of Sokal. For a time series $x_1, x_2, \dots, x_T$ first compute the normalized autocovariance
 
 $$
 \rho(t) \;=\; \frac{C(t)}{C(0)},
@@ -250,15 +250,15 @@ $$
 \tau_\text{int}(W) \;=\; \tfrac{1}{2} \;+\; \sum_{t=1}^{W} \rho(t).
 $$
 
-The Sokal criterion selects the smallest window $W^{\star}$ such that $W^{\star} \geq c\,\tau_\text{int}(W^{\star})$, with $c$ between $4$ and $10$; we use $c = 5$. The final estimate is $\tau_\text{int} \equiv \tau_\text{int}(W^{\star})$.
+The Sokal criterion selects the smallest window $W^{\star}$ such that $W^{\star} \geq c\,\tau_\text{int}(W^{\star})$, with $c$ between $4$ and $10$; use $c = 5$. The final estimate is $\tau_\text{int} \equiv \tau_\text{int}(W^{\star})$.
 
 Two complementary views of the autocorrelation are produced. First, NetKet reports an online estimate $\tau_\text{corr}$ of the energy autocorrelation alongside every expectation-value evaluation during training. Recording this quantity at each logging step tells us whether the sampler is well-mixed as the variational parameters evolve.
 
 ![tau_corr_vs_step](./outputs_multiN/tau_corr_vs_step.png)
 
-Each subplot corresponds to one system size, and the curves are coloured by the value of $J$, ranging from ferromagnetic (blue, $J < 0$) through paramagnetic (grey, $J \approx 0$) to antiferromagnetic (red, $J > 0$). A common pattern emerges across all $N$: at the very first training steps the sampler has to adapt to a rapidly changing variational state and $\tau_\text{corr}$ transiently rises, but by step $\sim 50$ the autocorrelation has largely settled to a small value. There is no strong systematic trend with $N$ on the scale of the training loop, but the points closest to the critical couplings $|J| = h$ (roughly the purple/red extremes of the colour range near $J = \pm 1$) consistently show the highest plateau, which is a weak in-training hint of the critical slowing down that we resolve more cleanly in the dedicated post-training analysis.
+Each subplot corresponds to one system size, and the curves are coloured by the value of $J$, ranging from ferromagnetic (blue, $J < 0$) through paramagnetic (grey, $J \approx 0$) to antiferromagnetic (red, $J > 0$). A common pattern emerges across all $N$: at the very first training steps the sampler has to adapt to a rapidly changing variational state and $\tau_\text{corr}$ transiently rises, but by step $\sim 50$ the autocorrelation has largely settled to a small value. There is no strong systematic trend with $N$ on the scale of the training loop, but the points closest to the critical couplings $|J| = h$ (roughly the purple/red extremes of the colour range near $J = \pm 1$) consistently show the highest plateau, which is a weak in-training hint of the critical slowing down that resolve more cleanly in the dedicated post-training analysis.
 
-Second, once training has converged at a given $(N, J)$ point we draw a long dedicated Markov chain from the sampler and compute the integrated autocorrelation time of the local-energy series by applying the Sokal windowing procedure described above.
+Second, once training has converged at a given $(N, J)$ point draw a long dedicated Markov chain from the sampler and compute the integrated autocorrelation time of the local-energy series by applying the Sokal windowing procedure described above.
 
 ![tau_int_vs_J](./outputs_multiN/tau_int_vs_J.png)
 
