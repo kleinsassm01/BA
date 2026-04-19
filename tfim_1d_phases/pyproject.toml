@@ -4,20 +4,22 @@ package = true
 [project]
 name = "nqs"
 version = "0.1.0"
-description = "Add your description here"
+description = "1D Ising Model NQS"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
-    "jax[cuda]>=0.5.3",
+    "jax[cuda13]==0.7.2",
     "jupyter>=1.1.1",
     "matplotlib>=3.10.8",
-    "netket>=3.17.1",
+    "netket==3.21.0",
     "scienceplots>=2.2.1",
 ]
 
 [project.scripts]
 tfim-1d-train = "tfim_1d_nqs.train:main"
 tfim-1d-plot = "tfim_1d_nqs.plot:main"
+tfim-1d-train_N = "tfim_1d_nqs.train_multi_N:main"
+tfim-1d-plot_N = "tfim_1d_nqs.plot_multi_N:main"
 
 [tool.setuptools]
 py-modules = ["tfim_1d_nqs"]

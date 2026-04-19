@@ -1,0 +1,1300 @@
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [10, 20] | h=1.000 | 49 J-points ===
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | --- Starting scan for N=10 ---
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | NQS for 1D Transverse Field Ising Model
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | System: N=10, h=1.000
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-18 18:38:55 | INFO | tfim_1d_nqs | Training point 1/49 | N=10 | J=-3.000 | h=1.000
+2026-04-18 18:40:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.18 | window=6 | n_series=4096
+2026-04-18 18:40:27 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.084452 | E/N(exact)=-3.083930 | err=0.017% | m2=0.9598 | n2=0.0042 | tau_int=1.18
+2026-04-18 18:40:27 | INFO | tfim_1d_nqs | Training point 2/49 | N=10 | J=-2.550 | h=1.000
+2026-04-18 18:41:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 18:41:49 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.649226 | E/N(exact)=-2.649024 | err=0.008% | m2=0.9630 | n2=0.0041 | tau_int=0.49
+2026-04-18 18:41:49 | INFO | tfim_1d_nqs | Training point 3/49 | N=10 | J=-2.100 | h=1.000
+2026-04-18 18:43:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 18:43:09 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.220617 | E/N(exact)=-2.220861 | err=0.011% | m2=0.9451 | n2=0.0052 | tau_int=0.48
+2026-04-18 18:43:09 | INFO | tfim_1d_nqs | Training point 4/49 | N=10 | J=-1.650 | h=1.000
+2026-04-18 18:44:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 18:44:27 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.805639 | E/N(exact)=-1.805538 | err=0.006% | m2=0.9113 | n2=0.0087 | tau_int=0.54
+2026-04-18 18:44:27 | INFO | tfim_1d_nqs | Training point 5/49 | N=10 | J=-1.500 | h=1.000
+2026-04-18 18:45:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 18:45:50 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.673168 | E/N(exact)=-1.672302 | err=0.052% | m2=0.8818 | n2=0.0107 | tau_int=0.52
+2026-04-18 18:45:50 | INFO | tfim_1d_nqs | Training point 6/49 | N=10 | J=-1.438 | h=1.000
+2026-04-18 18:47:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 18:47:15 | INFO | tfim_1d_nqs | Finished J=-1.438 | E/N(NQS)=-1.618173 | E/N(exact)=-1.618004 | err=0.010% | m2=0.8715 | n2=0.0123 | tau_int=0.57
+2026-04-18 18:47:15 | INFO | tfim_1d_nqs | Training point 7/49 | N=10 | J=-1.375 | h=1.000
+2026-04-18 18:48:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 18:48:47 | INFO | tfim_1d_nqs | Finished J=-1.375 | E/N(NQS)=-1.565239 | E/N(exact)=-1.564616 | err=0.040% | m2=0.8615 | n2=0.0135 | tau_int=0.58
+2026-04-18 18:48:47 | INFO | tfim_1d_nqs | Training point 8/49 | N=10 | J=-1.312 | h=1.000
+2026-04-18 18:50:11 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 18:50:11 | INFO | tfim_1d_nqs | Finished J=-1.312 | E/N(NQS)=-1.512334 | E/N(exact)=-1.512323 | err=0.001% | m2=0.8365 | n2=0.0135 | tau_int=0.54
+2026-04-18 18:50:11 | INFO | tfim_1d_nqs | Training point 9/49 | N=10 | J=-1.250 | h=1.000
+2026-04-18 18:51:31 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 18:51:31 | INFO | tfim_1d_nqs | Finished J=-1.250 | E/N(NQS)=-1.460357 | E/N(exact)=-1.461367 | err=0.069% | m2=0.8067 | n2=0.0183 | tau_int=0.55
+2026-04-18 18:51:31 | INFO | tfim_1d_nqs | Training point 10/49 | N=10 | J=-1.200 | h=1.000
+2026-04-18 18:53:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 18:53:00 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.421879 | E/N(exact)=-1.421775 | err=0.007% | m2=0.7895 | n2=0.0167 | tau_int=0.49
+2026-04-18 18:53:00 | INFO | tfim_1d_nqs | Training point 11/49 | N=10 | J=-1.188 | h=1.000
+2026-04-18 18:54:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 18:54:29 | INFO | tfim_1d_nqs | Finished J=-1.188 | E/N(NQS)=-1.411202 | E/N(exact)=-1.412065 | err=0.061% | m2=0.7724 | n2=0.0176 | tau_int=0.53
+2026-04-18 18:54:29 | INFO | tfim_1d_nqs | Training point 12/49 | N=10 | J=-1.125 | h=1.000
+2026-04-18 18:55:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 18:55:53 | INFO | tfim_1d_nqs | Finished J=-1.125 | E/N(NQS)=-1.365112 | E/N(exact)=-1.364823 | err=0.021% | m2=0.7753 | n2=0.0184 | tau_int=0.48
+2026-04-18 18:55:53 | INFO | tfim_1d_nqs | Training point 13/49 | N=10 | J=-1.062 | h=1.000
+2026-04-18 18:57:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 18:57:20 | INFO | tfim_1d_nqs | Finished J=-1.062 | E/N(NQS)=-1.319988 | E/N(exact)=-1.320127 | err=0.011% | m2=0.6530 | n2=0.0282 | tau_int=0.58
+2026-04-18 18:57:20 | INFO | tfim_1d_nqs | Training point 14/49 | N=10 | J=-1.000 | h=1.000
+2026-04-18 18:58:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 18:58:50 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.278367 | E/N(exact)=-1.278491 | err=0.010% | m2=0.5284 | n2=0.0320 | tau_int=0.52
+2026-04-18 18:58:50 | INFO | tfim_1d_nqs | Training point 15/49 | N=10 | J=-0.938 | h=1.000
+2026-04-18 19:00:14 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 19:00:14 | INFO | tfim_1d_nqs | Finished J=-0.938 | E/N(NQS)=-1.240157 | E/N(exact)=-1.240329 | err=0.014% | m2=0.4823 | n2=0.0324 | tau_int=0.54
+2026-04-18 19:00:14 | INFO | tfim_1d_nqs | Training point 16/49 | N=10 | J=-0.875 | h=1.000
+2026-04-18 19:01:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 19:01:35 | INFO | tfim_1d_nqs | Finished J=-0.875 | E/N(NQS)=-1.205597 | E/N(exact)=-1.205823 | err=0.019% | m2=0.4393 | n2=0.0376 | tau_int=0.54
+2026-04-18 19:01:35 | INFO | tfim_1d_nqs | Training point 17/49 | N=10 | J=-0.812 | h=1.000
+2026-04-18 19:03:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 19:03:02 | INFO | tfim_1d_nqs | Finished J=-0.812 | E/N(NQS)=-1.174654 | E/N(exact)=-1.174878 | err=0.019% | m2=0.3606 | n2=0.0391 | tau_int=0.49
+2026-04-18 19:03:02 | INFO | tfim_1d_nqs | Training point 18/49 | N=10 | J=-0.750 | h=1.000
+2026-04-18 19:04:24 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 19:04:24 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.147125 | E/N(exact)=-1.147214 | err=0.008% | m2=0.2747 | n2=0.0525 | tau_int=0.52
+2026-04-18 19:04:24 | INFO | tfim_1d_nqs | Training point 19/49 | N=10 | J=-0.688 | h=1.000
+2026-04-18 19:05:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 19:05:53 | INFO | tfim_1d_nqs | Finished J=-0.688 | E/N(NQS)=-1.122726 | E/N(exact)=-1.122501 | err=0.020% | m2=0.2635 | n2=0.0496 | tau_int=0.54
+2026-04-18 19:05:53 | INFO | tfim_1d_nqs | Training point 20/49 | N=10 | J=-0.625 | h=1.000
+2026-04-18 19:07:24 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 19:07:24 | INFO | tfim_1d_nqs | Finished J=-0.625 | E/N(NQS)=-1.100352 | E/N(exact)=-1.100454 | err=0.009% | m2=0.2367 | n2=0.0548 | tau_int=0.53
+2026-04-18 19:07:24 | INFO | tfim_1d_nqs | Training point 21/49 | N=10 | J=-0.562 | h=1.000
+2026-04-18 19:08:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 19:08:50 | INFO | tfim_1d_nqs | Finished J=-0.562 | E/N(NQS)=-1.080881 | E/N(exact)=-1.080858 | err=0.002% | m2=0.2205 | n2=0.0654 | tau_int=0.49
+2026-04-18 19:08:50 | INFO | tfim_1d_nqs | Training point 22/49 | N=10 | J=-0.500 | h=1.000
+2026-04-18 19:10:11 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 19:10:11 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.063617 | E/N(exact)=-1.063560 | err=0.005% | m2=0.1936 | n2=0.0689 | tau_int=0.51
+2026-04-18 19:10:11 | INFO | tfim_1d_nqs | Training point 23/49 | N=10 | J=-0.300 | h=1.000
+2026-04-18 19:11:33 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 19:11:33 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.022634 | E/N(exact)=-1.022630 | err=0.000% | m2=0.1413 | n2=0.0838 | tau_int=0.53
+2026-04-18 19:11:33 | INFO | tfim_1d_nqs | Training point 24/49 | N=10 | J=-0.100 | h=1.000
+2026-04-18 19:13:05 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:13:05 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002483 | E/N(exact)=-1.002502 | err=0.002% | m2=0.1080 | n2=0.0927 | tau_int=0.50
+2026-04-18 19:13:05 | INFO | tfim_1d_nqs | Training point 25/49 | N=10 | J=0.000 | h=1.000
+2026-04-18 19:14:24 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:14:24 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.1038 | n2=0.0975 | tau_int=0.50
+2026-04-18 19:14:24 | INFO | tfim_1d_nqs | Training point 26/49 | N=10 | J=0.100 | h=1.000
+2026-04-18 19:15:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 19:15:49 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002501 | E/N(exact)=-1.002502 | err=0.000% | m2=0.0916 | n2=0.1149 | tau_int=0.52
+2026-04-18 19:15:49 | INFO | tfim_1d_nqs | Training point 27/49 | N=10 | J=0.300 | h=1.000
+2026-04-18 19:17:13 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 19:17:13 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.022640 | E/N(exact)=-1.022630 | err=0.001% | m2=0.0654 | n2=0.1337 | tau_int=0.58
+2026-04-18 19:17:13 | INFO | tfim_1d_nqs | Training point 28/49 | N=10 | J=0.500 | h=1.000
+2026-04-18 19:18:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 19:18:39 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.063356 | E/N(exact)=-1.063560 | err=0.019% | m2=0.0632 | n2=0.1880 | tau_int=0.51
+2026-04-18 19:18:39 | INFO | tfim_1d_nqs | Training point 29/49 | N=10 | J=0.562 | h=1.000
+2026-04-18 19:20:05 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 19:20:05 | INFO | tfim_1d_nqs | Finished J=0.562 | E/N(NQS)=-1.080941 | E/N(exact)=-1.080858 | err=0.008% | m2=0.0545 | n2=0.2077 | tau_int=0.51
+2026-04-18 19:20:05 | INFO | tfim_1d_nqs | Training point 30/49 | N=10 | J=0.625 | h=1.000
+2026-04-18 19:21:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:21:32 | INFO | tfim_1d_nqs | Finished J=0.625 | E/N(NQS)=-1.100196 | E/N(exact)=-1.100454 | err=0.023% | m2=0.0505 | n2=0.2139 | tau_int=0.50
+2026-04-18 19:21:32 | INFO | tfim_1d_nqs | Training point 31/49 | N=10 | J=0.688 | h=1.000
+2026-04-18 19:23:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 19:23:09 | INFO | tfim_1d_nqs | Finished J=0.688 | E/N(NQS)=-1.122533 | E/N(exact)=-1.122501 | err=0.003% | m2=0.0522 | n2=0.2969 | tau_int=0.49
+2026-04-18 19:23:09 | INFO | tfim_1d_nqs | Training point 32/49 | N=10 | J=0.750 | h=1.000
+2026-04-18 19:24:38 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.45 | window=3 | n_series=4096
+2026-04-18 19:24:38 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.147052 | E/N(exact)=-1.147214 | err=0.014% | m2=0.0421 | n2=0.3470 | tau_int=0.45
+2026-04-18 19:24:38 | INFO | tfim_1d_nqs | Training point 33/49 | N=10 | J=0.812 | h=1.000
+2026-04-18 19:26:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:26:04 | INFO | tfim_1d_nqs | Finished J=0.812 | E/N(NQS)=-1.174902 | E/N(exact)=-1.174878 | err=0.002% | m2=0.0379 | n2=0.3362 | tau_int=0.50
+2026-04-18 19:26:04 | INFO | tfim_1d_nqs | Training point 34/49 | N=10 | J=0.875 | h=1.000
+2026-04-18 19:27:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 19:27:35 | INFO | tfim_1d_nqs | Finished J=0.875 | E/N(NQS)=-1.205697 | E/N(exact)=-1.205823 | err=0.010% | m2=0.0363 | n2=0.4359 | tau_int=0.49
+2026-04-18 19:27:35 | INFO | tfim_1d_nqs | Training point 35/49 | N=10 | J=0.938 | h=1.000
+2026-04-18 19:29:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:29:04 | INFO | tfim_1d_nqs | Finished J=0.938 | E/N(NQS)=-1.240000 | E/N(exact)=-1.240329 | err=0.027% | m2=0.0366 | n2=0.4703 | tau_int=0.50
+2026-04-18 19:29:04 | INFO | tfim_1d_nqs | Training point 36/49 | N=10 | J=1.000 | h=1.000
+2026-04-18 19:30:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 19:30:32 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.278670 | E/N(exact)=-1.278491 | err=0.014% | m2=0.0286 | n2=0.6364 | tau_int=0.48
+2026-04-18 19:30:32 | INFO | tfim_1d_nqs | Training point 37/49 | N=10 | J=1.062 | h=1.000
+2026-04-18 19:31:57 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 19:31:57 | INFO | tfim_1d_nqs | Finished J=1.062 | E/N(NQS)=-1.320052 | E/N(exact)=-1.320127 | err=0.006% | m2=0.0269 | n2=0.6534 | tau_int=0.57
+2026-04-18 19:31:57 | INFO | tfim_1d_nqs | Training point 38/49 | N=10 | J=1.125 | h=1.000
+2026-04-18 19:33:34 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 19:33:34 | INFO | tfim_1d_nqs | Finished J=1.125 | E/N(NQS)=-1.363888 | E/N(exact)=-1.364823 | err=0.069% | m2=0.0220 | n2=0.7177 | tau_int=0.52
+2026-04-18 19:33:34 | INFO | tfim_1d_nqs | Training point 39/49 | N=10 | J=1.188 | h=1.000
+2026-04-18 19:35:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 19:35:02 | INFO | tfim_1d_nqs | Finished J=1.188 | E/N(NQS)=-1.412407 | E/N(exact)=-1.412065 | err=0.024% | m2=0.0184 | n2=0.7954 | tau_int=0.53
+2026-04-18 19:35:02 | INFO | tfim_1d_nqs | Training point 40/49 | N=10 | J=1.200 | h=1.000
+2026-04-18 19:36:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 19:36:27 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.421992 | E/N(exact)=-1.421775 | err=0.015% | m2=0.0202 | n2=0.7626 | tau_int=0.53
+2026-04-18 19:36:27 | INFO | tfim_1d_nqs | Training point 41/49 | N=10 | J=1.250 | h=1.000
+2026-04-18 19:37:56 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 19:37:56 | INFO | tfim_1d_nqs | Finished J=1.250 | E/N(NQS)=-1.461881 | E/N(exact)=-1.461367 | err=0.035% | m2=0.0167 | n2=0.7767 | tau_int=0.53
+2026-04-18 19:37:56 | INFO | tfim_1d_nqs | Training point 42/49 | N=10 | J=1.312 | h=1.000
+2026-04-18 19:39:25 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.46 | window=3 | n_series=4096
+2026-04-18 19:39:25 | INFO | tfim_1d_nqs | Finished J=1.312 | E/N(NQS)=-1.512626 | E/N(exact)=-1.512323 | err=0.020% | m2=0.0186 | n2=0.7995 | tau_int=0.46
+2026-04-18 19:39:25 | INFO | tfim_1d_nqs | Training point 43/49 | N=10 | J=1.375 | h=1.000
+2026-04-18 19:40:51 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.60 | window=3 | n_series=4096
+2026-04-18 19:40:51 | INFO | tfim_1d_nqs | Finished J=1.375 | E/N(NQS)=-1.564218 | E/N(exact)=-1.564616 | err=0.025% | m2=0.0136 | n2=0.8727 | tau_int=0.60
+2026-04-18 19:40:51 | INFO | tfim_1d_nqs | Training point 44/49 | N=10 | J=1.438 | h=1.000
+2026-04-18 19:42:16 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 19:42:16 | INFO | tfim_1d_nqs | Finished J=1.438 | E/N(NQS)=-1.617141 | E/N(exact)=-1.618004 | err=0.053% | m2=0.0113 | n2=0.8655 | tau_int=0.56
+2026-04-18 19:42:16 | INFO | tfim_1d_nqs | Training point 45/49 | N=10 | J=1.500 | h=1.000
+2026-04-18 19:43:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 19:43:47 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.672794 | E/N(exact)=-1.672302 | err=0.029% | m2=0.0127 | n2=0.8648 | tau_int=0.48
+2026-04-18 19:43:47 | INFO | tfim_1d_nqs | Training point 46/49 | N=10 | J=1.650 | h=1.000
+2026-04-18 19:45:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.67 | window=4 | n_series=4096
+2026-04-18 19:45:12 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.805669 | E/N(exact)=-1.805538 | err=0.007% | m2=0.0103 | n2=0.8994 | tau_int=0.67
+2026-04-18 19:45:12 | INFO | tfim_1d_nqs | Training point 47/49 | N=10 | J=2.100 | h=1.000
+2026-04-18 19:46:33 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:46:33 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.221083 | E/N(exact)=-2.220861 | err=0.010% | m2=0.0055 | n2=0.9495 | tau_int=0.50
+2026-04-18 19:46:33 | INFO | tfim_1d_nqs | Training point 48/49 | N=10 | J=2.550 | h=1.000
+2026-04-18 19:48:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 19:48:01 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.649437 | E/N(exact)=-2.649024 | err=0.016% | m2=0.0035 | n2=0.9662 | tau_int=0.50
+2026-04-18 19:48:01 | INFO | tfim_1d_nqs | Training point 49/49 | N=10 | J=3.000 | h=1.000
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.66 | window=4 | n_series=4096
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.084550 | E/N(exact)=-3.083930 | err=0.020% | m2=0.0029 | n2=0.9702 | tau_int=0.66
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | NQS for 1D Transverse Field Ising Model
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-18 19:49:28 | INFO | tfim_1d_nqs | Training point 1/49 | N=20 | J=-3.000 | h=1.000
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [2, 4] | h=1.000 | 49 J-points ===
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | --- Starting scan for N=2 ---
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | System: N=2, h=1.000
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-18 20:09:59 | INFO | tfim_1d_nqs | Training point 1/49 | N=2 | J=-3.000 | h=1.000
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-18 20:10:38 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 20:11:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 20:11:03 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.086510 | E/N(exact)=-3.086696 | err=0.006% | m2=0.9849 | n2=0.0044 | tau_int=0.49
+2026-04-18 20:11:03 | INFO | tfim_1d_nqs | Training point 2/49 | N=4 | J=-2.550 | h=1.000
+2026-04-18 20:11:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 20:11:15 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.653396 | E/N(exact)=-2.653436 | err=0.002% | m2=0.9570 | n2=0.0117 | tau_int=0.57
+2026-04-18 20:11:15 | INFO | tfim_1d_nqs | Training point 3/49 | N=4 | J=-2.100 | h=1.000
+2026-04-18 20:11:26 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 20:11:26 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.228064 | E/N(exact)=-2.228448 | err=0.017% | m2=0.9482 | n2=0.0166 | tau_int=0.58
+2026-04-18 20:11:26 | INFO | tfim_1d_nqs | Training point 4/49 | N=4 | J=-1.650 | h=1.000
+2026-04-18 20:11:34 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.67 | window=4 | n_series=4096
+2026-04-18 20:11:34 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.819719 | E/N(exact)=-1.819732 | err=0.001% | m2=0.9146 | n2=0.0278 | tau_int=0.67
+2026-04-18 20:11:34 | INFO | tfim_1d_nqs | Training point 5/49 | N=4 | J=-1.500 | h=1.000
+2026-04-18 20:11:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 20:11:45 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.689979 | E/N(exact)=-1.690002 | err=0.001% | m2=0.9150 | n2=0.0264 | tau_int=0.63
+2026-04-18 20:11:45 | INFO | tfim_1d_nqs | Training point 6/49 | N=4 | J=-1.438 | h=1.000
+2026-04-18 20:11:57 | INFO | tfim_1d_nqs |   autocorr: tau_int=11.91 | window=60 | n_series=4096
+2026-04-18 20:11:57 | INFO | tfim_1d_nqs | Finished J=-1.438 | E/N(NQS)=-1.637384 | E/N(exact)=-1.637385 | err=0.000% | m2=0.8667 | n2=0.0366 | tau_int=11.91
+2026-04-18 20:11:57 | INFO | tfim_1d_nqs | Training point 7/49 | N=4 | J=-1.375 | h=1.000
+2026-04-18 20:12:05 | INFO | tfim_1d_nqs |   autocorr: tau_int=6.11 | window=31 | n_series=4096
+2026-04-18 20:12:05 | INFO | tfim_1d_nqs | Finished J=-1.375 | E/N(NQS)=-1.585791 | E/N(exact)=-1.585784 | err=0.000% | m2=0.8433 | n2=0.0444 | tau_int=6.11
+2026-04-18 20:12:05 | INFO | tfim_1d_nqs | Training point 8/49 | N=4 | J=-1.312 | h=1.000
+2026-04-18 20:12:17 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 20:12:17 | INFO | tfim_1d_nqs | Finished J=-1.312 | E/N(NQS)=-1.535375 | E/N(exact)=-1.535338 | err=0.002% | m2=0.8408 | n2=0.0498 | tau_int=0.55
+2026-04-18 20:12:17 | INFO | tfim_1d_nqs | Training point 9/49 | N=4 | J=-1.250 | h=1.000
+2026-04-18 20:12:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.90 | window=15 | n_series=4096
+2026-04-18 20:12:28 | INFO | tfim_1d_nqs | Finished J=-1.250 | E/N(NQS)=-1.486218 | E/N(exact)=-1.486204 | err=0.001% | m2=0.8096 | n2=0.0537 | tau_int=2.90
+2026-04-18 20:12:28 | INFO | tfim_1d_nqs | Training point 10/49 | N=4 | J=-1.200 | h=1.000
+2026-04-18 20:12:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 20:12:36 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.447967 | E/N(exact)=-1.447959 | err=0.001% | m2=0.8008 | n2=0.0547 | tau_int=0.51
+2026-04-18 20:12:36 | INFO | tfim_1d_nqs | Training point 11/49 | N=4 | J=-1.188 | h=1.000
+2026-04-18 20:12:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=4.92 | window=25 | n_series=4096
+2026-04-18 20:12:47 | INFO | tfim_1d_nqs | Finished J=-1.188 | E/N(NQS)=-1.438592 | E/N(exact)=-1.438558 | err=0.002% | m2=0.7964 | n2=0.0542 | tau_int=4.92
+2026-04-18 20:12:47 | INFO | tfim_1d_nqs | Training point 12/49 | N=4 | J=-1.125 | h=1.000
+2026-04-18 20:12:58 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.30 | window=12 | n_series=4096
+2026-04-18 20:12:58 | INFO | tfim_1d_nqs | Finished J=-1.125 | E/N(NQS)=-1.392599 | E/N(exact)=-1.392594 | err=0.000% | m2=0.7827 | n2=0.0562 | tau_int=2.30
+2026-04-18 20:12:58 | INFO | tfim_1d_nqs | Training point 13/49 | N=4 | J=-1.062 | h=1.000
+2026-04-18 20:13:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 20:13:08 | INFO | tfim_1d_nqs | Finished J=-1.062 | E/N(NQS)=-1.348539 | E/N(exact)=-1.348523 | err=0.001% | m2=0.7539 | n2=0.0723 | tau_int=0.56
+2026-04-18 20:13:08 | INFO | tfim_1d_nqs | Training point 14/49 | N=4 | J=-1.000 | h=1.000
+2026-04-18 20:13:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:13:18 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.306568 | E/N(exact)=-1.306563 | err=0.000% | m2=0.7158 | n2=0.0771 | tau_int=0.53
+2026-04-18 20:13:18 | INFO | tfim_1d_nqs | Training point 15/49 | N=4 | J=-0.938 | h=1.000
+2026-04-18 20:13:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.86 | window=5 | n_series=4096
+2026-04-18 20:13:29 | INFO | tfim_1d_nqs | Finished J=-0.938 | E/N(NQS)=-1.266924 | E/N(exact)=-1.266935 | err=0.001% | m2=0.6792 | n2=0.0874 | tau_int=0.86
+2026-04-18 20:13:29 | INFO | tfim_1d_nqs | Training point 16/49 | N=4 | J=-0.875 | h=1.000
+2026-04-18 20:13:37 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:13:37 | INFO | tfim_1d_nqs | Finished J=-0.875 | E/N(NQS)=-1.229846 | E/N(exact)=-1.229850 | err=0.000% | m2=0.6665 | n2=0.0942 | tau_int=0.54
+2026-04-18 20:13:37 | INFO | tfim_1d_nqs | Training point 17/49 | N=4 | J=-0.812 | h=1.000
+2026-04-18 20:13:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:13:48 | INFO | tfim_1d_nqs | Finished J=-0.812 | E/N(NQS)=-1.195487 | E/N(exact)=-1.195493 | err=0.001% | m2=0.6470 | n2=0.0962 | tau_int=0.53
+2026-04-18 20:13:48 | INFO | tfim_1d_nqs | Training point 18/49 | N=4 | J=-0.750 | h=1.000
+2026-04-18 20:14:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 20:14:00 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.163982 | E/N(exact)=-1.164012 | err=0.003% | m2=0.5356 | n2=0.1216 | tau_int=0.57
+2026-04-18 20:14:00 | INFO | tfim_1d_nqs | Training point 19/49 | N=4 | J=-0.688 | h=1.000
+2026-04-18 20:14:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 20:14:08 | INFO | tfim_1d_nqs | Finished J=-0.688 | E/N(NQS)=-1.135537 | E/N(exact)=-1.135503 | err=0.003% | m2=0.5366 | n2=0.1206 | tau_int=0.58
+2026-04-18 20:14:08 | INFO | tfim_1d_nqs | Training point 20/49 | N=4 | J=-0.625 | h=1.000
+2026-04-18 20:14:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.64 | window=4 | n_series=4096
+2026-04-18 20:14:20 | INFO | tfim_1d_nqs | Finished J=-0.625 | E/N(NQS)=-1.109999 | E/N(exact)=-1.110003 | err=0.000% | m2=0.5376 | n2=0.1255 | tau_int=0.64
+2026-04-18 20:14:20 | INFO | tfim_1d_nqs | Training point 21/49 | N=4 | J=-0.562 | h=1.000
+2026-04-18 20:14:31 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.67 | window=4 | n_series=4096
+2026-04-18 20:14:31 | INFO | tfim_1d_nqs | Finished J=-0.562 | E/N(NQS)=-1.087595 | E/N(exact)=-1.087490 | err=0.010% | m2=0.4844 | n2=0.1328 | tau_int=0.67
+2026-04-18 20:14:31 | INFO | tfim_1d_nqs | Training point 22/49 | N=4 | J=-0.500 | h=1.000
+2026-04-18 20:14:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.73 | window=4 | n_series=4096
+2026-04-18 20:14:39 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.067977 | E/N(exact)=-1.067890 | err=0.008% | m2=0.4502 | n2=0.1455 | tau_int=0.73
+2026-04-18 20:14:39 | INFO | tfim_1d_nqs | Training point 23/49 | N=4 | J=-0.300 | h=1.000
+2026-04-18 20:14:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.99 | window=5 | n_series=4096
+2026-04-18 20:14:52 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.023247 | E/N(exact)=-1.023240 | err=0.001% | m2=0.3613 | n2=0.1855 | tau_int=0.99
+2026-04-18 20:14:52 | INFO | tfim_1d_nqs | Training point 24/49 | N=4 | J=-0.100 | h=1.000
+2026-04-18 20:15:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.21 | window=12 | n_series=4096
+2026-04-18 20:15:00 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002566 | E/N(exact)=-1.002509 | err=0.006% | m2=0.2334 | n2=0.2451 | tau_int=2.21
+2026-04-18 20:15:00 | INFO | tfim_1d_nqs | Training point 25/49 | N=4 | J=0.000 | h=1.000
+2026-04-18 20:15:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 20:15:10 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.2422 | n2=0.2578 | tau_int=0.51
+2026-04-18 20:15:10 | INFO | tfim_1d_nqs | Training point 26/49 | N=4 | J=0.100 | h=1.000
+2026-04-18 20:15:21 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.45 | window=13 | n_series=4096
+2026-04-18 20:15:21 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002507 | E/N(exact)=-1.002509 | err=0.000% | m2=0.2061 | n2=0.2979 | tau_int=2.45
+2026-04-18 20:15:21 | INFO | tfim_1d_nqs | Training point 27/49 | N=4 | J=0.300 | h=1.000
+2026-04-18 20:15:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.98 | window=5 | n_series=4096
+2026-04-18 20:15:32 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.023186 | E/N(exact)=-1.023240 | err=0.005% | m2=0.1777 | n2=0.3809 | tau_int=0.98
+2026-04-18 20:15:32 | INFO | tfim_1d_nqs | Training point 28/49 | N=4 | J=0.500 | h=1.000
+2026-04-18 20:15:40 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-18 20:15:40 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.067871 | E/N(exact)=-1.067890 | err=0.002% | m2=0.1538 | n2=0.4253 | tau_int=0.70
+2026-04-18 20:15:40 | INFO | tfim_1d_nqs | Training point 29/49 | N=4 | J=0.562 | h=1.000
+2026-04-18 20:15:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 20:15:52 | INFO | tfim_1d_nqs | Finished J=0.562 | E/N(NQS)=-1.087484 | E/N(exact)=-1.087490 | err=0.001% | m2=0.1533 | n2=0.4463 | tau_int=0.63
+2026-04-18 20:15:52 | INFO | tfim_1d_nqs | Training point 30/49 | N=4 | J=0.625 | h=1.000
+2026-04-18 20:16:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.62 | window=4 | n_series=4096
+2026-04-18 20:16:00 | INFO | tfim_1d_nqs | Finished J=0.625 | E/N(NQS)=-1.110021 | E/N(exact)=-1.110003 | err=0.002% | m2=0.1211 | n2=0.5449 | tau_int=0.62
+2026-04-18 20:16:00 | INFO | tfim_1d_nqs | Training point 31/49 | N=4 | J=0.688 | h=1.000
+2026-04-18 20:16:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:16:12 | INFO | tfim_1d_nqs | Finished J=0.688 | E/N(NQS)=-1.135502 | E/N(exact)=-1.135503 | err=0.000% | m2=0.1089 | n2=0.5562 | tau_int=0.54
+2026-04-18 20:16:12 | INFO | tfim_1d_nqs | Training point 32/49 | N=4 | J=0.750 | h=1.000
+2026-04-18 20:16:23 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 20:16:23 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.164016 | E/N(exact)=-1.164012 | err=0.000% | m2=0.1128 | n2=0.6089 | tau_int=0.56
+2026-04-18 20:16:23 | INFO | tfim_1d_nqs | Training point 33/49 | N=4 | J=0.812 | h=1.000
+2026-04-18 20:16:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 20:16:32 | INFO | tfim_1d_nqs | Finished J=0.812 | E/N(NQS)=-1.195487 | E/N(exact)=-1.195493 | err=0.000% | m2=0.1147 | n2=0.6147 | tau_int=0.55
+2026-04-18 20:16:32 | INFO | tfim_1d_nqs | Training point 34/49 | N=4 | J=0.875 | h=1.000
+2026-04-18 20:16:43 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:16:43 | INFO | tfim_1d_nqs | Finished J=0.875 | E/N(NQS)=-1.229846 | E/N(exact)=-1.229850 | err=0.000% | m2=0.0918 | n2=0.6523 | tau_int=0.50
+2026-04-18 20:16:43 | INFO | tfim_1d_nqs | Training point 35/49 | N=4 | J=0.938 | h=1.000
+2026-04-18 20:16:55 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.68 | window=4 | n_series=4096
+2026-04-18 20:16:55 | INFO | tfim_1d_nqs | Finished J=0.938 | E/N(NQS)=-1.266944 | E/N(exact)=-1.266935 | err=0.001% | m2=0.0864 | n2=0.6509 | tau_int=0.68
+2026-04-18 20:16:55 | INFO | tfim_1d_nqs | Training point 36/49 | N=4 | J=1.000 | h=1.000
+2026-04-18 20:17:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 20:17:04 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.306653 | E/N(exact)=-1.306563 | err=0.007% | m2=0.0791 | n2=0.7100 | tau_int=0.56
+2026-04-18 20:17:04 | INFO | tfim_1d_nqs | Training point 37/49 | N=4 | J=1.062 | h=1.000
+2026-04-18 20:17:16 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.56 | window=8 | n_series=4096
+2026-04-18 20:17:16 | INFO | tfim_1d_nqs | Finished J=1.062 | E/N(NQS)=-1.348523 | E/N(exact)=-1.348523 | err=0.000% | m2=0.0552 | n2=0.7876 | tau_int=1.56
+2026-04-18 20:17:16 | INFO | tfim_1d_nqs | Training point 38/49 | N=4 | J=1.125 | h=1.000
+2026-04-18 20:17:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.90 | window=15 | n_series=4096
+2026-04-18 20:17:27 | INFO | tfim_1d_nqs | Finished J=1.125 | E/N(NQS)=-1.392613 | E/N(exact)=-1.392594 | err=0.001% | m2=0.0610 | n2=0.7837 | tau_int=2.90
+2026-04-18 20:17:27 | INFO | tfim_1d_nqs | Training point 39/49 | N=4 | J=1.188 | h=1.000
+2026-04-18 20:17:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=3.53 | window=18 | n_series=4096
+2026-04-18 20:17:36 | INFO | tfim_1d_nqs | Finished J=1.188 | E/N(NQS)=-1.438565 | E/N(exact)=-1.438558 | err=0.000% | m2=0.0444 | n2=0.8218 | tau_int=3.53
+2026-04-18 20:17:36 | INFO | tfim_1d_nqs | Training point 40/49 | N=4 | J=1.200 | h=1.000
+2026-04-18 20:17:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=5.20 | window=27 | n_series=4096
+2026-04-18 20:17:47 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.447991 | E/N(exact)=-1.447959 | err=0.002% | m2=0.0444 | n2=0.8296 | tau_int=5.20
+2026-04-18 20:17:47 | INFO | tfim_1d_nqs | Training point 41/49 | N=4 | J=1.250 | h=1.000
+2026-04-18 20:17:59 | INFO | tfim_1d_nqs |   autocorr: tau_int=6.21 | window=32 | n_series=4096
+2026-04-18 20:17:59 | INFO | tfim_1d_nqs | Finished J=1.250 | E/N(NQS)=-1.486173 | E/N(exact)=-1.486204 | err=0.002% | m2=0.0498 | n2=0.8193 | tau_int=6.21
+2026-04-18 20:17:59 | INFO | tfim_1d_nqs | Training point 42/49 | N=4 | J=1.312 | h=1.000
+2026-04-18 20:18:07 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 20:18:07 | INFO | tfim_1d_nqs | Finished J=1.312 | E/N(NQS)=-1.535282 | E/N(exact)=-1.535338 | err=0.004% | m2=0.0493 | n2=0.8306 | tau_int=0.55
+2026-04-18 20:18:07 | INFO | tfim_1d_nqs | Training point 43/49 | N=4 | J=1.375 | h=1.000
+2026-04-18 20:18:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.97 | window=10 | n_series=4096
+2026-04-18 20:18:18 | INFO | tfim_1d_nqs | Finished J=1.375 | E/N(NQS)=-1.585796 | E/N(exact)=-1.585784 | err=0.001% | m2=0.0410 | n2=0.8613 | tau_int=1.97
+2026-04-18 20:18:18 | INFO | tfim_1d_nqs | Training point 44/49 | N=4 | J=1.438 | h=1.000
+2026-04-18 20:18:30 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.60 | window=3 | n_series=4096
+2026-04-18 20:18:30 | INFO | tfim_1d_nqs | Finished J=1.438 | E/N(NQS)=-1.637388 | E/N(exact)=-1.637385 | err=0.000% | m2=0.0381 | n2=0.8604 | tau_int=0.60
+2026-04-18 20:18:30 | INFO | tfim_1d_nqs | Training point 45/49 | N=4 | J=1.500 | h=1.000
+2026-04-18 20:18:38 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.13 | window=11 | n_series=4096
+2026-04-18 20:18:38 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.690052 | E/N(exact)=-1.690002 | err=0.003% | m2=0.0249 | n2=0.9194 | tau_int=2.13
+2026-04-18 20:18:38 | INFO | tfim_1d_nqs | Training point 46/49 | N=4 | J=1.650 | h=1.000
+2026-04-18 20:18:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=5.97 | window=30 | n_series=4096
+2026-04-18 20:18:50 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.819708 | E/N(exact)=-1.819732 | err=0.001% | m2=0.0361 | n2=0.8916 | tau_int=5.97
+2026-04-18 20:18:50 | INFO | tfim_1d_nqs | Training point 47/49 | N=4 | J=2.100 | h=1.000
+2026-04-18 20:19:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 20:19:01 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.228211 | E/N(exact)=-2.228448 | err=0.011% | m2=0.0127 | n2=0.9482 | tau_int=0.56
+2026-04-18 20:19:01 | INFO | tfim_1d_nqs | Training point 48/49 | N=4 | J=2.550 | h=1.000
+2026-04-18 20:19:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:19:10 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.654368 | E/N(exact)=-2.653436 | err=0.035% | m2=0.0151 | n2=0.9546 | tau_int=0.47
+2026-04-18 20:19:10 | INFO | tfim_1d_nqs | Training point 49/49 | N=4 | J=3.000 | h=1.000
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.61 | window=4 | n_series=4096
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.086546 | E/N(exact)=-3.086696 | err=0.005% | m2=0.0059 | n2=0.9824 | tau_int=0.61
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | --- Starting scan for N=6 ---
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | System: N=6, h=1.000
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=512 lr=0.01000
+2026-04-18 20:19:22 | INFO | tfim_1d_nqs | Training point 1/49 | N=6 | J=-3.000 | h=1.000
+2026-04-18 20:19:55 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 20:19:55 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.084320 | E/N(exact)=-3.084090 | err=0.007% | m2=0.9733 | n2=0.0050 | tau_int=0.48
+2026-04-18 20:19:55 | INFO | tfim_1d_nqs | Training point 2/49 | N=6 | J=-2.550 | h=1.000
+2026-04-18 20:20:23 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.59 | window=3 | n_series=4096
+2026-04-18 20:20:23 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.649101 | E/N(exact)=-2.649376 | err=0.010% | m2=0.9627 | n2=0.0069 | tau_int=0.59
+2026-04-18 20:20:23 | INFO | tfim_1d_nqs | Training point 3/49 | N=6 | J=-2.100 | h=1.000
+2026-04-18 20:20:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.69 | window=4 | n_series=4096
+2026-04-18 20:20:46 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.221087 | E/N(exact)=-2.221747 | err=0.030% | m2=0.9423 | n2=0.0109 | tau_int=0.69
+2026-04-18 20:20:46 | INFO | tfim_1d_nqs | Training point 4/49 | N=6 | J=-1.650 | h=1.000
+2026-04-18 20:21:11 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:21:11 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.807654 | E/N(exact)=-1.808150 | err=0.027% | m2=0.9232 | n2=0.0126 | tau_int=0.50
+2026-04-18 20:21:11 | INFO | tfim_1d_nqs | Training point 5/49 | N=6 | J=-1.500 | h=1.000
+2026-04-18 20:21:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 20:21:35 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.676013 | E/N(exact)=-1.676158 | err=0.009% | m2=0.8839 | n2=0.0215 | tau_int=0.44
+2026-04-18 20:21:35 | INFO | tfim_1d_nqs | Training point 6/49 | N=6 | J=-1.438 | h=1.000
+2026-04-18 20:22:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 20:22:03 | INFO | tfim_1d_nqs | Finished J=-1.438 | E/N(NQS)=-1.621971 | E/N(exact)=-1.622537 | err=0.035% | m2=0.8691 | n2=0.0224 | tau_int=0.44
+2026-04-18 20:22:03 | INFO | tfim_1d_nqs | Training point 7/49 | N=6 | J=-1.375 | h=1.000
+2026-04-18 20:22:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:22:27 | INFO | tfim_1d_nqs | Finished J=-1.375 | E/N(NQS)=-1.569518 | E/N(exact)=-1.569930 | err=0.026% | m2=0.8331 | n2=0.0306 | tau_int=0.52
+2026-04-18 20:22:27 | INFO | tfim_1d_nqs | Training point 8/49 | N=6 | J=-1.312 | h=1.000
+2026-04-18 20:22:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:22:49 | INFO | tfim_1d_nqs | Finished J=-1.312 | E/N(NQS)=-1.518897 | E/N(exact)=-1.518514 | err=0.025% | m2=0.8279 | n2=0.0289 | tau_int=0.52
+2026-04-18 20:22:49 | INFO | tfim_1d_nqs | Training point 9/49 | N=6 | J=-1.250 | h=1.000
+2026-04-18 20:23:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:23:10 | INFO | tfim_1d_nqs | Finished J=-1.250 | E/N(NQS)=-1.468858 | E/N(exact)=-1.468501 | err=0.024% | m2=0.8184 | n2=0.0271 | tau_int=0.47
+2026-04-18 20:23:10 | INFO | tfim_1d_nqs | Training point 10/49 | N=6 | J=-1.200 | h=1.000
+2026-04-18 20:23:30 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:23:30 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.429356 | E/N(exact)=-1.429666 | err=0.022% | m2=0.8184 | n2=0.0280 | tau_int=0.47
+2026-04-18 20:23:30 | INFO | tfim_1d_nqs | Training point 11/49 | N=6 | J=-1.188 | h=1.000
+2026-04-18 20:23:54 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.45 | window=3 | n_series=4096
+2026-04-18 20:23:54 | INFO | tfim_1d_nqs | Finished J=-1.188 | E/N(NQS)=-1.420433 | E/N(exact)=-1.420139 | err=0.021% | m2=0.8056 | n2=0.0312 | tau_int=0.45
+2026-04-18 20:23:54 | INFO | tfim_1d_nqs | Training point 12/49 | N=6 | J=-1.125 | h=1.000
+2026-04-18 20:24:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:24:15 | INFO | tfim_1d_nqs | Finished J=-1.125 | E/N(NQS)=-1.373448 | E/N(exact)=-1.373711 | err=0.019% | m2=0.6886 | n2=0.0493 | tau_int=0.54
+2026-04-18 20:24:15 | INFO | tfim_1d_nqs | Training point 13/49 | N=6 | J=-1.062 | h=1.000
+2026-04-18 20:24:37 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:24:37 | INFO | tfim_1d_nqs | Finished J=-1.062 | E/N(NQS)=-1.329607 | E/N(exact)=-1.329527 | err=0.006% | m2=0.6860 | n2=0.0510 | tau_int=0.53
+2026-04-18 20:24:37 | INFO | tfim_1d_nqs | Training point 14/49 | N=6 | J=-1.000 | h=1.000
+2026-04-18 20:25:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:25:03 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.287994 | E/N(exact)=-1.287901 | err=0.007% | m2=0.6730 | n2=0.0458 | tau_int=0.53
+2026-04-18 20:25:03 | INFO | tfim_1d_nqs | Training point 15/49 | N=6 | J=-0.938 | h=1.000
+2026-04-18 20:25:23 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:25:23 | INFO | tfim_1d_nqs | Finished J=-0.938 | E/N(NQS)=-1.249221 | E/N(exact)=-1.249122 | err=0.008% | m2=0.5753 | n2=0.0645 | tau_int=0.50
+2026-04-18 20:25:23 | INFO | tfim_1d_nqs | Training point 16/49 | N=6 | J=-0.875 | h=1.000
+2026-04-18 20:25:44 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:25:44 | INFO | tfim_1d_nqs | Finished J=-0.875 | E/N(NQS)=-1.213515 | E/N(exact)=-1.213416 | err=0.008% | m2=0.5551 | n2=0.0603 | tau_int=0.50
+2026-04-18 20:25:44 | INFO | tfim_1d_nqs | Training point 17/49 | N=6 | J=-0.812 | h=1.000
+2026-04-18 20:26:07 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 20:26:07 | INFO | tfim_1d_nqs | Finished J=-0.812 | E/N(NQS)=-1.180914 | E/N(exact)=-1.180913 | err=0.000% | m2=0.5263 | n2=0.0684 | tau_int=0.51
+2026-04-18 20:26:07 | INFO | tfim_1d_nqs | Training point 18/49 | N=6 | J=-0.750 | h=1.000
+2026-04-18 20:26:30 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:26:30 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.151508 | E/N(exact)=-1.151631 | err=0.011% | m2=0.4570 | n2=0.0786 | tau_int=0.54
+2026-04-18 20:26:30 | INFO | tfim_1d_nqs | Training point 19/49 | N=6 | J=-0.688 | h=1.000
+2026-04-18 20:26:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:26:50 | INFO | tfim_1d_nqs | Finished J=-0.688 | E/N(NQS)=-1.125620 | E/N(exact)=-1.125484 | err=0.012% | m2=0.3791 | n2=0.0862 | tau_int=0.52
+2026-04-18 20:26:50 | INFO | tfim_1d_nqs | Training point 20/49 | N=6 | J=-0.625 | h=1.000
+2026-04-18 20:27:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:27:10 | INFO | tfim_1d_nqs | Finished J=-0.625 | E/N(NQS)=-1.102351 | E/N(exact)=-1.102312 | err=0.004% | m2=0.3932 | n2=0.0851 | tau_int=0.50
+2026-04-18 20:27:10 | INFO | tfim_1d_nqs | Training point 21/49 | N=6 | J=-0.562 | h=1.000
+2026-04-18 20:27:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:27:32 | INFO | tfim_1d_nqs | Finished J=-0.562 | E/N(NQS)=-1.081887 | E/N(exact)=-1.081922 | err=0.003% | m2=0.3288 | n2=0.1000 | tau_int=0.54
+2026-04-18 20:27:32 | INFO | tfim_1d_nqs | Training point 22/49 | N=6 | J=-0.500 | h=1.000
+2026-04-18 20:27:55 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:27:55 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.064154 | E/N(exact)=-1.064116 | err=0.004% | m2=0.2984 | n2=0.0983 | tau_int=0.53
+2026-04-18 20:27:55 | INFO | tfim_1d_nqs | Training point 23/49 | N=6 | J=-0.300 | h=1.000
+2026-04-18 20:28:14 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.46 | window=3 | n_series=4096
+2026-04-18 20:28:14 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.022738 | E/N(exact)=-1.022658 | err=0.008% | m2=0.2428 | n2=0.1070 | tau_int=0.46
+2026-04-18 20:28:14 | INFO | tfim_1d_nqs | Training point 24/49 | N=6 | J=-0.100 | h=1.000
+2026-04-18 20:28:34 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:28:34 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002491 | E/N(exact)=-1.002502 | err=0.001% | m2=0.1858 | n2=0.1641 | tau_int=0.50
+2026-04-18 20:28:34 | INFO | tfim_1d_nqs | Training point 25/49 | N=6 | J=0.000 | h=1.000
+2026-04-18 20:28:56 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:28:56 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.1684 | n2=0.1641 | tau_int=0.54
+2026-04-18 20:28:56 | INFO | tfim_1d_nqs | Training point 26/49 | N=6 | J=0.100 | h=1.000
+2026-04-18 20:29:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 20:29:15 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002479 | E/N(exact)=-1.002502 | err=0.002% | m2=0.1495 | n2=0.1864 | tau_int=0.51
+2026-04-18 20:29:15 | INFO | tfim_1d_nqs | Training point 27/49 | N=6 | J=0.300 | h=1.000
+2026-04-18 20:29:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:29:36 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.022580 | E/N(exact)=-1.022658 | err=0.008% | m2=0.1172 | n2=0.2448 | tau_int=0.50
+2026-04-18 20:29:36 | INFO | tfim_1d_nqs | Training point 28/49 | N=6 | J=0.500 | h=1.000
+2026-04-18 20:30:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:30:04 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.064308 | E/N(exact)=-1.064116 | err=0.018% | m2=0.0911 | n2=0.3064 | tau_int=0.52
+2026-04-18 20:30:04 | INFO | tfim_1d_nqs | Training point 29/49 | N=6 | J=0.562 | h=1.000
+2026-04-18 20:30:27 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 20:30:27 | INFO | tfim_1d_nqs | Finished J=0.562 | E/N(NQS)=-1.081859 | E/N(exact)=-1.081922 | err=0.006% | m2=0.0996 | n2=0.3153 | tau_int=0.49
+2026-04-18 20:30:27 | INFO | tfim_1d_nqs | Training point 30/49 | N=6 | J=0.625 | h=1.000
+2026-04-18 20:30:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.45 | window=3 | n_series=4096
+2026-04-18 20:30:48 | INFO | tfim_1d_nqs | Finished J=0.625 | E/N(NQS)=-1.102338 | E/N(exact)=-1.102312 | err=0.002% | m2=0.0966 | n2=0.3774 | tau_int=0.45
+2026-04-18 20:30:48 | INFO | tfim_1d_nqs | Training point 31/49 | N=6 | J=0.688 | h=1.000
+2026-04-18 20:31:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:31:09 | INFO | tfim_1d_nqs | Finished J=0.688 | E/N(NQS)=-1.125437 | E/N(exact)=-1.125484 | err=0.004% | m2=0.0749 | n2=0.4191 | tau_int=0.47
+2026-04-18 20:31:09 | INFO | tfim_1d_nqs | Training point 32/49 | N=6 | J=0.750 | h=1.000
+2026-04-18 20:31:34 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:31:34 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.151794 | E/N(exact)=-1.151631 | err=0.014% | m2=0.0688 | n2=0.4902 | tau_int=0.47
+2026-04-18 20:31:34 | INFO | tfim_1d_nqs | Training point 33/49 | N=6 | J=0.812 | h=1.000
+2026-04-18 20:31:55 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:31:55 | INFO | tfim_1d_nqs | Finished J=0.812 | E/N(NQS)=-1.180833 | E/N(exact)=-1.180913 | err=0.007% | m2=0.0681 | n2=0.5317 | tau_int=0.52
+2026-04-18 20:31:55 | INFO | tfim_1d_nqs | Training point 34/49 | N=6 | J=0.875 | h=1.000
+2026-04-18 20:32:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 20:32:18 | INFO | tfim_1d_nqs | Finished J=0.875 | E/N(NQS)=-1.213495 | E/N(exact)=-1.213416 | err=0.006% | m2=0.0592 | n2=0.5605 | tau_int=0.49
+2026-04-18 20:32:18 | INFO | tfim_1d_nqs | Training point 35/49 | N=6 | J=0.938 | h=1.000
+2026-04-18 20:32:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 20:32:39 | INFO | tfim_1d_nqs | Finished J=0.938 | E/N(NQS)=-1.249085 | E/N(exact)=-1.249122 | err=0.003% | m2=0.0449 | n2=0.6356 | tau_int=0.51
+2026-04-18 20:32:39 | INFO | tfim_1d_nqs | Training point 36/49 | N=6 | J=1.000 | h=1.000
+2026-04-18 20:33:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:33:03 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.288010 | E/N(exact)=-1.287901 | err=0.008% | m2=0.0527 | n2=0.6235 | tau_int=0.50
+2026-04-18 20:33:03 | INFO | tfim_1d_nqs | Training point 37/49 | N=6 | J=1.062 | h=1.000
+2026-04-18 20:33:24 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.38 | window=2 | n_series=4096
+2026-04-18 20:33:24 | INFO | tfim_1d_nqs | Finished J=1.062 | E/N(NQS)=-1.329729 | E/N(exact)=-1.329527 | err=0.015% | m2=0.0399 | n2=0.7144 | tau_int=0.38
+2026-04-18 20:33:24 | INFO | tfim_1d_nqs | Training point 38/49 | N=6 | J=1.125 | h=1.000
+2026-04-18 20:33:44 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.46 | window=3 | n_series=4096
+2026-04-18 20:33:44 | INFO | tfim_1d_nqs | Finished J=1.125 | E/N(NQS)=-1.373745 | E/N(exact)=-1.373711 | err=0.002% | m2=0.0358 | n2=0.7342 | tau_int=0.46
+2026-04-18 20:33:44 | INFO | tfim_1d_nqs | Training point 39/49 | N=6 | J=1.188 | h=1.000
+2026-04-18 20:34:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 20:34:04 | INFO | tfim_1d_nqs | Finished J=1.188 | E/N(NQS)=-1.420942 | E/N(exact)=-1.420139 | err=0.057% | m2=0.0291 | n2=0.7990 | tau_int=0.54
+2026-04-18 20:34:04 | INFO | tfim_1d_nqs | Training point 40/49 | N=6 | J=1.200 | h=1.000
+2026-04-18 20:34:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 20:34:28 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.429652 | E/N(exact)=-1.429666 | err=0.001% | m2=0.0375 | n2=0.7750 | tau_int=0.50
+2026-04-18 20:34:28 | INFO | tfim_1d_nqs | Training point 41/49 | N=6 | J=1.250 | h=1.000
+2026-04-18 20:34:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 20:34:49 | INFO | tfim_1d_nqs | Finished J=1.250 | E/N(NQS)=-1.467903 | E/N(exact)=-1.468501 | err=0.041% | m2=0.0343 | n2=0.7895 | tau_int=0.44
+2026-04-18 20:34:49 | INFO | tfim_1d_nqs | Training point 42/49 | N=6 | J=1.312 | h=1.000
+2026-04-18 20:35:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:35:09 | INFO | tfim_1d_nqs | Finished J=1.312 | E/N(NQS)=-1.518720 | E/N(exact)=-1.518514 | err=0.014% | m2=0.0239 | n2=0.8659 | tau_int=0.47
+2026-04-18 20:35:09 | INFO | tfim_1d_nqs | Training point 43/49 | N=6 | J=1.375 | h=1.000
+2026-04-18 20:35:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 20:35:32 | INFO | tfim_1d_nqs | Finished J=1.375 | E/N(NQS)=-1.570139 | E/N(exact)=-1.569930 | err=0.013% | m2=0.0312 | n2=0.8056 | tau_int=0.52
+2026-04-18 20:35:32 | INFO | tfim_1d_nqs | Training point 44/49 | N=6 | J=1.438 | h=1.000
+2026-04-18 20:35:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 20:35:52 | INFO | tfim_1d_nqs | Finished J=1.438 | E/N(NQS)=-1.623133 | E/N(exact)=-1.622537 | err=0.037% | m2=0.0232 | n2=0.8726 | tau_int=0.53
+2026-04-18 20:35:52 | INFO | tfim_1d_nqs | Training point 45/49 | N=6 | J=1.500 | h=1.000
+2026-04-18 20:36:13 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 20:36:13 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.676382 | E/N(exact)=-1.676158 | err=0.013% | m2=0.0180 | n2=0.8761 | tau_int=0.49
+2026-04-18 20:36:13 | INFO | tfim_1d_nqs | Training point 46/49 | N=6 | J=1.650 | h=1.000
+2026-04-18 20:36:34 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 20:36:34 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.808422 | E/N(exact)=-1.808150 | err=0.015% | m2=0.0169 | n2=0.9032 | tau_int=0.47
+2026-04-18 20:36:34 | INFO | tfim_1d_nqs | Training point 47/49 | N=6 | J=2.100 | h=1.000
+2026-04-18 20:36:58 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.43 | window=3 | n_series=4096
+2026-04-18 20:36:58 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.222080 | E/N(exact)=-2.221747 | err=0.015% | m2=0.0106 | n2=0.9434 | tau_int=0.43
+2026-04-18 20:36:58 | INFO | tfim_1d_nqs | Training point 48/49 | N=6 | J=2.550 | h=1.000
+2026-04-18 20:37:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 20:37:18 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.649777 | E/N(exact)=-2.649376 | err=0.015% | m2=0.0076 | n2=0.9603 | tau_int=0.63
+2026-04-18 20:37:18 | INFO | tfim_1d_nqs | Training point 49/49 | N=6 | J=3.000 | h=1.000
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.78 | window=4 | n_series=4096
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.084327 | E/N(exact)=-3.084090 | err=0.008% | m2=0.0041 | n2=0.9794 | tau_int=0.78
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.086510 | exact=-3.086696 | err=0.006% | m2=0.9849 | n2=0.0044 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.653396 | exact=-2.653436 | err=0.002% | m2=0.9570 | n2=0.0117 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.228064 | exact=-2.228448 | err=0.017% | m2=0.9482 | n2=0.0166 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.819719 | exact=-1.819732 | err=0.001% | m2=0.9146 | n2=0.0278 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.689979 | exact=-1.690002 | err=0.001% | m2=0.9150 | n2=0.0264 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.438 | E/N=-1.637384 | exact=-1.637385 | err=0.000% | m2=0.8667 | n2=0.0366 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.375 | E/N=-1.585791 | exact=-1.585784 | err=0.000% | m2=0.8433 | n2=0.0444 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.312 | E/N=-1.535375 | exact=-1.535338 | err=0.002% | m2=0.8408 | n2=0.0498 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.250 | E/N=-1.486218 | exact=-1.486204 | err=0.001% | m2=0.8096 | n2=0.0537 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.447967 | exact=-1.447959 | err=0.001% | m2=0.8008 | n2=0.0547 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.188 | E/N=-1.438592 | exact=-1.438558 | err=0.002% | m2=0.7964 | n2=0.0542 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.125 | E/N=-1.392599 | exact=-1.392594 | err=0.000% | m2=0.7827 | n2=0.0562 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.062 | E/N=-1.348539 | exact=-1.348523 | err=0.001% | m2=0.7539 | n2=0.0723 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.306568 | exact=-1.306563 | err=0.000% | m2=0.7158 | n2=0.0771 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.938 | E/N=-1.266924 | exact=-1.266935 | err=0.001% | m2=0.6792 | n2=0.0874 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.875 | E/N=-1.229846 | exact=-1.229850 | err=0.000% | m2=0.6665 | n2=0.0942 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.812 | E/N=-1.195487 | exact=-1.195493 | err=0.001% | m2=0.6470 | n2=0.0962 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.163982 | exact=-1.164012 | err=0.003% | m2=0.5356 | n2=0.1216 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.688 | E/N=-1.135537 | exact=-1.135503 | err=0.003% | m2=0.5366 | n2=0.1206 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.625 | E/N=-1.109999 | exact=-1.110003 | err=0.000% | m2=0.5376 | n2=0.1255 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.562 | E/N=-1.087595 | exact=-1.087490 | err=0.010% | m2=0.4844 | n2=0.1328 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.067977 | exact=-1.067890 | err=0.008% | m2=0.4502 | n2=0.1455 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.023247 | exact=-1.023240 | err=0.001% | m2=0.3613 | n2=0.1855 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002566 | exact=-1.002509 | err=0.006% | m2=0.2334 | n2=0.2451 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.2422 | n2=0.2578 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002507 | exact=-1.002509 | err=0.000% | m2=0.2061 | n2=0.2979 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.023186 | exact=-1.023240 | err=0.005% | m2=0.1777 | n2=0.3809 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.067871 | exact=-1.067890 | err=0.002% | m2=0.1538 | n2=0.4253 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.562 | E/N=-1.087484 | exact=-1.087490 | err=0.001% | m2=0.1533 | n2=0.4463 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.625 | E/N=-1.110021 | exact=-1.110003 | err=0.002% | m2=0.1211 | n2=0.5449 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.688 | E/N=-1.135502 | exact=-1.135503 | err=0.000% | m2=0.1089 | n2=0.5562 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.164016 | exact=-1.164012 | err=0.000% | m2=0.1128 | n2=0.6089 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.812 | E/N=-1.195487 | exact=-1.195493 | err=0.000% | m2=0.1147 | n2=0.6147 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.875 | E/N=-1.229846 | exact=-1.229850 | err=0.000% | m2=0.0918 | n2=0.6523 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.938 | E/N=-1.266944 | exact=-1.266935 | err=0.001% | m2=0.0864 | n2=0.6509 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.306653 | exact=-1.306563 | err=0.007% | m2=0.0791 | n2=0.7100 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.062 | E/N=-1.348523 | exact=-1.348523 | err=0.000% | m2=0.0552 | n2=0.7876 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.125 | E/N=-1.392613 | exact=-1.392594 | err=0.001% | m2=0.0610 | n2=0.7837 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.188 | E/N=-1.438565 | exact=-1.438558 | err=0.000% | m2=0.0444 | n2=0.8218 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.447991 | exact=-1.447959 | err=0.002% | m2=0.0444 | n2=0.8296 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.250 | E/N=-1.486173 | exact=-1.486204 | err=0.002% | m2=0.0498 | n2=0.8193 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.312 | E/N=-1.535282 | exact=-1.535338 | err=0.004% | m2=0.0493 | n2=0.8306 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.375 | E/N=-1.585796 | exact=-1.585784 | err=0.001% | m2=0.0410 | n2=0.8613 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.438 | E/N=-1.637388 | exact=-1.637385 | err=0.000% | m2=0.0381 | n2=0.8604 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.690052 | exact=-1.690002 | err=0.003% | m2=0.0249 | n2=0.9194 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.819708 | exact=-1.819732 | err=0.001% | m2=0.0361 | n2=0.8916 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.228211 | exact=-2.228448 | err=0.011% | m2=0.0127 | n2=0.9482 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.654368 | exact=-2.653436 | err=0.035% | m2=0.0151 | n2=0.9546 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.086546 | exact=-3.086696 | err=0.005% | m2=0.0059 | n2=0.9824 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.084320 | exact=-3.084090 | err=0.007% | m2=0.9733 | n2=0.0050 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.649101 | exact=-2.649376 | err=0.010% | m2=0.9627 | n2=0.0069 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.221087 | exact=-2.221747 | err=0.030% | m2=0.9423 | n2=0.0109 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.807654 | exact=-1.808150 | err=0.027% | m2=0.9232 | n2=0.0126 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.676013 | exact=-1.676158 | err=0.009% | m2=0.8839 | n2=0.0215 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.438 | E/N=-1.621971 | exact=-1.622537 | err=0.035% | m2=0.8691 | n2=0.0224 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.375 | E/N=-1.569518 | exact=-1.569930 | err=0.026% | m2=0.8331 | n2=0.0306 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.312 | E/N=-1.518897 | exact=-1.518514 | err=0.025% | m2=0.8279 | n2=0.0289 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.250 | E/N=-1.468858 | exact=-1.468501 | err=0.024% | m2=0.8184 | n2=0.0271 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.429356 | exact=-1.429666 | err=0.022% | m2=0.8184 | n2=0.0280 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.188 | E/N=-1.420433 | exact=-1.420139 | err=0.021% | m2=0.8056 | n2=0.0312 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.125 | E/N=-1.373448 | exact=-1.373711 | err=0.019% | m2=0.6886 | n2=0.0493 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.062 | E/N=-1.329607 | exact=-1.329527 | err=0.006% | m2=0.6860 | n2=0.0510 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.287994 | exact=-1.287901 | err=0.007% | m2=0.6730 | n2=0.0458 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.938 | E/N=-1.249221 | exact=-1.249122 | err=0.008% | m2=0.5753 | n2=0.0645 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.875 | E/N=-1.213515 | exact=-1.213416 | err=0.008% | m2=0.5551 | n2=0.0603 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.812 | E/N=-1.180914 | exact=-1.180913 | err=0.000% | m2=0.5263 | n2=0.0684 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.151508 | exact=-1.151631 | err=0.011% | m2=0.4570 | n2=0.0786 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.688 | E/N=-1.125620 | exact=-1.125484 | err=0.012% | m2=0.3791 | n2=0.0862 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.625 | E/N=-1.102351 | exact=-1.102312 | err=0.004% | m2=0.3932 | n2=0.0851 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.562 | E/N=-1.081887 | exact=-1.081922 | err=0.003% | m2=0.3288 | n2=0.1000 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.064154 | exact=-1.064116 | err=0.004% | m2=0.2984 | n2=0.0983 | phase=FERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.022738 | exact=-1.022658 | err=0.008% | m2=0.2428 | n2=0.1070 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002491 | exact=-1.002502 | err=0.001% | m2=0.1858 | n2=0.1641 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.1684 | n2=0.1641 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002479 | exact=-1.002502 | err=0.002% | m2=0.1495 | n2=0.1864 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.022580 | exact=-1.022658 | err=0.008% | m2=0.1172 | n2=0.2448 | phase=PARA
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.064308 | exact=-1.064116 | err=0.018% | m2=0.0911 | n2=0.3064 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.562 | E/N=-1.081859 | exact=-1.081922 | err=0.006% | m2=0.0996 | n2=0.3153 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.625 | E/N=-1.102338 | exact=-1.102312 | err=0.002% | m2=0.0966 | n2=0.3774 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.688 | E/N=-1.125437 | exact=-1.125484 | err=0.004% | m2=0.0749 | n2=0.4191 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.151794 | exact=-1.151631 | err=0.014% | m2=0.0688 | n2=0.4902 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.812 | E/N=-1.180833 | exact=-1.180913 | err=0.007% | m2=0.0681 | n2=0.5317 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.875 | E/N=-1.213495 | exact=-1.213416 | err=0.006% | m2=0.0592 | n2=0.5605 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 0.938 | E/N=-1.249085 | exact=-1.249122 | err=0.003% | m2=0.0449 | n2=0.6356 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.288010 | exact=-1.287901 | err=0.008% | m2=0.0527 | n2=0.6235 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.062 | E/N=-1.329729 | exact=-1.329527 | err=0.015% | m2=0.0399 | n2=0.7144 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.125 | E/N=-1.373745 | exact=-1.373711 | err=0.002% | m2=0.0358 | n2=0.7342 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.188 | E/N=-1.420942 | exact=-1.420139 | err=0.057% | m2=0.0291 | n2=0.7990 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.429652 | exact=-1.429666 | err=0.001% | m2=0.0375 | n2=0.7750 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.250 | E/N=-1.467903 | exact=-1.468501 | err=0.041% | m2=0.0343 | n2=0.7895 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.312 | E/N=-1.518720 | exact=-1.518514 | err=0.014% | m2=0.0239 | n2=0.8659 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.375 | E/N=-1.570139 | exact=-1.569930 | err=0.013% | m2=0.0312 | n2=0.8056 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.438 | E/N=-1.623133 | exact=-1.622537 | err=0.037% | m2=0.0232 | n2=0.8726 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.676382 | exact=-1.676158 | err=0.013% | m2=0.0180 | n2=0.8761 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.808422 | exact=-1.808150 | err=0.015% | m2=0.0169 | n2=0.9032 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.222080 | exact=-2.221747 | err=0.015% | m2=0.0106 | n2=0.9434 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.649777 | exact=-2.649376 | err=0.015% | m2=0.0076 | n2=0.9603 | phase=ANTIFERRO
+2026-04-18 20:37:38 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.084327 | exact=-3.084090 | err=0.008% | m2=0.0041 | n2=0.9794 | phase=ANTIFERRO
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 20:56:07 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:00:09 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:04:36 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:24:26 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 6] | h=1.000 | 49 J-points ===
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:36:33 | INFO | tfim_1d_nqs | Training point 1/49 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:36:58 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 21:36:58 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.087407 | E/N(exact)=-3.086696 | err=0.023% | m2=0.9741 | n2=0.0083 | tau_int=0.55
+2026-04-18 21:36:58 | INFO | tfim_1d_nqs | Training point 2/49 | N=4 | J=-2.550 | h=1.000
+2026-04-18 21:37:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 21:37:12 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.653437 | E/N(exact)=-2.653436 | err=0.000% | m2=0.9685 | n2=0.0100 | tau_int=0.51
+2026-04-18 21:37:12 | INFO | tfim_1d_nqs | Training point 3/49 | N=4 | J=-2.100 | h=1.000
+2026-04-18 21:37:22 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 21:37:22 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.228435 | E/N(exact)=-2.228448 | err=0.001% | m2=0.9513 | n2=0.0148 | tau_int=0.52
+2026-04-18 21:37:22 | INFO | tfim_1d_nqs | Training point 4/49 | N=4 | J=-1.650 | h=1.000
+2026-04-18 21:37:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.97 | window=5 | n_series=4096
+2026-04-18 21:37:36 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.819730 | E/N(exact)=-1.819732 | err=0.000% | m2=0.9092 | n2=0.0288 | tau_int=0.97
+2026-04-18 21:37:36 | INFO | tfim_1d_nqs | Training point 5/49 | N=4 | J=-1.500 | h=1.000
+2026-04-18 21:37:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=6.67 | window=34 | n_series=4096
+2026-04-18 21:37:47 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.689998 | E/N(exact)=-1.690002 | err=0.000% | m2=0.8893 | n2=0.0328 | tau_int=6.67
+2026-04-18 21:37:47 | INFO | tfim_1d_nqs | Training point 6/49 | N=4 | J=-1.438 | h=1.000
+2026-04-18 21:38:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=6.74 | window=34 | n_series=4096
+2026-04-18 21:38:01 | INFO | tfim_1d_nqs | Finished J=-1.438 | E/N(NQS)=-1.637358 | E/N(exact)=-1.637385 | err=0.002% | m2=0.8744 | n2=0.0380 | tau_int=6.74
+2026-04-18 21:38:01 | INFO | tfim_1d_nqs | Training point 7/49 | N=4 | J=-1.375 | h=1.000
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [20, 4] | h=1.000 | 49 J-points ===
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | Training: n_iter=300 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:38:37 | INFO | tfim_1d_nqs | Training point 1/49 | N=20 | J=-3.000 | h=1.000
+2026-04-18 21:43:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 21:43:01 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.083861 | E/N(exact)=-3.083929 | err=0.002% | m2=0.9697 | n2=0.0016 | tau_int=0.57
+2026-04-18 21:43:01 | INFO | tfim_1d_nqs | Training point 2/49 | N=20 | J=-2.550 | h=1.000
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [20, 4] | h=1.000 | 49 J-points ===
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:43:22 | INFO | tfim_1d_nqs | Training point 1/49 | N=20 | J=-3.000 | h=1.000
+2026-04-18 21:47:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.74 | window=4 | n_series=4096
+2026-04-18 21:47:39 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.084138 | E/N(exact)=-3.083929 | err=0.007% | m2=0.9708 | n2=0.0015 | tau_int=0.74
+2026-04-18 21:47:39 | INFO | tfim_1d_nqs | Training point 2/49 | N=20 | J=-2.550 | h=1.000
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [20, 4] | h=1.000 | 49 J-points ===
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | Scan: 49 J values from -3.000 to 3.000
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:48:36 | INFO | tfim_1d_nqs | Training point 1/49 | N=20 | J=-3.000 | h=1.000
+2026-04-18 21:52:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.64 | window=4 | n_series=4096
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [20, 4] | h=1.000 | 38 J-points ===
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:53:12 | INFO | tfim_1d_nqs | Training point 1/38 | N=20 | J=-3.000 | h=1.000
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [20, 10, 8, 4] | h=1.000 | 38 J-points ===
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:55:05 | INFO | tfim_1d_nqs | Training point 1/38 | N=20 | J=-3.000 | h=1.000
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [4, 8, 10, 20] | h=1.000 | 38 J-points ===
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | --- Starting scan for N=4 ---
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | System: N=4, h=1.000
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 21:55:18 | INFO | tfim_1d_nqs | Training point 1/38 | N=4 | J=-3.000 | h=1.000
+2026-04-18 21:55:41 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 21:55:41 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.086478 | E/N(exact)=-3.086696 | err=0.007% | m2=0.9799 | n2=0.0067 | tau_int=0.55
+2026-04-18 21:55:41 | INFO | tfim_1d_nqs | Training point 2/38 | N=4 | J=-2.550 | h=1.000
+2026-04-18 21:55:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 21:55:47 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.653278 | E/N(exact)=-2.653436 | err=0.006% | m2=0.9696 | n2=0.0101 | tau_int=0.44
+2026-04-18 21:55:47 | INFO | tfim_1d_nqs | Training point 3/38 | N=4 | J=-2.100 | h=1.000
+2026-04-18 21:55:57 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 21:55:57 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.228123 | E/N(exact)=-2.228448 | err=0.015% | m2=0.9479 | n2=0.0143 | tau_int=0.52
+2026-04-18 21:55:57 | INFO | tfim_1d_nqs | Training point 4/38 | N=4 | J=-1.650 | h=1.000
+2026-04-18 21:56:07 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 21:56:07 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.819672 | E/N(exact)=-1.819732 | err=0.003% | m2=0.8977 | n2=0.0276 | tau_int=0.48
+2026-04-18 21:56:07 | INFO | tfim_1d_nqs | Training point 5/38 | N=4 | J=-1.500 | h=1.000
+2026-04-18 21:56:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 21:56:15 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.690141 | E/N(exact)=-1.690002 | err=0.008% | m2=0.8779 | n2=0.0361 | tau_int=0.63
+2026-04-18 21:56:15 | INFO | tfim_1d_nqs | Training point 6/38 | N=4 | J=-1.400 | h=1.000
+2026-04-18 21:56:25 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 21:56:25 | INFO | tfim_1d_nqs | Finished J=-1.400 | E/N(NQS)=-1.606182 | E/N(exact)=-1.606294 | err=0.007% | m2=0.8513 | n2=0.0432 | tau_int=0.55
+2026-04-18 21:56:25 | INFO | tfim_1d_nqs | Training point 7/38 | N=4 | J=-1.300 | h=1.000
+2026-04-18 21:56:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.91 | window=5 | n_series=4096
+2026-04-18 21:56:35 | INFO | tfim_1d_nqs | Finished J=-1.300 | E/N(NQS)=-1.525358 | E/N(exact)=-1.525401 | err=0.003% | m2=0.8434 | n2=0.0460 | tau_int=0.91
+2026-04-18 21:56:35 | INFO | tfim_1d_nqs | Training point 8/38 | N=4 | J=-1.200 | h=1.000
+2026-04-18 21:56:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 21:56:45 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.447995 | E/N(exact)=-1.447959 | err=0.003% | m2=0.8136 | n2=0.0533 | tau_int=0.52
+2026-04-18 21:56:45 | INFO | tfim_1d_nqs | Training point 9/38 | N=4 | J=-1.100 | h=1.000
+2026-04-18 21:56:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.67 | window=4 | n_series=4096
+2026-04-18 21:56:52 | INFO | tfim_1d_nqs | Finished J=-1.100 | E/N(NQS)=-1.374689 | E/N(exact)=-1.374726 | err=0.003% | m2=0.7559 | n2=0.0703 | tau_int=0.67
+2026-04-18 21:56:52 | INFO | tfim_1d_nqs | Training point 10/38 | N=4 | J=-1.000 | h=1.000
+2026-04-18 21:57:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.87 | window=10 | n_series=4096
+2026-04-18 21:57:02 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.306533 | E/N(exact)=-1.306563 | err=0.002% | m2=0.7285 | n2=0.0728 | tau_int=1.87
+2026-04-18 21:57:02 | INFO | tfim_1d_nqs | Training point 11/38 | N=4 | J=-0.900 | h=1.000
+2026-04-18 21:57:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.60 | window=4 | n_series=4096
+2026-04-18 21:57:12 | INFO | tfim_1d_nqs | Finished J=-0.900 | E/N(NQS)=-1.244373 | E/N(exact)=-1.244366 | err=0.001% | m2=0.6780 | n2=0.0925 | tau_int=0.60
+2026-04-18 21:57:12 | INFO | tfim_1d_nqs | Training point 12/38 | N=4 | J=-0.800 | h=1.000
+2026-04-18 21:57:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 21:57:18 | INFO | tfim_1d_nqs | Finished J=-0.800 | E/N(NQS)=-1.188952 | E/N(exact)=-1.188963 | err=0.001% | m2=0.6206 | n2=0.1016 | tau_int=0.58
+2026-04-18 21:57:18 | INFO | tfim_1d_nqs | Training point 13/38 | N=4 | J=-0.750 | h=1.000
+2026-04-18 21:57:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 21:57:28 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.164030 | E/N(exact)=-1.164012 | err=0.002% | m2=0.5962 | n2=0.1089 | tau_int=0.56
+2026-04-18 21:57:28 | INFO | tfim_1d_nqs | Training point 14/38 | N=4 | J=-0.700 | h=1.000
+2026-04-18 21:57:37 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-18 21:57:37 | INFO | tfim_1d_nqs | Finished J=-0.700 | E/N(NQS)=-1.140963 | E/N(exact)=-1.140964 | err=0.000% | m2=0.5529 | n2=0.1212 | tau_int=0.70
+2026-04-18 21:57:37 | INFO | tfim_1d_nqs | Training point 15/38 | N=4 | J=-0.600 | h=1.000
+2026-04-18 21:57:44 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.59 | window=4 | n_series=4096
+2026-04-18 21:57:44 | INFO | tfim_1d_nqs | Finished J=-0.600 | E/N(NQS)=-1.100646 | E/N(exact)=-1.100642 | err=0.000% | m2=0.4833 | n2=0.1351 | tau_int=0.59
+2026-04-18 21:57:44 | INFO | tfim_1d_nqs | Training point 16/38 | N=4 | J=-0.500 | h=1.000
+2026-04-18 21:57:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.64 | window=4 | n_series=4096
+2026-04-18 21:57:53 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.067850 | E/N(exact)=-1.067890 | err=0.004% | m2=0.4449 | n2=0.1520 | tau_int=0.64
+2026-04-18 21:57:53 | INFO | tfim_1d_nqs | Training point 17/38 | N=4 | J=-0.300 | h=1.000
+2026-04-18 21:58:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.04 | window=6 | n_series=4096
+2026-04-18 21:58:03 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.023245 | E/N(exact)=-1.023240 | err=0.000% | m2=0.3688 | n2=0.1818 | tau_int=1.04
+2026-04-18 21:58:03 | INFO | tfim_1d_nqs | Training point 18/38 | N=4 | J=-0.100 | h=1.000
+2026-04-18 21:58:13 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.47 | window=13 | n_series=4096
+2026-04-18 21:58:13 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002526 | E/N(exact)=-1.002509 | err=0.002% | m2=0.2665 | n2=0.2162 | tau_int=2.47
+2026-04-18 21:58:13 | INFO | tfim_1d_nqs | Training point 19/38 | N=4 | J=0.000 | h=1.000
+2026-04-18 21:58:19 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 21:58:19 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000001 | E/N(exact)=-1.000000 | err=0.000% | m2=0.2399 | n2=0.2487 | tau_int=0.50
+2026-04-18 21:58:19 | INFO | tfim_1d_nqs | Training point 20/38 | N=4 | J=0.100 | h=1.000
+2026-04-18 21:58:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.16 | window=11 | n_series=4096
+2026-04-18 21:58:29 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002513 | E/N(exact)=-1.002509 | err=0.000% | m2=0.2255 | n2=0.2836 | tau_int=2.16
+2026-04-18 21:58:29 | INFO | tfim_1d_nqs | Training point 21/38 | N=4 | J=0.300 | h=1.000
+2026-04-18 21:58:38 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.97 | window=5 | n_series=4096
+2026-04-18 21:58:38 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.023265 | E/N(exact)=-1.023240 | err=0.002% | m2=0.1746 | n2=0.3728 | tau_int=0.97
+2026-04-18 21:58:38 | INFO | tfim_1d_nqs | Training point 22/38 | N=4 | J=0.500 | h=1.000
+2026-04-18 21:58:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.68 | window=4 | n_series=4096
+2026-04-18 21:58:45 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.067889 | E/N(exact)=-1.067890 | err=0.000% | m2=0.1588 | n2=0.4347 | tau_int=0.68
+2026-04-18 21:58:45 | INFO | tfim_1d_nqs | Training point 23/38 | N=4 | J=0.600 | h=1.000
+2026-04-18 21:58:54 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.67 | window=4 | n_series=4096
+2026-04-18 21:58:54 | INFO | tfim_1d_nqs | Finished J=0.600 | E/N(NQS)=-1.100720 | E/N(exact)=-1.100642 | err=0.007% | m2=0.1285 | n2=0.5016 | tau_int=0.67
+2026-04-18 21:58:54 | INFO | tfim_1d_nqs | Training point 24/38 | N=4 | J=0.700 | h=1.000
+2026-04-18 21:59:03 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.84 | window=5 | n_series=4096
+2026-04-18 21:59:03 | INFO | tfim_1d_nqs | Finished J=0.700 | E/N(NQS)=-1.140967 | E/N(exact)=-1.140964 | err=0.000% | m2=0.1161 | n2=0.5702 | tau_int=0.84
+2026-04-18 21:59:03 | INFO | tfim_1d_nqs | Training point 25/38 | N=4 | J=0.750 | h=1.000
+2026-04-18 21:59:13 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 21:59:13 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.163999 | E/N(exact)=-1.164012 | err=0.001% | m2=0.1127 | n2=0.5770 | tau_int=0.63
+2026-04-18 21:59:13 | INFO | tfim_1d_nqs | Training point 26/38 | N=4 | J=0.800 | h=1.000
+2026-04-18 21:59:19 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 21:59:19 | INFO | tfim_1d_nqs | Finished J=0.800 | E/N(NQS)=-1.188950 | E/N(exact)=-1.188963 | err=0.001% | m2=0.1117 | n2=0.5878 | tau_int=0.57
+2026-04-18 21:59:19 | INFO | tfim_1d_nqs | Training point 27/38 | N=4 | J=0.900 | h=1.000
+2026-04-18 21:59:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 21:59:29 | INFO | tfim_1d_nqs | Finished J=0.900 | E/N(NQS)=-1.244274 | E/N(exact)=-1.244366 | err=0.007% | m2=0.0898 | n2=0.6758 | tau_int=0.55
+2026-04-18 21:59:29 | INFO | tfim_1d_nqs | Training point 28/38 | N=4 | J=1.000 | h=1.000
+2026-04-18 21:59:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 21:59:39 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.306554 | E/N(exact)=-1.306563 | err=0.001% | m2=0.0751 | n2=0.7328 | tau_int=0.48
+2026-04-18 21:59:39 | INFO | tfim_1d_nqs | Training point 29/38 | N=4 | J=1.100 | h=1.000
+2026-04-18 21:59:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.63 | window=4 | n_series=4096
+2026-04-18 21:59:45 | INFO | tfim_1d_nqs | Finished J=1.100 | E/N(NQS)=-1.374678 | E/N(exact)=-1.374726 | err=0.003% | m2=0.0610 | n2=0.7773 | tau_int=0.63
+2026-04-18 21:59:45 | INFO | tfim_1d_nqs | Training point 30/38 | N=4 | J=1.200 | h=1.000
+2026-04-18 21:59:55 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 21:59:55 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.447926 | E/N(exact)=-1.447959 | err=0.002% | m2=0.0564 | n2=0.7981 | tau_int=0.57
+2026-04-18 21:59:55 | INFO | tfim_1d_nqs | Training point 31/38 | N=4 | J=1.200 | h=1.000
+2026-04-18 22:00:05 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 22:00:05 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.448152 | E/N(exact)=-1.447959 | err=0.013% | m2=0.0557 | n2=0.8125 | tau_int=0.57
+2026-04-18 22:00:05 | INFO | tfim_1d_nqs | Training point 32/38 | N=4 | J=1.300 | h=1.000
+2026-04-18 22:00:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:00:15 | INFO | tfim_1d_nqs | Finished J=1.300 | E/N(NQS)=-1.525422 | E/N(exact)=-1.525401 | err=0.001% | m2=0.0491 | n2=0.8313 | tau_int=0.49
+2026-04-18 22:00:15 | INFO | tfim_1d_nqs | Training point 33/38 | N=4 | J=1.400 | h=1.000
+2026-04-18 22:00:22 | INFO | tfim_1d_nqs |   autocorr: tau_int=2.71 | window=14 | n_series=4096
+2026-04-18 22:00:22 | INFO | tfim_1d_nqs | Finished J=1.400 | E/N(NQS)=-1.606343 | E/N(exact)=-1.606294 | err=0.003% | m2=0.0480 | n2=0.8395 | tau_int=2.71
+2026-04-18 22:00:22 | INFO | tfim_1d_nqs | Training point 34/38 | N=4 | J=1.500 | h=1.000
+2026-04-18 22:00:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=5.94 | window=30 | n_series=4096
+2026-04-18 22:00:32 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.690120 | E/N(exact)=-1.690002 | err=0.007% | m2=0.0383 | n2=0.8718 | tau_int=5.94
+2026-04-18 22:00:32 | INFO | tfim_1d_nqs | Training point 35/38 | N=4 | J=1.650 | h=1.000
+2026-04-18 22:00:42 | INFO | tfim_1d_nqs |   autocorr: tau_int=1.94 | window=10 | n_series=4096
+2026-04-18 22:00:42 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.819764 | E/N(exact)=-1.819732 | err=0.002% | m2=0.0229 | n2=0.9150 | tau_int=1.94
+2026-04-18 22:00:42 | INFO | tfim_1d_nqs | Training point 36/38 | N=4 | J=2.100 | h=1.000
+2026-04-18 22:00:50 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 22:00:50 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.228776 | E/N(exact)=-2.228448 | err=0.015% | m2=0.0170 | n2=0.9471 | tau_int=0.57
+2026-04-18 22:00:50 | INFO | tfim_1d_nqs | Training point 37/38 | N=4 | J=2.550 | h=1.000
+2026-04-18 22:01:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.68 | window=4 | n_series=4096
+2026-04-18 22:01:00 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.653548 | E/N(exact)=-2.653436 | err=0.004% | m2=0.0093 | n2=0.9697 | tau_int=0.68
+2026-04-18 22:01:00 | INFO | tfim_1d_nqs | Training point 38/38 | N=4 | J=3.000 | h=1.000
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.086077 | E/N(exact)=-3.086696 | err=0.020% | m2=0.0079 | n2=0.9742 | tau_int=0.44
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | --- Starting scan for N=8 ---
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | System: N=8, h=1.000
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 22:01:11 | INFO | tfim_1d_nqs | Training point 1/38 | N=8 | J=-3.000 | h=1.000
+2026-04-18 22:01:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.43 | window=3 | n_series=4096
+2026-04-18 22:01:46 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.083921 | E/N(exact)=-3.083940 | err=0.001% | m2=0.9707 | n2=0.0041 | tau_int=0.43
+2026-04-18 22:01:46 | INFO | tfim_1d_nqs | Training point 2/38 | N=8 | J=-2.550 | h=1.000
+2026-04-18 22:02:06 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.38 | window=2 | n_series=4096
+2026-04-18 22:02:06 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.648946 | E/N(exact)=-2.649055 | err=0.004% | m2=0.9683 | n2=0.0045 | tau_int=0.38
+2026-04-18 22:02:06 | INFO | tfim_1d_nqs | Training point 3/38 | N=8 | J=-2.100 | h=1.000
+2026-04-18 22:02:26 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:02:26 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.220852 | E/N(exact)=-2.220971 | err=0.005% | m2=0.9450 | n2=0.0075 | tau_int=0.52
+2026-04-18 22:02:26 | INFO | tfim_1d_nqs | Training point 4/38 | N=8 | J=-1.650 | h=1.000
+2026-04-18 22:02:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.41 | window=3 | n_series=4096
+2026-04-18 22:02:47 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.805839 | E/N(exact)=-1.806020 | err=0.010% | m2=0.9077 | n2=0.0120 | tau_int=0.41
+2026-04-18 22:02:47 | INFO | tfim_1d_nqs | Training point 5/38 | N=8 | J=-1.500 | h=1.000
+2026-04-18 22:03:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 22:03:08 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.673106 | E/N(exact)=-1.673126 | err=0.001% | m2=0.8740 | n2=0.0150 | tau_int=0.58
+2026-04-18 22:03:08 | INFO | tfim_1d_nqs | Training point 6/38 | N=8 | J=-1.400 | h=1.000
+2026-04-18 22:03:26 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:03:26 | INFO | tfim_1d_nqs | Finished J=-1.400 | E/N(NQS)=-1.586733 | E/N(exact)=-1.587028 | err=0.019% | m2=0.8541 | n2=0.0165 | tau_int=0.53
+2026-04-18 22:03:26 | INFO | tfim_1d_nqs | Training point 7/38 | N=8 | J=-1.300 | h=1.000
+2026-04-18 22:03:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.44 | window=3 | n_series=4096
+2026-04-18 22:03:47 | INFO | tfim_1d_nqs | Finished J=-1.300 | E/N(NQS)=-1.503907 | E/N(exact)=-1.503675 | err=0.015% | m2=0.8249 | n2=0.0197 | tau_int=0.44
+2026-04-18 22:03:47 | INFO | tfim_1d_nqs | Training point 8/38 | N=8 | J=-1.200 | h=1.000
+2026-04-18 22:04:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:04:08 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.424011 | E/N(exact)=-1.424025 | err=0.001% | m2=0.7690 | n2=0.0265 | tau_int=0.49
+2026-04-18 22:04:08 | INFO | tfim_1d_nqs | Training point 9/38 | N=8 | J=-1.100 | h=1.000
+2026-04-18 22:04:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:04:29 | INFO | tfim_1d_nqs | Finished J=-1.100 | E/N(NQS)=-1.349098 | E/N(exact)=-1.349408 | err=0.023% | m2=0.6932 | n2=0.0309 | tau_int=0.49
+2026-04-18 22:04:29 | INFO | tfim_1d_nqs | Training point 10/38 | N=8 | J=-1.000 | h=1.000
+2026-04-18 22:04:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:04:52 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.281470 | E/N(exact)=-1.281458 | err=0.001% | m2=0.6338 | n2=0.0349 | tau_int=0.51
+2026-04-18 22:04:52 | INFO | tfim_1d_nqs | Training point 11/38 | N=8 | J=-0.900 | h=1.000
+2026-04-18 22:05:16 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 22:05:16 | INFO | tfim_1d_nqs | Finished J=-0.900 | E/N(NQS)=-1.221782 | E/N(exact)=-1.221661 | err=0.010% | m2=0.5003 | n2=0.0468 | tau_int=0.48
+2026-04-18 22:05:16 | INFO | tfim_1d_nqs | Training point 12/38 | N=8 | J=-0.800 | h=1.000
+2026-04-18 22:05:40 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:05:40 | INFO | tfim_1d_nqs | Finished J=-0.800 | E/N(NQS)=-1.170831 | E/N(exact)=-1.170651 | err=0.015% | m2=0.4462 | n2=0.0525 | tau_int=0.52
+2026-04-18 22:05:40 | INFO | tfim_1d_nqs | Training point 13/38 | N=8 | J=-0.750 | h=1.000
+2026-04-18 22:06:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 22:06:01 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.148407 | E/N(exact)=-1.148327 | err=0.007% | m2=0.3780 | n2=0.0604 | tau_int=0.48
+2026-04-18 22:06:01 | INFO | tfim_1d_nqs | Training point 14/38 | N=8 | J=-0.700 | h=1.000
+2026-04-18 22:06:23 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:06:23 | INFO | tfim_1d_nqs | Finished J=-0.700 | E/N(NQS)=-1.127972 | E/N(exact)=-1.127967 | err=0.000% | m2=0.3243 | n2=0.0651 | tau_int=0.51
+2026-04-18 22:06:23 | INFO | tfim_1d_nqs | Training point 15/38 | N=8 | J=-0.600 | h=1.000
+2026-04-18 22:06:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:06:46 | INFO | tfim_1d_nqs | Finished J=-0.600 | E/N(NQS)=-1.092613 | E/N(exact)=-1.092604 | err=0.001% | m2=0.2766 | n2=0.0706 | tau_int=0.52
+2026-04-18 22:06:46 | INFO | tfim_1d_nqs | Training point 16/38 | N=8 | J=-0.500 | h=1.000
+2026-04-18 22:07:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.46 | window=3 | n_series=4096
+2026-04-18 22:07:08 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.063510 | E/N(exact)=-1.063635 | err=0.012% | m2=0.2285 | n2=0.0770 | tau_int=0.46
+2026-04-18 22:07:08 | INFO | tfim_1d_nqs | Training point 17/38 | N=8 | J=-0.300 | h=1.000
+2026-04-18 22:07:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:07:29 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.022686 | E/N(exact)=-1.022631 | err=0.005% | m2=0.1730 | n2=0.0948 | tau_int=0.50
+2026-04-18 22:07:29 | INFO | tfim_1d_nqs | Training point 18/38 | N=8 | J=-0.100 | h=1.000
+2026-04-18 22:07:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:07:48 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002485 | E/N(exact)=-1.002502 | err=0.002% | m2=0.1323 | n2=0.1187 | tau_int=0.52
+2026-04-18 22:07:48 | INFO | tfim_1d_nqs | Training point 19/38 | N=8 | J=0.000 | h=1.000
+2026-04-18 22:08:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:08:09 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.1313 | n2=0.1224 | tau_int=0.47
+2026-04-18 22:08:09 | INFO | tfim_1d_nqs | Training point 20/38 | N=8 | J=0.100 | h=1.000
+2026-04-18 22:08:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:08:28 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002502 | E/N(exact)=-1.002502 | err=0.000% | m2=0.1104 | n2=0.1420 | tau_int=0.47
+2026-04-18 22:08:28 | INFO | tfim_1d_nqs | Training point 21/38 | N=8 | J=0.300 | h=1.000
+2026-04-18 22:08:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:08:48 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.022609 | E/N(exact)=-1.022631 | err=0.002% | m2=0.0953 | n2=0.1729 | tau_int=0.49
+2026-04-18 22:08:48 | INFO | tfim_1d_nqs | Training point 22/38 | N=8 | J=0.500 | h=1.000
+2026-04-18 22:09:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:09:15 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.063747 | E/N(exact)=-1.063635 | err=0.011% | m2=0.0780 | n2=0.2231 | tau_int=0.47
+2026-04-18 22:09:15 | INFO | tfim_1d_nqs | Training point 23/38 | N=8 | J=0.600 | h=1.000
+2026-04-18 22:09:37 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 22:09:37 | INFO | tfim_1d_nqs | Finished J=0.600 | E/N(NQS)=-1.092573 | E/N(exact)=-1.092604 | err=0.003% | m2=0.0777 | n2=0.2666 | tau_int=0.48
+2026-04-18 22:09:37 | INFO | tfim_1d_nqs | Training point 24/38 | N=8 | J=0.700 | h=1.000
+2026-04-18 22:09:59 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:09:59 | INFO | tfim_1d_nqs | Finished J=0.700 | E/N(NQS)=-1.127884 | E/N(exact)=-1.127967 | err=0.007% | m2=0.0631 | n2=0.3344 | tau_int=0.51
+2026-04-18 22:09:59 | INFO | tfim_1d_nqs | Training point 25/38 | N=8 | J=0.750 | h=1.000
+2026-04-18 22:10:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:10:20 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.148404 | E/N(exact)=-1.148327 | err=0.007% | m2=0.0639 | n2=0.3597 | tau_int=0.49
+2026-04-18 22:10:20 | INFO | tfim_1d_nqs | Training point 26/38 | N=8 | J=0.800 | h=1.000
+2026-04-18 22:10:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:10:47 | INFO | tfim_1d_nqs | Finished J=0.800 | E/N(NQS)=-1.170579 | E/N(exact)=-1.170651 | err=0.006% | m2=0.0564 | n2=0.4074 | tau_int=0.49
+2026-04-18 22:10:47 | INFO | tfim_1d_nqs | Training point 27/38 | N=8 | J=0.900 | h=1.000
+2026-04-18 22:11:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:11:10 | INFO | tfim_1d_nqs | Finished J=0.900 | E/N(NQS)=-1.221554 | E/N(exact)=-1.221661 | err=0.009% | m2=0.0435 | n2=0.5081 | tau_int=0.52
+2026-04-18 22:11:10 | INFO | tfim_1d_nqs | Training point 28/38 | N=8 | J=1.000 | h=1.000
+2026-04-18 22:11:31 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:11:31 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.281331 | E/N(exact)=-1.281458 | err=0.010% | m2=0.0352 | n2=0.6292 | tau_int=0.52
+2026-04-18 22:11:31 | INFO | tfim_1d_nqs | Training point 29/38 | N=8 | J=1.100 | h=1.000
+2026-04-18 22:11:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:11:53 | INFO | tfim_1d_nqs | Finished J=1.100 | E/N(NQS)=-1.349385 | E/N(exact)=-1.349408 | err=0.002% | m2=0.0311 | n2=0.6913 | tau_int=0.51
+2026-04-18 22:11:53 | INFO | tfim_1d_nqs | Training point 30/38 | N=8 | J=1.200 | h=1.000
+2026-04-18 22:12:21 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 22:12:21 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.423662 | E/N(exact)=-1.424025 | err=0.026% | m2=0.0223 | n2=0.7960 | tau_int=0.55
+2026-04-18 22:12:21 | INFO | tfim_1d_nqs | Training point 31/38 | N=8 | J=1.200 | h=1.000
+2026-04-18 22:12:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-18 22:12:39 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.423712 | E/N(exact)=-1.424025 | err=0.022% | m2=0.0247 | n2=0.7675 | tau_int=0.58
+2026-04-18 22:12:39 | INFO | tfim_1d_nqs | Training point 32/38 | N=8 | J=1.300 | h=1.000
+2026-04-18 22:13:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:13:02 | INFO | tfim_1d_nqs | Finished J=1.300 | E/N(NQS)=-1.503457 | E/N(exact)=-1.503675 | err=0.014% | m2=0.0205 | n2=0.8066 | tau_int=0.47
+2026-04-18 22:13:02 | INFO | tfim_1d_nqs | Training point 33/38 | N=8 | J=1.400 | h=1.000
+2026-04-18 22:13:22 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:13:22 | INFO | tfim_1d_nqs | Finished J=1.400 | E/N(NQS)=-1.587431 | E/N(exact)=-1.587028 | err=0.025% | m2=0.0169 | n2=0.8487 | tau_int=0.49
+2026-04-18 22:13:22 | INFO | tfim_1d_nqs | Training point 34/38 | N=8 | J=1.500 | h=1.000
+2026-04-18 22:13:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 22:13:48 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.673159 | E/N(exact)=-1.673126 | err=0.002% | m2=0.0140 | n2=0.8878 | tau_int=0.56
+2026-04-18 22:13:48 | INFO | tfim_1d_nqs | Training point 35/38 | N=8 | J=1.650 | h=1.000
+2026-04-18 22:14:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.78 | window=4 | n_series=4096
+2026-04-18 22:14:09 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.805740 | E/N(exact)=-1.806020 | err=0.016% | m2=0.0102 | n2=0.9167 | tau_int=0.78
+2026-04-18 22:14:09 | INFO | tfim_1d_nqs | Training point 36/38 | N=8 | J=2.100 | h=1.000
+2026-04-18 22:14:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.66 | window=4 | n_series=4096
+2026-04-18 22:14:28 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.221211 | E/N(exact)=-2.220971 | err=0.011% | m2=0.0072 | n2=0.9478 | tau_int=0.66
+2026-04-18 22:14:28 | INFO | tfim_1d_nqs | Training point 37/38 | N=8 | J=2.550 | h=1.000
+2026-04-18 22:14:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.74 | window=4 | n_series=4096
+2026-04-18 22:14:47 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.649060 | E/N(exact)=-2.649055 | err=0.000% | m2=0.0042 | n2=0.9685 | tau_int=0.74
+2026-04-18 22:14:47 | INFO | tfim_1d_nqs | Training point 38/38 | N=8 | J=3.000 | h=1.000
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.57 | window=3 | n_series=4096
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.084064 | E/N(exact)=-3.083940 | err=0.004% | m2=0.0043 | n2=0.9693 | tau_int=0.57
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | --- Starting scan for N=10 ---
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | System: N=10, h=1.000
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 22:15:08 | INFO | tfim_1d_nqs | Training point 1/38 | N=10 | J=-3.000 | h=1.000
+2026-04-18 22:15:48 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.68 | window=4 | n_series=4096
+2026-04-18 22:15:48 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.083444 | E/N(exact)=-3.083930 | err=0.016% | m2=0.9649 | n2=0.0039 | tau_int=0.68
+2026-04-18 22:15:48 | INFO | tfim_1d_nqs | Training point 2/38 | N=10 | J=-2.550 | h=1.000
+2026-04-18 22:16:21 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:16:21 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.649068 | E/N(exact)=-2.649024 | err=0.002% | m2=0.9635 | n2=0.0038 | tau_int=0.50
+2026-04-18 22:16:21 | INFO | tfim_1d_nqs | Training point 3/38 | N=10 | J=-2.100 | h=1.000
+2026-04-18 22:16:54 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:16:54 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.220703 | E/N(exact)=-2.220861 | err=0.007% | m2=0.9482 | n2=0.0055 | tau_int=0.51
+2026-04-18 22:16:54 | INFO | tfim_1d_nqs | Training point 4/38 | N=10 | J=-1.650 | h=1.000
+2026-04-18 22:17:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.40 | window=3 | n_series=4096
+2026-04-18 22:17:28 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.805816 | E/N(exact)=-1.805538 | err=0.015% | m2=0.8999 | n2=0.0095 | tau_int=0.40
+2026-04-18 22:17:28 | INFO | tfim_1d_nqs | Training point 5/38 | N=10 | J=-1.500 | h=1.000
+2026-04-18 22:18:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.61 | window=4 | n_series=4096
+2026-04-18 22:18:02 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.671851 | E/N(exact)=-1.672302 | err=0.027% | m2=0.8791 | n2=0.0119 | tau_int=0.61
+2026-04-18 22:18:02 | INFO | tfim_1d_nqs | Training point 6/38 | N=10 | J=-1.400 | h=1.000
+2026-04-18 22:18:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.45 | window=3 | n_series=4096
+2026-04-18 22:18:35 | INFO | tfim_1d_nqs | Finished J=-1.400 | E/N(NQS)=-1.585810 | E/N(exact)=-1.585851 | err=0.003% | m2=0.8391 | n2=0.0143 | tau_int=0.45
+2026-04-18 22:18:35 | INFO | tfim_1d_nqs | Training point 7/38 | N=10 | J=-1.300 | h=1.000
+2026-04-18 22:19:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:19:12 | INFO | tfim_1d_nqs | Finished J=-1.300 | E/N(NQS)=-1.501985 | E/N(exact)=-1.502016 | err=0.002% | m2=0.8009 | n2=0.0180 | tau_int=0.49
+2026-04-18 22:19:12 | INFO | tfim_1d_nqs | Training point 8/38 | N=10 | J=-1.200 | h=1.000
+2026-04-18 22:19:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 22:19:46 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.421708 | E/N(exact)=-1.421775 | err=0.005% | m2=0.7827 | n2=0.0178 | tau_int=0.56
+2026-04-18 22:19:46 | INFO | tfim_1d_nqs | Training point 9/38 | N=10 | J=-1.100 | h=1.000
+2026-04-18 22:20:18 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:20:18 | INFO | tfim_1d_nqs | Finished J=-1.100 | E/N(NQS)=-1.346513 | E/N(exact)=-1.346610 | err=0.007% | m2=0.6814 | n2=0.0261 | tau_int=0.53
+2026-04-18 22:20:18 | INFO | tfim_1d_nqs | Training point 10/38 | N=10 | J=-1.000 | h=1.000
+2026-04-18 22:20:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:20:52 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.278189 | E/N(exact)=-1.278491 | err=0.024% | m2=0.5846 | n2=0.0302 | tau_int=0.53
+2026-04-18 22:20:52 | INFO | tfim_1d_nqs | Training point 11/38 | N=10 | J=-0.900 | h=1.000
+2026-04-18 22:21:28 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:21:28 | INFO | tfim_1d_nqs | Finished J=-0.900 | E/N(NQS)=-1.219370 | E/N(exact)=-1.219187 | err=0.015% | m2=0.4638 | n2=0.0374 | tau_int=0.49
+2026-04-18 22:21:28 | INFO | tfim_1d_nqs | Training point 12/38 | N=10 | J=-0.800 | h=1.000
+2026-04-18 22:22:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:22:02 | INFO | tfim_1d_nqs | Finished J=-0.800 | E/N(NQS)=-1.169180 | E/N(exact)=-1.169094 | err=0.007% | m2=0.3442 | n2=0.0421 | tau_int=0.50
+2026-04-18 22:22:02 | INFO | tfim_1d_nqs | Training point 13/38 | N=10 | J=-0.750 | h=1.000
+2026-04-18 22:22:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:22:39 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.147210 | E/N(exact)=-1.147214 | err=0.000% | m2=0.3108 | n2=0.0468 | tau_int=0.53
+2026-04-18 22:22:39 | INFO | tfim_1d_nqs | Training point 14/38 | N=10 | J=-0.700 | h=1.000
+2026-04-18 22:23:14 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:23:14 | INFO | tfim_1d_nqs | Finished J=-0.700 | E/N(NQS)=-1.127172 | E/N(exact)=-1.127223 | err=0.005% | m2=0.2804 | n2=0.0516 | tau_int=0.47
+2026-04-18 22:23:14 | INFO | tfim_1d_nqs | Training point 15/38 | N=10 | J=-0.600 | h=1.000
+2026-04-18 22:23:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:23:49 | INFO | tfim_1d_nqs | Finished J=-0.600 | E/N(NQS)=-1.092308 | E/N(exact)=-1.092331 | err=0.002% | m2=0.2176 | n2=0.0573 | tau_int=0.49
+2026-04-18 22:23:49 | INFO | tfim_1d_nqs | Training point 16/38 | N=10 | J=-0.500 | h=1.000
+2026-04-18 22:24:22 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:24:22 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.063645 | E/N(exact)=-1.063560 | err=0.008% | m2=0.1852 | n2=0.0607 | tau_int=0.47
+2026-04-18 22:24:22 | INFO | tfim_1d_nqs | Training point 17/38 | N=10 | J=-0.300 | h=1.000
+2026-04-18 22:24:57 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:24:57 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.022567 | E/N(exact)=-1.022630 | err=0.006% | m2=0.1356 | n2=0.0740 | tau_int=0.49
+2026-04-18 22:24:57 | INFO | tfim_1d_nqs | Training point 18/38 | N=10 | J=-0.100 | h=1.000
+2026-04-18 22:25:30 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:25:30 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002507 | E/N(exact)=-1.002502 | err=0.000% | m2=0.1124 | n2=0.0884 | tau_int=0.51
+2026-04-18 22:25:30 | INFO | tfim_1d_nqs | Training point 19/38 | N=10 | J=0.000 | h=1.000
+2026-04-18 22:26:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.59 | window=3 | n_series=4096
+2026-04-18 22:26:01 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.0977 | n2=0.0971 | tau_int=0.59
+2026-04-18 22:26:01 | INFO | tfim_1d_nqs | Training point 20/38 | N=10 | J=0.100 | h=1.000
+2026-04-18 22:26:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 22:26:36 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002494 | E/N(exact)=-1.002502 | err=0.001% | m2=0.0947 | n2=0.1078 | tau_int=0.48
+2026-04-18 22:26:36 | INFO | tfim_1d_nqs | Training point 21/38 | N=10 | J=0.300 | h=1.000
+2026-04-18 22:27:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:27:10 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.022634 | E/N(exact)=-1.022630 | err=0.000% | m2=0.0777 | n2=0.1419 | tau_int=0.49
+2026-04-18 22:27:10 | INFO | tfim_1d_nqs | Training point 22/38 | N=10 | J=0.500 | h=1.000
+2026-04-18 22:27:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:27:47 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.063548 | E/N(exact)=-1.063560 | err=0.001% | m2=0.0655 | n2=0.1895 | tau_int=0.50
+2026-04-18 22:27:47 | INFO | tfim_1d_nqs | Training point 23/38 | N=10 | J=0.600 | h=1.000
+2026-04-18 22:28:19 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:28:19 | INFO | tfim_1d_nqs | Finished J=0.600 | E/N(NQS)=-1.092291 | E/N(exact)=-1.092331 | err=0.004% | m2=0.0584 | n2=0.2196 | tau_int=0.50
+2026-04-18 22:28:19 | INFO | tfim_1d_nqs | Training point 24/38 | N=10 | J=0.700 | h=1.000
+2026-04-18 22:28:54 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:28:54 | INFO | tfim_1d_nqs | Finished J=0.700 | E/N(NQS)=-1.127230 | E/N(exact)=-1.127223 | err=0.001% | m2=0.0504 | n2=0.2829 | tau_int=0.51
+2026-04-18 22:28:54 | INFO | tfim_1d_nqs | Training point 25/38 | N=10 | J=0.750 | h=1.000
+2026-04-18 22:29:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 22:29:29 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.147032 | E/N(exact)=-1.147214 | err=0.016% | m2=0.0473 | n2=0.3000 | tau_int=0.49
+2026-04-18 22:29:29 | INFO | tfim_1d_nqs | Training point 26/38 | N=10 | J=0.800 | h=1.000
+2026-04-18 22:30:05 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:30:05 | INFO | tfim_1d_nqs | Finished J=0.800 | E/N(NQS)=-1.168871 | E/N(exact)=-1.169094 | err=0.019% | m2=0.0410 | n2=0.3702 | tau_int=0.47
+2026-04-18 22:30:05 | INFO | tfim_1d_nqs | Training point 27/38 | N=10 | J=0.900 | h=1.000
+2026-04-18 22:30:40 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:30:40 | INFO | tfim_1d_nqs | Finished J=0.900 | E/N(NQS)=-1.219442 | E/N(exact)=-1.219187 | err=0.021% | m2=0.0361 | n2=0.4735 | tau_int=0.50
+2026-04-18 22:30:40 | INFO | tfim_1d_nqs | Training point 28/38 | N=10 | J=1.000 | h=1.000
+2026-04-18 22:31:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-18 22:31:15 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.278670 | E/N(exact)=-1.278491 | err=0.014% | m2=0.0297 | n2=0.5669 | tau_int=0.54
+2026-04-18 22:31:15 | INFO | tfim_1d_nqs | Training point 29/38 | N=10 | J=1.100 | h=1.000
+2026-04-18 22:31:49 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:31:49 | INFO | tfim_1d_nqs | Finished J=1.100 | E/N(NQS)=-1.346572 | E/N(exact)=-1.346610 | err=0.003% | m2=0.0247 | n2=0.6933 | tau_int=0.53
+2026-04-18 22:31:49 | INFO | tfim_1d_nqs | Training point 30/38 | N=10 | J=1.200 | h=1.000
+2026-04-18 22:32:24 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:32:24 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.421432 | E/N(exact)=-1.421775 | err=0.024% | m2=0.0211 | n2=0.7490 | tau_int=0.47
+2026-04-18 22:32:24 | INFO | tfim_1d_nqs | Training point 31/38 | N=10 | J=1.200 | h=1.000
+2026-04-18 22:33:00 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 22:33:00 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.421805 | E/N(exact)=-1.421775 | err=0.002% | m2=0.0180 | n2=0.7698 | tau_int=0.50
+2026-04-18 22:33:00 | INFO | tfim_1d_nqs | Training point 32/38 | N=10 | J=1.300 | h=1.000
+2026-04-18 22:33:33 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 22:33:33 | INFO | tfim_1d_nqs | Finished J=1.300 | E/N(NQS)=-1.502324 | E/N(exact)=-1.502016 | err=0.020% | m2=0.0153 | n2=0.8165 | tau_int=0.48
+2026-04-18 22:33:33 | INFO | tfim_1d_nqs | Training point 33/38 | N=10 | J=1.400 | h=1.000
+2026-04-18 22:34:08 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:34:08 | INFO | tfim_1d_nqs | Finished J=1.400 | E/N(NQS)=-1.585691 | E/N(exact)=-1.585851 | err=0.010% | m2=0.0144 | n2=0.8513 | tau_int=0.53
+2026-04-18 22:34:08 | INFO | tfim_1d_nqs | Training point 34/38 | N=10 | J=1.500 | h=1.000
+2026-04-18 22:34:42 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:34:42 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.672438 | E/N(exact)=-1.672302 | err=0.008% | m2=0.0108 | n2=0.8842 | tau_int=0.51
+2026-04-18 22:34:42 | INFO | tfim_1d_nqs | Training point 35/38 | N=10 | J=1.650 | h=1.000
+2026-04-18 22:35:15 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 22:35:15 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.805415 | E/N(exact)=-1.805538 | err=0.007% | m2=0.0086 | n2=0.9108 | tau_int=0.47
+2026-04-18 22:35:15 | INFO | tfim_1d_nqs | Training point 36/38 | N=10 | J=2.100 | h=1.000
+2026-04-18 22:35:46 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 22:35:46 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.220810 | E/N(exact)=-2.220861 | err=0.002% | m2=0.0055 | n2=0.9469 | tau_int=0.52
+2026-04-18 22:35:46 | INFO | tfim_1d_nqs | Training point 37/38 | N=10 | J=2.550 | h=1.000
+2026-04-18 22:36:17 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.79 | window=4 | n_series=4096
+2026-04-18 22:36:17 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.649062 | E/N(exact)=-2.649024 | err=0.001% | m2=0.0044 | n2=0.9575 | tau_int=0.79
+2026-04-18 22:36:17 | INFO | tfim_1d_nqs | Training point 38/38 | N=10 | J=3.000 | h=1.000
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.083732 | E/N(exact)=-3.083930 | err=0.006% | m2=0.0027 | n2=0.9737 | tau_int=0.55
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | --- Starting scan for N=20 ---
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | System: N=20, h=1.000
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-18 22:36:51 | INFO | tfim_1d_nqs | Training point 1/38 | N=20 | J=-3.000 | h=1.000
+2026-04-18 22:41:01 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.75 | window=4 | n_series=4096
+2026-04-18 22:41:01 | INFO | tfim_1d_nqs | Finished J=-3.000 | E/N(NQS)=-3.083842 | E/N(exact)=-3.083929 | err=0.003% | m2=0.9701 | n2=0.0015 | tau_int=0.75
+2026-04-18 22:41:01 | INFO | tfim_1d_nqs | Training point 2/38 | N=20 | J=-2.550 | h=1.000
+2026-04-18 22:45:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.69 | window=4 | n_series=4096
+2026-04-18 22:45:10 | INFO | tfim_1d_nqs | Finished J=-2.550 | E/N(NQS)=-2.649102 | E/N(exact)=-2.649020 | err=0.003% | m2=0.9586 | n2=0.0020 | tau_int=0.69
+2026-04-18 22:45:10 | INFO | tfim_1d_nqs | Training point 3/38 | N=20 | J=-2.100 | h=1.000
+2026-04-18 22:49:19 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 22:49:19 | INFO | tfim_1d_nqs | Finished J=-2.100 | E/N(NQS)=-2.220749 | E/N(exact)=-2.220840 | err=0.004% | m2=0.9430 | n2=0.0028 | tau_int=0.56
+2026-04-18 22:49:19 | INFO | tfim_1d_nqs | Training point 4/38 | N=20 | J=-1.650 | h=1.000
+2026-04-18 22:53:29 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.53 | window=3 | n_series=4096
+2026-04-18 22:53:29 | INFO | tfim_1d_nqs | Finished J=-1.650 | E/N(NQS)=-1.805002 | E/N(exact)=-1.805370 | err=0.020% | m2=0.9024 | n2=0.0043 | tau_int=0.53
+2026-04-18 22:53:29 | INFO | tfim_1d_nqs | Training point 5/38 | N=20 | J=-1.500 | h=1.000
+2026-04-18 22:57:39 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-18 22:57:39 | INFO | tfim_1d_nqs | Finished J=-1.500 | E/N(NQS)=-1.671670 | E/N(exact)=-1.671928 | err=0.015% | m2=0.8747 | n2=0.0056 | tau_int=0.51
+2026-04-18 22:57:39 | INFO | tfim_1d_nqs | Training point 6/38 | N=20 | J=-1.400 | h=1.000
+2026-04-18 23:01:54 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.92 | window=5 | n_series=4096
+2026-04-18 23:01:54 | INFO | tfim_1d_nqs | Finished J=-1.400 | E/N(NQS)=-1.585029 | E/N(exact)=-1.585196 | err=0.011% | m2=0.8386 | n2=0.0071 | tau_int=0.92
+2026-04-18 23:01:54 | INFO | tfim_1d_nqs | Training point 7/38 | N=20 | J=-1.300 | h=1.000
+2026-04-18 23:06:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.60 | window=4 | n_series=4096
+2026-04-18 23:06:04 | INFO | tfim_1d_nqs | Finished J=-1.300 | E/N(NQS)=-1.501054 | E/N(exact)=-1.500853 | err=0.013% | m2=0.8103 | n2=0.0078 | tau_int=0.60
+2026-04-18 23:06:04 | INFO | tfim_1d_nqs | Training point 8/38 | N=20 | J=-1.200 | h=1.000
+2026-04-18 23:10:14 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.95 | window=5 | n_series=4096
+2026-04-18 23:10:14 | INFO | tfim_1d_nqs | Finished J=-1.200 | E/N(NQS)=-1.418630 | E/N(exact)=-1.419738 | err=0.078% | m2=0.7388 | n2=0.0095 | tau_int=0.95
+2026-04-18 23:10:14 | INFO | tfim_1d_nqs | Training point 9/38 | N=20 | J=-1.100 | h=1.000
+2026-04-18 23:14:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.73 | window=4 | n_series=4096
+2026-04-18 23:14:20 | INFO | tfim_1d_nqs | Finished J=-1.100 | E/N(NQS)=-1.342874 | E/N(exact)=-1.343346 | err=0.035% | m2=0.6445 | n2=0.0117 | tau_int=0.73
+2026-04-18 23:14:20 | INFO | tfim_1d_nqs | Training point 10/38 | N=20 | J=-1.000 | h=1.000
+2026-04-18 23:18:32 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-18 23:18:32 | INFO | tfim_1d_nqs | Finished J=-1.000 | E/N(NQS)=-1.274078 | E/N(exact)=-1.274549 | err=0.037% | m2=0.4147 | n2=0.0155 | tau_int=0.70
+2026-04-18 23:18:32 | INFO | tfim_1d_nqs | Training point 11/38 | N=20 | J=-0.900 | h=1.000
+2026-04-18 23:22:42 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.56 | window=3 | n_series=4096
+2026-04-18 23:22:42 | INFO | tfim_1d_nqs | Finished J=-0.900 | E/N(NQS)=-1.216313 | E/N(exact)=-1.216374 | err=0.005% | m2=0.2788 | n2=0.0193 | tau_int=0.56
+2026-04-18 23:22:42 | INFO | tfim_1d_nqs | Training point 12/38 | N=20 | J=-0.800 | h=1.000
+2026-04-18 23:26:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.48 | window=3 | n_series=4096
+2026-04-18 23:26:53 | INFO | tfim_1d_nqs | Finished J=-0.800 | E/N(NQS)=-1.167666 | E/N(exact)=-1.167856 | err=0.016% | m2=0.1948 | n2=0.0226 | tau_int=0.48
+2026-04-18 23:26:53 | INFO | tfim_1d_nqs | Training point 13/38 | N=20 | J=-0.750 | h=1.000
+2026-04-18 23:31:09 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.45 | window=3 | n_series=4096
+2026-04-18 23:31:09 | INFO | tfim_1d_nqs | Finished J=-0.750 | E/N(NQS)=-1.146414 | E/N(exact)=-1.146494 | err=0.007% | m2=0.1748 | n2=0.0249 | tau_int=0.45
+2026-04-18 23:31:09 | INFO | tfim_1d_nqs | Training point 14/38 | N=20 | J=-0.700 | h=1.000
+2026-04-18 23:35:25 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.49 | window=3 | n_series=4096
+2026-04-18 23:35:25 | INFO | tfim_1d_nqs | Finished J=-0.700 | E/N(NQS)=-1.126731 | E/N(exact)=-1.126832 | err=0.009% | m2=0.1436 | n2=0.0245 | tau_int=0.49
+2026-04-18 23:35:25 | INFO | tfim_1d_nqs | Training point 15/38 | N=20 | J=-0.600 | h=1.000
+2026-04-18 23:39:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-18 23:39:36 | INFO | tfim_1d_nqs | Finished J=-0.600 | E/N(NQS)=-1.092099 | E/N(exact)=-1.092239 | err=0.013% | m2=0.1089 | n2=0.0289 | tau_int=0.50
+2026-04-18 23:39:36 | INFO | tfim_1d_nqs | Training point 16/38 | N=20 | J=-0.500 | h=1.000
+2026-04-18 23:43:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 23:43:45 | INFO | tfim_1d_nqs | Finished J=-0.500 | E/N(NQS)=-1.063554 | E/N(exact)=-1.063544 | err=0.001% | m2=0.0935 | n2=0.0320 | tau_int=0.55
+2026-04-18 23:43:45 | INFO | tfim_1d_nqs | Training point 17/38 | N=20 | J=-0.300 | h=1.000
+2026-04-18 23:47:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-18 23:47:53 | INFO | tfim_1d_nqs | Finished J=-0.300 | E/N(NQS)=-1.022604 | E/N(exact)=-1.022630 | err=0.002% | m2=0.0694 | n2=0.0371 | tau_int=0.52
+2026-04-18 23:47:53 | INFO | tfim_1d_nqs | Training point 18/38 | N=20 | J=-0.100 | h=1.000
+2026-04-18 23:52:04 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-18 23:52:04 | INFO | tfim_1d_nqs | Finished J=-0.100 | E/N(NQS)=-1.002509 | E/N(exact)=-1.002502 | err=0.001% | m2=0.0529 | n2=0.0442 | tau_int=0.47
+2026-04-18 23:52:04 | INFO | tfim_1d_nqs | Training point 19/38 | N=20 | J=0.000 | h=1.000
+2026-04-18 23:56:12 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-18 23:56:12 | INFO | tfim_1d_nqs | Finished J=0.000 | E/N(NQS)=-1.000000 | E/N(exact)=-1.000000 | err=0.000% | m2=0.0505 | n2=0.0497 | tau_int=0.55
+2026-04-18 23:56:12 | INFO | tfim_1d_nqs | Training point 20/38 | N=20 | J=0.100 | h=1.000
+2026-04-19 00:00:23 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-19 00:00:23 | INFO | tfim_1d_nqs | Finished J=0.100 | E/N(NQS)=-1.002499 | E/N(exact)=-1.002502 | err=0.000% | m2=0.0456 | n2=0.0557 | tau_int=0.52
+2026-04-19 00:00:23 | INFO | tfim_1d_nqs | Training point 21/38 | N=20 | J=0.300 | h=1.000
+2026-04-19 00:04:35 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-19 00:04:35 | INFO | tfim_1d_nqs | Finished J=0.300 | E/N(NQS)=-1.022598 | E/N(exact)=-1.022630 | err=0.003% | m2=0.0369 | n2=0.0671 | tau_int=0.54
+2026-04-19 00:04:35 | INFO | tfim_1d_nqs | Training point 22/38 | N=20 | J=0.500 | h=1.000
+2026-04-19 00:08:43 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.46 | window=3 | n_series=4096
+2026-04-19 00:08:43 | INFO | tfim_1d_nqs | Finished J=0.500 | E/N(NQS)=-1.063505 | E/N(exact)=-1.063544 | err=0.004% | m2=0.0313 | n2=0.0873 | tau_int=0.46
+2026-04-19 00:08:43 | INFO | tfim_1d_nqs | Training point 23/38 | N=20 | J=0.600 | h=1.000
+2026-04-19 00:12:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.51 | window=3 | n_series=4096
+2026-04-19 00:12:47 | INFO | tfim_1d_nqs | Finished J=0.600 | E/N(NQS)=-1.092149 | E/N(exact)=-1.092239 | err=0.008% | m2=0.0287 | n2=0.1143 | tau_int=0.51
+2026-04-19 00:12:47 | INFO | tfim_1d_nqs | Training point 24/38 | N=20 | J=0.700 | h=1.000
+2026-04-19 00:16:52 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.52 | window=3 | n_series=4096
+2026-04-19 00:16:52 | INFO | tfim_1d_nqs | Finished J=0.700 | E/N(NQS)=-1.126854 | E/N(exact)=-1.126832 | err=0.002% | m2=0.0250 | n2=0.1414 | tau_int=0.52
+2026-04-19 00:16:52 | INFO | tfim_1d_nqs | Training point 25/38 | N=20 | J=0.750 | h=1.000
+2026-04-19 00:21:02 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.47 | window=3 | n_series=4096
+2026-04-19 00:21:02 | INFO | tfim_1d_nqs | Finished J=0.750 | E/N(NQS)=-1.146339 | E/N(exact)=-1.146494 | err=0.014% | m2=0.0238 | n2=0.1732 | tau_int=0.47
+2026-04-19 00:21:02 | INFO | tfim_1d_nqs | Training point 26/38 | N=20 | J=0.800 | h=1.000
+2026-04-19 00:25:13 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-19 00:25:13 | INFO | tfim_1d_nqs | Finished J=0.800 | E/N(NQS)=-1.167814 | E/N(exact)=-1.167856 | err=0.004% | m2=0.0243 | n2=0.1680 | tau_int=0.50
+2026-04-19 00:25:13 | INFO | tfim_1d_nqs | Training point 27/38 | N=20 | J=0.900 | h=1.000
+2026-04-19 00:29:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-19 00:29:20 | INFO | tfim_1d_nqs | Finished J=0.900 | E/N(NQS)=-1.216400 | E/N(exact)=-1.216374 | err=0.002% | m2=0.0190 | n2=0.2685 | tau_int=0.50
+2026-04-19 00:29:20 | INFO | tfim_1d_nqs | Training point 28/38 | N=20 | J=1.000 | h=1.000
+2026-04-19 00:33:36 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-19 00:33:36 | INFO | tfim_1d_nqs | Finished J=1.000 | E/N(NQS)=-1.273779 | E/N(exact)=-1.274549 | err=0.060% | m2=0.0160 | n2=0.3923 | tau_int=0.70
+2026-04-19 00:33:36 | INFO | tfim_1d_nqs | Training point 29/38 | N=20 | J=1.100 | h=1.000
+2026-04-19 00:37:44 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.77 | window=4 | n_series=4096
+2026-04-19 00:37:44 | INFO | tfim_1d_nqs | Finished J=1.100 | E/N(NQS)=-1.343040 | E/N(exact)=-1.343346 | err=0.023% | m2=0.0115 | n2=0.6354 | tau_int=0.77
+2026-04-19 00:37:44 | INFO | tfim_1d_nqs | Training point 30/38 | N=20 | J=1.200 | h=1.000
+2026-04-19 00:41:47 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-19 00:41:47 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.419246 | E/N(exact)=-1.419738 | err=0.035% | m2=0.0093 | n2=0.7481 | tau_int=0.70
+2026-04-19 00:41:47 | INFO | tfim_1d_nqs | Training point 31/38 | N=20 | J=1.200 | h=1.000
+2026-04-19 00:45:56 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.79 | window=4 | n_series=4096
+2026-04-19 00:45:56 | INFO | tfim_1d_nqs | Finished J=1.200 | E/N(NQS)=-1.419559 | E/N(exact)=-1.419738 | err=0.013% | m2=0.0091 | n2=0.7599 | tau_int=0.79
+2026-04-19 00:45:56 | INFO | tfim_1d_nqs | Training point 32/38 | N=20 | J=1.300 | h=1.000
+2026-04-19 00:50:10 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-19 00:50:10 | INFO | tfim_1d_nqs | Finished J=1.300 | E/N(NQS)=-1.500956 | E/N(exact)=-1.500853 | err=0.007% | m2=0.0073 | n2=0.8218 | tau_int=0.58
+2026-04-19 00:50:10 | INFO | tfim_1d_nqs | Training point 33/38 | N=20 | J=1.400 | h=1.000
+2026-04-19 00:54:20 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.85 | window=5 | n_series=4096
+2026-04-19 00:54:20 | INFO | tfim_1d_nqs | Finished J=1.400 | E/N(NQS)=-1.585421 | E/N(exact)=-1.585196 | err=0.014% | m2=0.0062 | n2=0.8406 | tau_int=0.85
+2026-04-19 00:54:20 | INFO | tfim_1d_nqs | Training point 34/38 | N=20 | J=1.500 | h=1.000
+2026-04-19 00:58:37 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.55 | window=3 | n_series=4096
+2026-04-19 00:58:37 | INFO | tfim_1d_nqs | Finished J=1.500 | E/N(NQS)=-1.672059 | E/N(exact)=-1.671928 | err=0.008% | m2=0.0061 | n2=0.8634 | tau_int=0.55
+2026-04-19 00:58:37 | INFO | tfim_1d_nqs | Training point 35/38 | N=20 | J=1.650 | h=1.000
+2026-04-19 01:02:45 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.70 | window=4 | n_series=4096
+2026-04-19 01:02:45 | INFO | tfim_1d_nqs | Finished J=1.650 | E/N(NQS)=-1.805144 | E/N(exact)=-1.805370 | err=0.013% | m2=0.0045 | n2=0.9009 | tau_int=0.70
+2026-04-19 01:02:45 | INFO | tfim_1d_nqs | Training point 36/38 | N=20 | J=2.100 | h=1.000
+2026-04-19 01:06:53 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.58 | window=3 | n_series=4096
+2026-04-19 01:06:53 | INFO | tfim_1d_nqs | Finished J=2.100 | E/N(NQS)=-2.220890 | E/N(exact)=-2.220840 | err=0.002% | m2=0.0029 | n2=0.9401 | tau_int=0.58
+2026-04-19 01:06:53 | INFO | tfim_1d_nqs | Training point 37/38 | N=20 | J=2.550 | h=1.000
+2026-04-19 01:10:59 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.50 | window=3 | n_series=4096
+2026-04-19 01:10:59 | INFO | tfim_1d_nqs | Finished J=2.550 | E/N(NQS)=-2.649113 | E/N(exact)=-2.649020 | err=0.004% | m2=0.0021 | n2=0.9565 | tau_int=0.50
+2026-04-19 01:10:59 | INFO | tfim_1d_nqs | Training point 38/38 | N=20 | J=3.000 | h=1.000
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs |   autocorr: tau_int=0.54 | window=3 | n_series=4096
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | Finished J=3.000 | E/N(NQS)=-3.083899 | E/N(exact)=-3.083929 | err=0.001% | m2=0.0013 | n2=0.9739 | tau_int=0.54
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.086478 | exact=-3.086696 | err=0.007% | m2=0.9799 | n2=0.0067 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.653278 | exact=-2.653436 | err=0.006% | m2=0.9696 | n2=0.0101 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.228123 | exact=-2.228448 | err=0.015% | m2=0.9479 | n2=0.0143 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.819672 | exact=-1.819732 | err=0.003% | m2=0.8977 | n2=0.0276 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.690141 | exact=-1.690002 | err=0.008% | m2=0.8779 | n2=0.0361 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.400 | E/N=-1.606182 | exact=-1.606294 | err=0.007% | m2=0.8513 | n2=0.0432 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.300 | E/N=-1.525358 | exact=-1.525401 | err=0.003% | m2=0.8434 | n2=0.0460 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.447995 | exact=-1.447959 | err=0.003% | m2=0.8136 | n2=0.0533 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.100 | E/N=-1.374689 | exact=-1.374726 | err=0.003% | m2=0.7559 | n2=0.0703 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.306533 | exact=-1.306563 | err=0.002% | m2=0.7285 | n2=0.0728 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.900 | E/N=-1.244373 | exact=-1.244366 | err=0.001% | m2=0.6780 | n2=0.0925 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.800 | E/N=-1.188952 | exact=-1.188963 | err=0.001% | m2=0.6206 | n2=0.1016 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.164030 | exact=-1.164012 | err=0.002% | m2=0.5962 | n2=0.1089 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.700 | E/N=-1.140963 | exact=-1.140964 | err=0.000% | m2=0.5529 | n2=0.1212 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.600 | E/N=-1.100646 | exact=-1.100642 | err=0.000% | m2=0.4833 | n2=0.1351 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.067850 | exact=-1.067890 | err=0.004% | m2=0.4449 | n2=0.1520 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.023245 | exact=-1.023240 | err=0.000% | m2=0.3688 | n2=0.1818 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002526 | exact=-1.002509 | err=0.002% | m2=0.2665 | n2=0.2162 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000001 | exact=-1.000000 | err=0.000% | m2=0.2399 | n2=0.2487 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002513 | exact=-1.002509 | err=0.000% | m2=0.2255 | n2=0.2836 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.023265 | exact=-1.023240 | err=0.002% | m2=0.1746 | n2=0.3728 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.067889 | exact=-1.067890 | err=0.000% | m2=0.1588 | n2=0.4347 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.600 | E/N=-1.100720 | exact=-1.100642 | err=0.007% | m2=0.1285 | n2=0.5016 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.700 | E/N=-1.140967 | exact=-1.140964 | err=0.000% | m2=0.1161 | n2=0.5702 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.163999 | exact=-1.164012 | err=0.001% | m2=0.1127 | n2=0.5770 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.800 | E/N=-1.188950 | exact=-1.188963 | err=0.001% | m2=0.1117 | n2=0.5878 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.900 | E/N=-1.244274 | exact=-1.244366 | err=0.007% | m2=0.0898 | n2=0.6758 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.306554 | exact=-1.306563 | err=0.001% | m2=0.0751 | n2=0.7328 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.100 | E/N=-1.374678 | exact=-1.374726 | err=0.003% | m2=0.0610 | n2=0.7773 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.447926 | exact=-1.447959 | err=0.002% | m2=0.0564 | n2=0.7981 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.448152 | exact=-1.447959 | err=0.013% | m2=0.0557 | n2=0.8125 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.300 | E/N=-1.525422 | exact=-1.525401 | err=0.001% | m2=0.0491 | n2=0.8313 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.400 | E/N=-1.606343 | exact=-1.606294 | err=0.003% | m2=0.0480 | n2=0.8395 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.690120 | exact=-1.690002 | err=0.007% | m2=0.0383 | n2=0.8718 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.819764 | exact=-1.819732 | err=0.002% | m2=0.0229 | n2=0.9150 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.228776 | exact=-2.228448 | err=0.015% | m2=0.0170 | n2=0.9471 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.653548 | exact=-2.653436 | err=0.004% | m2=0.0093 | n2=0.9697 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.086077 | exact=-3.086696 | err=0.020% | m2=0.0079 | n2=0.9742 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.083921 | exact=-3.083940 | err=0.001% | m2=0.9707 | n2=0.0041 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.648946 | exact=-2.649055 | err=0.004% | m2=0.9683 | n2=0.0045 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.220852 | exact=-2.220971 | err=0.005% | m2=0.9450 | n2=0.0075 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.805839 | exact=-1.806020 | err=0.010% | m2=0.9077 | n2=0.0120 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.673106 | exact=-1.673126 | err=0.001% | m2=0.8740 | n2=0.0150 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.400 | E/N=-1.586733 | exact=-1.587028 | err=0.019% | m2=0.8541 | n2=0.0165 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.300 | E/N=-1.503907 | exact=-1.503675 | err=0.015% | m2=0.8249 | n2=0.0197 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.424011 | exact=-1.424025 | err=0.001% | m2=0.7690 | n2=0.0265 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.100 | E/N=-1.349098 | exact=-1.349408 | err=0.023% | m2=0.6932 | n2=0.0309 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.281470 | exact=-1.281458 | err=0.001% | m2=0.6338 | n2=0.0349 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.900 | E/N=-1.221782 | exact=-1.221661 | err=0.010% | m2=0.5003 | n2=0.0468 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.800 | E/N=-1.170831 | exact=-1.170651 | err=0.015% | m2=0.4462 | n2=0.0525 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.148407 | exact=-1.148327 | err=0.007% | m2=0.3780 | n2=0.0604 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.700 | E/N=-1.127972 | exact=-1.127967 | err=0.000% | m2=0.3243 | n2=0.0651 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.600 | E/N=-1.092613 | exact=-1.092604 | err=0.001% | m2=0.2766 | n2=0.0706 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.063510 | exact=-1.063635 | err=0.012% | m2=0.2285 | n2=0.0770 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.022686 | exact=-1.022631 | err=0.005% | m2=0.1730 | n2=0.0948 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002485 | exact=-1.002502 | err=0.002% | m2=0.1323 | n2=0.1187 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.1313 | n2=0.1224 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002502 | exact=-1.002502 | err=0.000% | m2=0.1104 | n2=0.1420 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.022609 | exact=-1.022631 | err=0.002% | m2=0.0953 | n2=0.1729 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.063747 | exact=-1.063635 | err=0.011% | m2=0.0780 | n2=0.2231 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.600 | E/N=-1.092573 | exact=-1.092604 | err=0.003% | m2=0.0777 | n2=0.2666 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.700 | E/N=-1.127884 | exact=-1.127967 | err=0.007% | m2=0.0631 | n2=0.3344 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.148404 | exact=-1.148327 | err=0.007% | m2=0.0639 | n2=0.3597 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.800 | E/N=-1.170579 | exact=-1.170651 | err=0.006% | m2=0.0564 | n2=0.4074 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.900 | E/N=-1.221554 | exact=-1.221661 | err=0.009% | m2=0.0435 | n2=0.5081 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.281331 | exact=-1.281458 | err=0.010% | m2=0.0352 | n2=0.6292 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.100 | E/N=-1.349385 | exact=-1.349408 | err=0.002% | m2=0.0311 | n2=0.6913 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.423662 | exact=-1.424025 | err=0.026% | m2=0.0223 | n2=0.7960 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.423712 | exact=-1.424025 | err=0.022% | m2=0.0247 | n2=0.7675 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.300 | E/N=-1.503457 | exact=-1.503675 | err=0.014% | m2=0.0205 | n2=0.8066 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.400 | E/N=-1.587431 | exact=-1.587028 | err=0.025% | m2=0.0169 | n2=0.8487 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.673159 | exact=-1.673126 | err=0.002% | m2=0.0140 | n2=0.8878 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.805740 | exact=-1.806020 | err=0.016% | m2=0.0102 | n2=0.9167 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.221211 | exact=-2.220971 | err=0.011% | m2=0.0072 | n2=0.9478 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.649060 | exact=-2.649055 | err=0.000% | m2=0.0042 | n2=0.9685 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.084064 | exact=-3.083940 | err=0.004% | m2=0.0043 | n2=0.9693 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.083444 | exact=-3.083930 | err=0.016% | m2=0.9649 | n2=0.0039 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.649068 | exact=-2.649024 | err=0.002% | m2=0.9635 | n2=0.0038 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.220703 | exact=-2.220861 | err=0.007% | m2=0.9482 | n2=0.0055 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.805816 | exact=-1.805538 | err=0.015% | m2=0.8999 | n2=0.0095 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.671851 | exact=-1.672302 | err=0.027% | m2=0.8791 | n2=0.0119 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.400 | E/N=-1.585810 | exact=-1.585851 | err=0.003% | m2=0.8391 | n2=0.0143 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.300 | E/N=-1.501985 | exact=-1.502016 | err=0.002% | m2=0.8009 | n2=0.0180 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.421708 | exact=-1.421775 | err=0.005% | m2=0.7827 | n2=0.0178 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.100 | E/N=-1.346513 | exact=-1.346610 | err=0.007% | m2=0.6814 | n2=0.0261 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.278189 | exact=-1.278491 | err=0.024% | m2=0.5846 | n2=0.0302 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.900 | E/N=-1.219370 | exact=-1.219187 | err=0.015% | m2=0.4638 | n2=0.0374 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.800 | E/N=-1.169180 | exact=-1.169094 | err=0.007% | m2=0.3442 | n2=0.0421 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.147210 | exact=-1.147214 | err=0.000% | m2=0.3108 | n2=0.0468 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.700 | E/N=-1.127172 | exact=-1.127223 | err=0.005% | m2=0.2804 | n2=0.0516 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.600 | E/N=-1.092308 | exact=-1.092331 | err=0.002% | m2=0.2176 | n2=0.0573 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.063645 | exact=-1.063560 | err=0.008% | m2=0.1852 | n2=0.0607 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.022567 | exact=-1.022630 | err=0.006% | m2=0.1356 | n2=0.0740 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002507 | exact=-1.002502 | err=0.000% | m2=0.1124 | n2=0.0884 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.0977 | n2=0.0971 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002494 | exact=-1.002502 | err=0.001% | m2=0.0947 | n2=0.1078 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.022634 | exact=-1.022630 | err=0.000% | m2=0.0777 | n2=0.1419 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.063548 | exact=-1.063560 | err=0.001% | m2=0.0655 | n2=0.1895 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.600 | E/N=-1.092291 | exact=-1.092331 | err=0.004% | m2=0.0584 | n2=0.2196 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.700 | E/N=-1.127230 | exact=-1.127223 | err=0.001% | m2=0.0504 | n2=0.2829 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.147032 | exact=-1.147214 | err=0.016% | m2=0.0473 | n2=0.3000 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.800 | E/N=-1.168871 | exact=-1.169094 | err=0.019% | m2=0.0410 | n2=0.3702 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.900 | E/N=-1.219442 | exact=-1.219187 | err=0.021% | m2=0.0361 | n2=0.4735 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.278670 | exact=-1.278491 | err=0.014% | m2=0.0297 | n2=0.5669 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.100 | E/N=-1.346572 | exact=-1.346610 | err=0.003% | m2=0.0247 | n2=0.6933 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.421432 | exact=-1.421775 | err=0.024% | m2=0.0211 | n2=0.7490 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.421805 | exact=-1.421775 | err=0.002% | m2=0.0180 | n2=0.7698 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.300 | E/N=-1.502324 | exact=-1.502016 | err=0.020% | m2=0.0153 | n2=0.8165 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.400 | E/N=-1.585691 | exact=-1.585851 | err=0.010% | m2=0.0144 | n2=0.8513 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.672438 | exact=-1.672302 | err=0.008% | m2=0.0108 | n2=0.8842 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.805415 | exact=-1.805538 | err=0.007% | m2=0.0086 | n2=0.9108 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.220810 | exact=-2.220861 | err=0.002% | m2=0.0055 | n2=0.9469 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.649062 | exact=-2.649024 | err=0.001% | m2=0.0044 | n2=0.9575 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.083732 | exact=-3.083930 | err=0.006% | m2=0.0027 | n2=0.9737 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-3.000 | E/N=-3.083842 | exact=-3.083929 | err=0.003% | m2=0.9701 | n2=0.0015 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.550 | E/N=-2.649102 | exact=-2.649020 | err=0.003% | m2=0.9586 | n2=0.0020 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-2.100 | E/N=-2.220749 | exact=-2.220840 | err=0.004% | m2=0.9430 | n2=0.0028 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.650 | E/N=-1.805002 | exact=-1.805370 | err=0.020% | m2=0.9024 | n2=0.0043 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.500 | E/N=-1.671670 | exact=-1.671928 | err=0.015% | m2=0.8747 | n2=0.0056 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.400 | E/N=-1.585029 | exact=-1.585196 | err=0.011% | m2=0.8386 | n2=0.0071 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.300 | E/N=-1.501054 | exact=-1.500853 | err=0.013% | m2=0.8103 | n2=0.0078 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.200 | E/N=-1.418630 | exact=-1.419738 | err=0.078% | m2=0.7388 | n2=0.0095 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.100 | E/N=-1.342874 | exact=-1.343346 | err=0.035% | m2=0.6445 | n2=0.0117 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-1.000 | E/N=-1.274078 | exact=-1.274549 | err=0.037% | m2=0.4147 | n2=0.0155 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.900 | E/N=-1.216313 | exact=-1.216374 | err=0.005% | m2=0.2788 | n2=0.0193 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.800 | E/N=-1.167666 | exact=-1.167856 | err=0.016% | m2=0.1948 | n2=0.0226 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.750 | E/N=-1.146414 | exact=-1.146494 | err=0.007% | m2=0.1748 | n2=0.0249 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.700 | E/N=-1.126731 | exact=-1.126832 | err=0.009% | m2=0.1436 | n2=0.0245 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.600 | E/N=-1.092099 | exact=-1.092239 | err=0.013% | m2=0.1089 | n2=0.0289 | phase=FERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.500 | E/N=-1.063554 | exact=-1.063544 | err=0.001% | m2=0.0935 | n2=0.0320 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.300 | E/N=-1.022604 | exact=-1.022630 | err=0.002% | m2=0.0694 | n2=0.0371 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J=-0.100 | E/N=-1.002509 | exact=-1.002502 | err=0.001% | m2=0.0529 | n2=0.0442 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.000 | E/N=-1.000000 | exact=-1.000000 | err=0.000% | m2=0.0505 | n2=0.0497 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.100 | E/N=-1.002499 | exact=-1.002502 | err=0.000% | m2=0.0456 | n2=0.0557 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.300 | E/N=-1.022598 | exact=-1.022630 | err=0.003% | m2=0.0369 | n2=0.0671 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.500 | E/N=-1.063505 | exact=-1.063544 | err=0.004% | m2=0.0313 | n2=0.0873 | phase=PARA
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.600 | E/N=-1.092149 | exact=-1.092239 | err=0.008% | m2=0.0287 | n2=0.1143 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.700 | E/N=-1.126854 | exact=-1.126832 | err=0.002% | m2=0.0250 | n2=0.1414 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.750 | E/N=-1.146339 | exact=-1.146494 | err=0.014% | m2=0.0238 | n2=0.1732 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.800 | E/N=-1.167814 | exact=-1.167856 | err=0.004% | m2=0.0243 | n2=0.1680 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 0.900 | E/N=-1.216400 | exact=-1.216374 | err=0.002% | m2=0.0190 | n2=0.2685 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.000 | E/N=-1.273779 | exact=-1.274549 | err=0.060% | m2=0.0160 | n2=0.3923 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.100 | E/N=-1.343040 | exact=-1.343346 | err=0.023% | m2=0.0115 | n2=0.6354 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.419246 | exact=-1.419738 | err=0.035% | m2=0.0093 | n2=0.7481 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.200 | E/N=-1.419559 | exact=-1.419738 | err=0.013% | m2=0.0091 | n2=0.7599 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.300 | E/N=-1.500956 | exact=-1.500853 | err=0.007% | m2=0.0073 | n2=0.8218 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.400 | E/N=-1.585421 | exact=-1.585196 | err=0.014% | m2=0.0062 | n2=0.8406 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.500 | E/N=-1.672059 | exact=-1.671928 | err=0.008% | m2=0.0061 | n2=0.8634 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 1.650 | E/N=-1.805144 | exact=-1.805370 | err=0.013% | m2=0.0045 | n2=0.9009 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.100 | E/N=-2.220890 | exact=-2.220840 | err=0.002% | m2=0.0029 | n2=0.9401 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 2.550 | E/N=-2.649113 | exact=-2.649020 | err=0.004% | m2=0.0021 | n2=0.9565 | phase=ANTIFERRO
+2026-04-19 01:15:06 | INFO | tfim_1d_nqs | J= 3.000 | E/N=-3.083899 | exact=-3.083929 | err=0.001% | m2=0.0013 | n2=0.9739 | phase=ANTIFERRO
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | === Multi-N sweep: N in [32, 4] | h=1.000 | 38 J-points ===
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | --- Starting scan for N=32 ---
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | NQS 1D Transverse Field Ising Model
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | System: N=32, h=1.000
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | Scan: 38 J values from -3.000 to 3.000
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | Training: n_iter=200 alpha=4 n_samples=2048 lr=0.01000
+2026-04-19 06:51:25 | INFO | tfim_1d_nqs | Training point 1/38 | N=32 | J=-3.000 | h=1.000

@@ -9,7 +9,7 @@ class ConsoleReporter:
         self.logger = logger
 
     def log_run_config(self, model_cfg: ModelConfig, train_cfg: TrainingConfig, j_count: int, j_min: float, j_max: float) -> None:
-        self.logger.info("NQS 1D Transverse Field Ising Model")
+        self.logger.info("NQS for 1D Transverse Field Ising Model")
         self.logger.info("System: N=%d, h=%.3f", model_cfg.N, model_cfg.h)
         self.logger.info("Scan: %d J values from %.3f to %.3f", j_count, j_min, j_max)
         self.logger.info(

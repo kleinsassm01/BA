@@ -1,5 +1,5 @@
 from .app import TFIMExperimentApp
-from .config import ModelConfig, OutputConfig, ScanConfig, TrainingConfig
+from .config import AutocorrConfig, ModelConfig, OutputConfig, ScanConfig, TrainingConfig
 
 
 def main() -> None:
@@ -7,8 +7,10 @@ def main() -> None:
     train_cfg = TrainingConfig(n_iter=300, alpha=4, n_samples=512, lr=0.01)
     scan_cfg = ScanConfig.default()
     output_cfg = OutputConfig(output_dir="./outputs")
+    # Leave autocorr off for the original single-N flow unless you want it.
+    autocorr_cfg = AutocorrConfig(enabled=False)
 
-    app = TFIMExperimentApp(model_cfg, train_cfg, scan_cfg, output_cfg)
+    app = TFIMExperimentApp(model_cfg, train_cfg, scan_cfg, output_cfg, autocorr_cfg)
     dataset = app.run_training_and_save()
     app.generate_plots_from_dataset(dataset)
 
