@@ -7,7 +7,7 @@ def main() -> None:
     train_cfg = TrainingConfig(n_iter=300, alpha=4, n_samples=512, lr=0.01)
     scan_cfg = ScanConfig.default()
     output_cfg = OutputConfig(output_dir="./outputs")
-    # Leave autocorr off for the original single-N flow unless you want it.
+
     autocorr_cfg = AutocorrConfig(enabled=False)
 
     app = TFIMExperimentApp(model_cfg, train_cfg, scan_cfg, output_cfg, autocorr_cfg)

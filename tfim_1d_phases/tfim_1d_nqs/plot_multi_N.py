@@ -11,10 +11,6 @@ from .config import (
 
 
 def main() -> None:
-    """
-    Re-render all multi-N plots from an already-saved dataset.json.
-    No training is performed. Useful after tweaking plotting code.
-    """
     app = TFIMMultiNApp(
         base_model_cfg=ModelConfig(h=1.0),
         train_cfg=TrainingConfig(),

@@ -1,5 +1,4 @@
 from dataclasses import replace
-from pathlib import Path
 
 from .config import (
     AutocorrConfig,
@@ -19,11 +18,6 @@ from .trainer import TFIMTrainer
 
 
 class TFIMExperimentApp:
-    """
-    Original single-N experiment, extended with an optional AutocorrConfig.
-    If no AutocorrConfig is supplied the behaviour matches the original app
-    exactly (no post-training tau_int analysis).
-    """
 
     def __init__(
         self,
@@ -63,7 +57,6 @@ class TFIMExperimentApp:
             ),
             results=results,
         )
-
         self.repo.save(dataset, self.output_cfg.output_dir / self.output_cfg.dataset_file)
         self.reporter.log_summary(results)
         return dataset
@@ -88,25 +81,7 @@ class TFIMExperimentApp:
         return dataset
 
 
-# ============================================================================
-# EXTENSION: multi-N sweep + critical zoom + autocorrelation analysis
-# ============================================================================
-
 class TFIMMultiNApp:
-    """
-    Runs the same TFIM experiment across a list of system sizes N, optionally
-    with a fine-grained 'critical zoom' J-sweep near the quantum critical
-    points at J = +/- h. Results from all Ns are pooled into a single
-    ExperimentDataset (keyed per-result by N), saved as one JSON file, and
-    rendered as a suite of overlay plots:
-
-      * phase diagram overlay (<m^2>, <n^2>) for all N on one axis
-      * energy-per-site overlay, with the N -> inf exact curve
-      * critical-zoom plot around J = +- h
-      * Binder cumulant U_4(J) for all N (curves should cross at J_c)
-      * tau_corr vs training step (built-in, per J and per N)
-      * tau_int(J) from the post-training dedicated chain (per N)
-    """
 
     def __init__(
         self,
@@ -137,10 +112,7 @@ class TFIMMultiNApp:
         self.reporter = ConsoleReporter(self.logger)
         self.repo = DatasetRepository()
 
-    # ------------------------------------------------------------------ core
-
     def _merged_J_values(self):
-        """Coarse scan + zoom windows, de-duplicated and sorted."""
         import numpy as np
         pieces = []
         if self.include_coarse_scan:
@@ -172,7 +144,6 @@ class TFIMMultiNApp:
             )
             results_N = trainer.scan(J_values)
             all_results.extend(results_N)
-            # Checkpoint after each N so long runs don't lose progress.
             self._checkpoint(all_results, J_values)
 
         dataset = ExperimentDataset(
@@ -201,20 +172,15 @@ class TFIMMultiNApp:
             self.output_cfg.output_dir / (self.output_cfg.dataset_file + ".partial"),
         )
 
-    # -------------------------------------------------------------- plotting
-
     def generate_plots_from_dataset(self, dataset: ExperimentDataset) -> None:
         od = self.output_cfg.output_dir
-        h_val = dataset.metadata["model_config"]["h"]
 
-        # Keep the original single-N plots for the *first* N as a reference.
         ref_N = dataset.N_values()[0]
         ref_results = dataset.results_for_N(ref_N)
         self.plotter.plot_phase_diagram(ref_results, ref_N, od / self.output_cfg.phase_plot)
         self.plotter.plot_training_convergence(ref_results, ref_N, od / self.output_cfg.convergence_plot)
         self.plotter.plot_training_histories(ref_results, od / self.output_cfg.histories_plot)
 
-        # Multi-N overlays + critical-zoom + autocorr.
         self.plotter.plot_multi_N_overlay(dataset, od / self.output_cfg.overlay_plot)
         self.plotter.plot_critical_zoom(
             dataset, self.zoom_cfg, od / self.output_cfg.critical_zoom_plot
@@ -230,10 +196,6 @@ class TFIMMultiNApp:
         self.generate_plots_from_dataset(dataset)
         return dataset
 
-
-# ---------------------------------------------------------------------------
-# metadata helper (shared between the single-N and multi-N apps)
-# ---------------------------------------------------------------------------
 
 def _build_metadata(
     model_cfg: ModelConfig,

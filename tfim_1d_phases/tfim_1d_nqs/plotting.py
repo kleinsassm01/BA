@@ -7,8 +7,6 @@ import numpy as np
 from matplotlib.gridspec import GridSpec
 
 try:
-    # scienceplots is optional -- if it's not installed we fall back to the
-    # default matplotlib style so the extension still works on a bare env.
     import scienceplots  # noqa: F401
     plt.style.use(["science"])
 except Exception:
@@ -20,7 +18,6 @@ from .models import ExperimentDataset, TrainingResult
 
 
 def _cmap_for_N(N_values: list[int]):
-    """Deterministic viridis sampling: one color per N, in sorted order."""
     N_sorted = sorted(N_values)
     cmap = plt.cm.viridis
     denom = max(len(N_sorted) - 1, 1)
@@ -52,19 +49,15 @@ class ResultPlotter:
             "axes.grid": False,
         })
 
-    # ======================================================================
-    # ORIGINAL PLOTS (unchanged behaviour)
-    # ======================================================================
-
     def plot_phase_diagram(self, results: list[TrainingResult], N: int, save_path: Path) -> None:
-        J_vals = np.array([r.J for r in results])
-        order = np.argsort(J_vals)
-        J_vals = J_vals[order]
-        m2_vals = np.array([results[i].m2_final for i in order])
-        n2_vals = np.array([results[i].n2_final for i in order])
-        e_nqs = np.array([results[i].e_final for i in order])
-        e_exact_f = np.array([results[i].e_exact_finite for i in order])
-        h_val = results[0].h
+        order = np.argsort([r.J for r in results])
+        results_sorted = [results[i] for i in order]
+        J_vals = np.array([r.J for r in results_sorted])
+        m2_vals = np.array([r.m2_final for r in results_sorted])
+        n2_vals = np.array([r.n2_final for r in results_sorted])
+        e_nqs = np.array([r.e_final for r in results_sorted])
+        e_exact_f = np.array([r.e_exact_finite for r in results_sorted])
+        h_val = results_sorted[0].h
 
         J_dense = np.linspace(J_vals.min(), J_vals.max(), 600)
         e_exact_dense_f = np.array(
@@ -81,11 +74,13 @@ class ResultPlotter:
         ax_main.plot(J_vals, m2_vals, "--", color=self.colors["guide"], lw=1.0, zorder=1)
         ax_main.plot(J_vals, n2_vals, "--", color=self.colors["guide"], lw=1.0, zorder=1)
         ax_main.plot(J_vals, m2_vals, "o", ms=4, color=self.colors["m2"],
-                     label=r"$\langle m^2 \rangle$", zorder=3)
+                     label=r"$\langle m^2 \rangle$ (ferro, $J<0$)", zorder=3)
         ax_main.plot(J_vals, n2_vals, "o", ms=4, color=self.colors["n2"],
-                     label=r"$\langle n^2 \rangle$", zorder=3)
+                     label=r"$\langle n^2 \rangle$ (antiferro, $J>0$)", zorder=3)
+        for J_c in (-h_val, h_val):
+            ax_main.axvline(J_c, color=self.colors["guide"], lw=0.8, linestyle=":")
         ax_main.set_xlabel(r"$J$")
-        ax_main.set_ylabel(r"$\langle m^2 \rangle / \langle n^2 \rangle$")
+        ax_main.set_ylabel(r"$\langle m^2 \rangle,\, \langle n^2 \rangle$")
         ax_main.set_title(rf"1D TFIM phase diagram ($h={h_val:.1f},\, N={N}$)")
         ax_main.set_xlim(J_vals.min() - 0.15, J_vals.max() + 0.15)
         ax_main.set_ylim(-0.02, 1.03)
@@ -120,15 +115,17 @@ class ResultPlotter:
 
     def plot_training_convergence(self, results: list[TrainingResult], N: int, save_path: Path) -> None:
         J_vals = np.array([r.J for r in results])
-        idx_af = int(np.argmin(J_vals))
+        # Label panels by PHYSICAL PHASE (NetKet sign convention):
+        #   J << 0 -> ferro, J ~ 0 -> para, J >> 0 -> antiferro
+        idx_ferro = int(np.argmin(J_vals))
         idx_para = int(np.argmin(np.abs(J_vals)))
-        idx_ferro = int(np.argmax(J_vals))
+        idx_af = int(np.argmax(J_vals))
 
         fig, axes = plt.subplots(1, 3, figsize=(18, 4.8), constrained_layout=True)
         panels = [
-            (axes[0], idx_af, f"antiferro ($J={J_vals[idx_af]:.1f}$)"),
+            (axes[0], idx_ferro, f"ferro ($J={J_vals[idx_ferro]:.1f}$)"),
             (axes[1], idx_para, f"para ($J={J_vals[idx_para]:.1f}$)"),
-            (axes[2], idx_ferro, f"ferro ($J={J_vals[idx_ferro]:.1f}$)"),
+            (axes[2], idx_af, f"antiferro ($J={J_vals[idx_af]:.1f}$)"),
         ]
         for ax, idx, title in panels:
             r = results[idx]
@@ -157,35 +154,18 @@ class ResultPlotter:
             color = cmap(norm(r.J))
             axes[0].plot(r.history.iters, r.history.m2, "o", ms=1.7, color=color, alpha=0.55)
             axes[1].plot(r.history.iters, r.history.n2, "o", ms=1.7, color=color, alpha=0.55)
-        axes[0].set_title(r"$\langle m^2 \rangle$")
-        axes[1].set_title(r"$\langle n^2 \rangle$")
+        axes[0].set_title(r"$\langle m^2 \rangle$ (ferro, $J<0$)")
+        axes[1].set_title(r"$\langle n^2 \rangle$ (antiferro, $J>0$)")
+        
         for ax in axes:
             ax.set_xlabel("step")
+            ax.set_ylim(-0.02, 1.03)
             ax.grid(True, alpha=0.18)
         save_path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
         plt.close()
 
-    # ======================================================================
-    # NEW PLOTS: multi-N overlay, critical zoom, Binder, autocorrelation
-    # ======================================================================
-
     def plot_multi_N_overlay(self, dataset: ExperimentDataset, save_path: Path) -> None:
-        """
-        Overlay the full J-sweep for every N in the dataset.
-
-        Three panels (top-wide for order parameters, bottom-left for energy
-        per site, bottom-right for relative error vs. the finite-N exact
-        solution):
-
-          * <m^2>(J) and <n^2>(J): broad plateaus at J > h and J < -h
-            steepen as N grows; the crossover narrows.
-          * E_0/N(J): finite-N curves converge from above to the exact
-            N -> infinity curve (thermodynamic limit). This is the *direct*
-            picture of approaching the thermodynamic limit.
-          * relative error vs N: spread across J shows where NQS struggles
-            most (typically near criticality).
-        """
         N_values = dataset.N_values()
         color_by_N = _cmap_for_N(N_values)
         h_val = dataset.metadata["model_config"]["h"]
@@ -196,7 +176,6 @@ class ResultPlotter:
         ax_e = fig.add_subplot(gs[1, 0])
         ax_err = fig.add_subplot(gs[1, 1])
 
-        # m2/n2 overlay
         for N in N_values:
             rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
             J = np.array([r.J for r in rs])
@@ -206,21 +185,22 @@ class ResultPlotter:
             ax_main.plot(J, m2, "-o", ms=3, color=c, label=rf"$N={N}$")
             ax_main.plot(J, n2, "--s", ms=3, color=c, alpha=0.8)
 
-        # Vertical guides at |J| = h (second-order critical points).
         for J_c in (-h_val, h_val):
             ax_main.axvline(J_c, color=self.colors["guide"], lw=0.8, linestyle=":")
 
         ax_main.set_xlabel(r"$J$")
-        ax_main.set_ylabel(r"$\langle m^2 \rangle$ (solid), $\langle n^2 \rangle$ (dashed)")
+        ax_main.set_ylabel(
+            r"$\langle m^2 \rangle$ (solid, ferro), "
+            r"$\langle n^2 \rangle$ (dashed, antiferro)"
+        )
         ax_main.set_title(
-            rf"Phase diagram across system sizes ($h={h_val:.1f}$) -- "
-            rf"dashed vertical lines mark $|J|=h$ (quantum critical points)"
+            rf"Phase diagram across system sizes ($h={h_val:.1f}$)  --  "
+            rf"dotted: $|J|=h$ quantum critical points"
         )
         ax_main.set_ylim(-0.02, 1.03)
         ax_main.grid(True, alpha=0.18)
         ax_main.legend(frameon=False, loc="upper center", ncol=min(len(N_values), 5))
 
-        # Energy-per-site overlay with exact N -> infinity curve.
         J_dense = np.linspace(
             min(r.J for r in dataset.results),
             max(r.J for r in dataset.results),
@@ -239,7 +219,6 @@ class ResultPlotter:
         ax_e.grid(True, alpha=0.18)
         ax_e.legend(frameon=False, loc="best", fontsize=9)
 
-        # Relative error vs finite-N exact, overlaid.
         for N in N_values:
             rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
             J = np.array([r.J for r in rs])
@@ -263,29 +242,25 @@ class ResultPlotter:
         zoom_cfg: CriticalZoomConfig,
         save_path: Path,
     ) -> None:
-        """
-        Zoom in on the critical regions at J = +- h. Two panels -- left is
-        around J = -h (antiferromagnetic QPT, diagnosed by <n^2>), right is
-        around J = +h (ferromagnetic QPT, diagnosed by <m^2>).
+        try:
+            from scipy.signal import savgol_filter
+            from scipy.interpolate import interp1d
+            have_scipy = True
+        except Exception:
+            have_scipy = False
 
-        Each N is a separate curve. As N grows, the crossover
-            * sharpens (the slope at the transition steepens),
-            * converges towards a step function in the thermodynamic limit.
-        This is the finite-size signature of a *second-order* QPT with
-        diverging correlation length xi ~ |J - J_c|^{-nu}.
-
-        A third panel shows -d^2 E_0 / dJ^2 (numerical, from NQS energies),
-        which acts as an order-parameter susceptibility: it develops a
-        sharper and sharper peak at J_c as N grows.
-        """
         N_values = dataset.N_values()
         color_by_N = _cmap_for_N(N_values)
         h_val = dataset.metadata["model_config"]["h"]
-        Jf_lo, Jf_hi = zoom_cfg.J_center_ferro - zoom_cfg.zoom_halfwidth, zoom_cfg.J_center_ferro + zoom_cfg.zoom_halfwidth
-        Ja_lo, Ja_hi = zoom_cfg.J_center_antiferro - zoom_cfg.zoom_halfwidth, zoom_cfg.J_center_antiferro + zoom_cfg.zoom_halfwidth
+
+        J_ferro_center = -h_val   # ferro transition at J = -h
+        J_af_center    = +h_val   # antiferro transition at J = +h
+        hw = zoom_cfg.zoom_halfwidth
+        Jf_lo, Jf_hi = J_ferro_center - hw, J_ferro_center + hw
+        Ja_lo, Ja_hi = J_af_center    - hw, J_af_center    + hw
 
         fig, axes = plt.subplots(1, 3, figsize=(18, 5.2), constrained_layout=True)
-        ax_af, ax_f, ax_chi = axes
+        ax_ferro, ax_af, ax_chi = axes
 
         for N in N_values:
             rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
@@ -295,41 +270,59 @@ class ResultPlotter:
             e = np.array([r.e_final for r in rs])
             c = color_by_N[N]
 
-            mask_af = (J >= Ja_lo) & (J <= Ja_hi)
             mask_f = (J >= Jf_lo) & (J <= Jf_hi)
+            mask_a = (J >= Ja_lo) & (J <= Ja_hi)
+            if mask_f.any():
+                ax_ferro.plot(J[mask_f], m2[mask_f], "-o", ms=4, color=c, label=rf"$N={N}$")
+            if mask_a.any():
+                ax_af.plot(J[mask_a], n2[mask_a], "-o", ms=4, color=c, label=rf"$N={N}$")
 
-            ax_af.plot(J[mask_af], n2[mask_af], "-o", ms=4, color=c, label=rf"$N={N}$")
-            ax_f.plot(J[mask_f], m2[mask_f], "-o", ms=4, color=c, label=rf"$N={N}$")
+            mask_full = np.argsort(J)
+            J_sorted = J[mask_full]
+            e_sorted = e[mask_full]
+            if have_scipy and len(J_sorted) >= 5:
+                J_uni = np.linspace(J_sorted.min(), J_sorted.max(), 4 * len(J_sorted))
+                try:
+                    e_uni = interp1d(J_sorted, e_sorted, kind="cubic")(J_uni)
+                except Exception:
+                    e_uni = np.interp(J_uni, J_sorted, e_sorted)
+                win = 11 if len(J_uni) >= 11 else (len(J_uni) // 2) * 2 + 1
+                win = max(win, 5)
+                delta = J_uni[1] - J_uni[0]
+                d2 = savgol_filter(e_uni, window_length=win, polyorder=3,
+                                   deriv=2, delta=delta)
+                m_chi = (J_uni >= Ja_lo - 0.1) & (J_uni <= Ja_hi + 0.1)
+                if m_chi.any():
+                    ax_chi.plot(J_uni[m_chi], -d2[m_chi], "-", lw=1.4,
+                                color=c, label=rf"$N={N}$")
+            elif len(J_sorted) >= 3:
+                d1 = np.gradient(e_sorted, J_sorted)
+                d2 = np.gradient(d1, J_sorted)
+                m_chi = (J_sorted >= Ja_lo - 0.1) & (J_sorted <= Ja_hi + 0.1)
+                if m_chi.any():
+                    ax_chi.plot(J_sorted[m_chi], -d2[m_chi], "-o", ms=3,
+                                color=c, label=rf"$N={N}$")
 
-            # Second derivative of E_0/N wrt J via finite differences.
-            if len(J) >= 3:
-                # Use only the interior points.
-                d2 = np.gradient(np.gradient(e, J), J)
-                # Focus on the region around the ferro critical point.
-                mask = (J >= Jf_lo - 0.1) & (J <= Jf_hi + 0.1)
-                if mask.any():
-                    ax_chi.plot(J[mask], -d2[mask], "-o", ms=3, color=c, label=rf"$N={N}$")
+        ax_ferro.axvline(J_ferro_center, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_ferro.set_xlabel(r"$J$")
+        ax_ferro.set_ylabel(r"$\langle m^2 \rangle$")
+        ax_ferro.set_title(rf"ferro critical region ($J\approx -h = {J_ferro_center:.1f}$)")
+        ax_ferro.set_ylim(-0.02, 1.03)
+        ax_ferro.grid(True, alpha=0.18)
+        ax_ferro.legend(frameon=False, loc="best", fontsize=9)
 
-        ax_af.axvline(-h_val, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_af.axvline(J_af_center, color=self.colors["guide"], lw=0.9, linestyle=":")
         ax_af.set_xlabel(r"$J$")
         ax_af.set_ylabel(r"$\langle n^2 \rangle$")
-        ax_af.set_title(rf"antiferro critical region ($J\approx -h = -{h_val:.1f}$)")
+        ax_af.set_title(rf"antiferro critical region ($J\approx h = {J_af_center:.1f}$)")
         ax_af.set_ylim(-0.02, 1.03)
         ax_af.grid(True, alpha=0.18)
         ax_af.legend(frameon=False, loc="best", fontsize=9)
 
-        ax_f.axvline(h_val, color=self.colors["guide"], lw=0.9, linestyle=":")
-        ax_f.set_xlabel(r"$J$")
-        ax_f.set_ylabel(r"$\langle m^2 \rangle$")
-        ax_f.set_title(rf"ferro critical region ($J\approx h = {h_val:.1f}$)")
-        ax_f.set_ylim(-0.02, 1.03)
-        ax_f.grid(True, alpha=0.18)
-        ax_f.legend(frameon=False, loc="best", fontsize=9)
-
-        ax_chi.axvline(h_val, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_chi.axvline(J_af_center, color=self.colors["guide"], lw=0.9, linestyle=":")
         ax_chi.set_xlabel(r"$J$")
         ax_chi.set_ylabel(r"$-d^2 E_0/dJ^2 \,/\, N$")
-        ax_chi.set_title(r"energy curvature (peak $\to\infty$ for 2nd order)")
+        ax_chi.set_title(r"energy curvature (SavGol-smoothed)")
         ax_chi.grid(True, alpha=0.18)
         ax_chi.legend(frameon=False, loc="best", fontsize=9)
 
@@ -342,65 +335,83 @@ class ResultPlotter:
         dataset: ExperimentDataset,
         zoom_cfg: CriticalZoomConfig,
         save_path: Path,
+        J_range: tuple[float, float] = (-2.0, 2.0),
+        U4_ylim: tuple[float, float] = (-0.5, 1.0),
     ) -> None:
-        """
-        Binder cumulant U_4 = 1 - <m^4>/(3 <m^2>^2) vs J for every N.
-
-        For a *second-order* phase transition, curves at different N all pass
-        through a common value at J = J_c (crossing point). This crossing is
-        a finite-size-scaling estimator of the critical coupling, and its
-        existence is the textbook signature of 2nd order.
-
-        For a 1st-order transition the curves would instead develop a
-        size-dependent dip and no universal crossing.
-        """
         N_values = dataset.N_values()
         color_by_N = _cmap_for_N(N_values)
         h_val = dataset.metadata["model_config"]["h"]
+        J_lo, J_hi = J_range
+        U4_lo, U4_hi = U4_ylim
 
         fig, axes = plt.subplots(1, 2, figsize=(14, 5.2), constrained_layout=True)
         ax_full, ax_zoom = axes
+
+        total_clipped = 0
+        total_hidden = 0
 
         for N in N_values:
             rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
             J = np.array([r.J for r in rs])
             U4 = np.array([r.binder_U4 for r in rs])
-            valid = np.isfinite(U4)
-            c = color_by_N[N]
-            ax_full.plot(J[valid], U4[valid], "-o", ms=3, color=c, label=rf"$N={N}$")
 
-            # zoom on the ferro transition window
-            Jf_lo = zoom_cfg.J_center_ferro - zoom_cfg.zoom_halfwidth
-            Jf_hi = zoom_cfg.J_center_ferro + zoom_cfg.zoom_halfwidth
-            mask = valid & (J >= Jf_lo) & (J <= Jf_hi)
-            ax_zoom.plot(J[mask], U4[mask], "-o", ms=4, color=c, label=rf"$N={N}$")
+            valid = np.isfinite(U4) & (J >= J_lo) & (J <= J_hi)
+
+            span = U4_hi - U4_lo
+            hide_mask = (U4 < U4_lo - span) | (U4 > U4_hi + span)
+            total_hidden += int((hide_mask & valid).sum())
+            valid = valid & ~hide_mask
+
+            U4_clipped = np.clip(U4, U4_lo, U4_hi)
+            total_clipped += int((valid & ((U4 < U4_lo) | (U4 > U4_hi))).sum())
+
+            c = color_by_N[N]
+            ax_full.plot(
+                J[valid], U4_clipped[valid],
+                "-o", ms=3, color=c, label=rf"$N={N}$",
+            )
+
+            Jf_lo = -h_val - zoom_cfg.zoom_halfwidth
+            Jf_hi = -h_val + zoom_cfg.zoom_halfwidth
+            mask_zoom = valid & (J >= Jf_lo) & (J <= Jf_hi)
+            ax_zoom.plot(
+                J[mask_zoom], U4_clipped[mask_zoom],
+                "-o", ms=4, color=c, label=rf"$N={N}$",
+            )
+
+        if total_clipped or total_hidden:
+            note = f"clipped: {total_clipped}  hidden: {total_hidden}"
+            ax_full.text(
+                0.02, 0.02, note,
+                transform=ax_full.transAxes,
+                fontsize=8, color=self.colors["guide"],
+                verticalalignment="bottom",
+            )
 
         for ax in axes:
+            ax.axhline(2.0 / 3.0, color=self.colors["guide"], lw=0.7,
+                       linestyle="--", alpha=0.6)
+            ax.axhline(0.0, color=self.colors["guide"], lw=0.7,
+                       linestyle="--", alpha=0.6)
             ax.axvline(h_val, color=self.colors["guide"], lw=0.9, linestyle=":")
             ax.axvline(-h_val, color=self.colors["guide"], lw=0.9, linestyle=":")
             ax.set_xlabel(r"$J$")
-            ax.set_ylabel(r"$U_4 = 1 - \langle m^4\rangle/(3\langle m^2\rangle^2)$")
+            ax.set_ylabel(
+                r"$U_4 = 1 - \langle m^4\rangle/(3\langle m^2\rangle^2)$"
+            )
+            ax.set_ylim(U4_lo, U4_hi)
             ax.grid(True, alpha=0.18)
             ax.legend(frameon=False, loc="best", fontsize=9)
-        ax_full.set_title("Binder cumulant -- full range")
-        ax_zoom.set_title(rf"Binder cumulant -- ferro crossing near $J={h_val:.1f}$")
+
+        ax_full.set_xlim(J_lo, J_hi)
+        ax_full.set_title(rf"Binder cumulant -- restricted to $J\in[{J_lo},{J_hi}]$")
+        ax_zoom.set_title(rf"Binder -- ferro crossing near $J={-h_val:.1f}$")
 
         save_path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
         plt.close()
 
     def plot_tau_corr_vs_step(self, dataset: ExperimentDataset, save_path: Path) -> None:
-        """
-        Per-step integrated autocorrelation time tau_corr (as reported by
-        NetKet's Stats object during training), plotted vs the training
-        step. One subplot per N; curves colored by J.
-
-        What to look for:
-            * tau_corr should settle to a roughly constant level once the
-              variational state has converged.
-            * Points near the critical coupling |J| = h typically show the
-              largest tau_corr -- the hallmark of critical slowing down.
-        """
         N_values = dataset.N_values()
         n_panels = len(N_values)
         fig, axes = plt.subplots(
@@ -442,17 +453,6 @@ class ResultPlotter:
         plt.close()
 
     def plot_tau_int_vs_J(self, dataset: ExperimentDataset, save_path: Path) -> None:
-        """
-        Two panels:
-
-          (a) Integrated autocorrelation time tau_int(J) from the dedicated
-              post-training MC chain (Sokal windowing), one curve per N.
-              Critical slowing down -> tau_int peaks at |J| = h.
-
-          (b) The autocorrelation function rho(t) = C(t)/C(0) at the
-              critical point J = +h, for each N. Slower decay at larger N is
-              the visual fingerprint of critical slowing down.
-        """
         N_values = dataset.N_values()
         color_by_N = _cmap_for_N(N_values)
         h_val = dataset.metadata["model_config"]["h"]
@@ -471,7 +471,6 @@ class ResultPlotter:
                 ax_tau.plot(J[valid], tau_int[valid], "-o", ms=4,
                             color=color_by_N[N], label=rf"$N={N}$")
 
-            # Pick the result closest to +h for the ACF curve.
             idx_crit = int(np.argmin(np.abs(J - h_val)))
             r_crit = rs[idx_crit]
             if r_crit.autocorr is not None:
@@ -492,7 +491,7 @@ class ResultPlotter:
         ax_acf.axhline(0.0, color="k", lw=0.6)
         ax_acf.set_xlabel(r"lag $t$ (MC steps)")
         ax_acf.set_ylabel(r"$\rho(t) = C(t)/C(0)$")
-        ax_acf.set_title(rf"Energy autocorrelation at $J\approx{h_val:.1f}$ (critical)")
+        ax_acf.set_title(rf"Energy autocorrelation at $J\approx{h_val:.1f}$ (antiferro critical)")
         ax_acf.grid(True, alpha=0.18)
         ax_acf.legend(frameon=False, loc="best", fontsize=9)
 

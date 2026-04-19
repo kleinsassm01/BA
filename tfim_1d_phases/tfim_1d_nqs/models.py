@@ -18,26 +18,18 @@ class PointHistory:
     e_var: list[float]
     m2: list[float]
     n2: list[float]
-    # --- extensions for autocorrelation diagnostics -------------------------
-    # tau_corr = NetKet's per-step integrated autocorrelation estimate of the
-    # energy samples, reported at every log step during training.
+    # Extensions for autocorrelation diagnostics
     tau_corr: list[float] = field(default_factory=list)
-    # m4 = <m^4> recorded during training; needed for the Binder cumulant U4.
     m4: list[float] = field(default_factory=list)
 
 
 @dataclass
 class AutocorrAnalysis:
-    """
-    Post-training autocorrelation analysis of the energy samples at the
-    optimized variational parameters. Computed once per (N, J) point via a
-    long, dedicated MCMC chain (see autocorr.py).
-    """
-    lags: list[int]           # lag index t = 0, 1, ..., t_max
-    acf: list[float]          # normalized autocorrelation function C(t)/C(0)
-    tau_int: float            # integrated autocorrelation time (Sokal window)
-    tau_int_window: int       # window size W chosen by the Sokal criterion
-    n_samples: int            # MC samples the ACF was built from
+    lags: list[int]
+    acf: list[float]
+    tau_int: float
+    tau_int_window: int
+    n_samples: int
 
 
 @dataclass
@@ -47,12 +39,7 @@ class TrainingResult:
     e_exact_finite: float
     e_exact_thermo: float
     history: PointHistory
-    # Extensions --------------------------------------------------------------
-    # N is stored per-result so results can be pooled across multiple system
-    # sizes in one dataset. Defaults to 0 for backward-compat with old JSON;
-    # the loader patches this from metadata when a single-N file is read.
     N: int = 0
-    # Optional because legacy datasets (from the original app) don't have it.
     autocorr: AutocorrAnalysis | None = None
 
     @property
@@ -75,16 +62,10 @@ class TrainingResult:
 
     @property
     def binder_U4(self) -> float:
-        """
-        Binder cumulant U4 = 1 - <m^4> / (3 <m^2>^2).
-
-        Canonical diagnostic for a second-order phase transition: curves
-        computed at different N cross at the critical point, making the
-        crossing a size-independent estimator of J_c.
-        """
+        # Binder cumulant U4 = 1 - <m^4> / (3 <m^2>^2).
         m2 = self.m2_final
         m4 = self.m4_final
-        if m2 <= 0 or not (m4 == m4):  # NaN guard
+        if m2 <= 0 or not (m4 == m4):
             return float("nan")
         return 1.0 - m4 / (3.0 * m2 * m2)
 
@@ -103,9 +84,7 @@ class TrainingResult:
 
     def to_dict(self) -> dict[str, Any]:
         out: dict[str, Any] = {
-            "J": self.J,
-            "h": self.h,
-            "N": self.N,
+            "J": self.J, "h": self.h, "N": self.N,
             "e_exact_finite": self.e_exact_finite,
             "e_exact_thermo": self.e_exact_thermo,
             "history": asdict(self.history),
@@ -166,7 +145,6 @@ class ExperimentDataset:
             metadata=data["metadata"],
             results=[TrainingResult.from_dict(r) for r in data["results"]],
         )
-        # Backfill N on legacy results if the JSON stored only a single-N run.
         if ds.results and ds.results[0].N == 0:
             N_meta = data["metadata"].get("model_config", {}).get("N", 0)
             for r in ds.results:
