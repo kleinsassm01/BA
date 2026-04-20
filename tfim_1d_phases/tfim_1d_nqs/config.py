@@ -90,6 +90,10 @@ class OutputConfig:
     binder_plot: str = "binder_cumulant.png"
     tau_step_plot: str = "tau_corr_vs_step.png"
     tau_vs_J_plot: str = "tau_int_vs_J.png"
+    energy_variance_plot: str = "energy_variance.png"
+    binder_crossings_plot: str = "binder_crossings.png"
+    fss_order_parameter_plot: str = "fss_order_parameter.png"
+    curvature_peak_scaling_plot: str = "curvature_peak_scaling.png"
 
     def __post_init__(self):
         if isinstance(self.output_dir, str):

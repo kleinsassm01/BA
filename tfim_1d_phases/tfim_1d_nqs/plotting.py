@@ -156,7 +156,7 @@ class ResultPlotter:
             axes[1].plot(r.history.iters, r.history.n2, "o", ms=1.7, color=color, alpha=0.55)
         axes[0].set_title(r"$\langle m^2 \rangle$ (ferro, $J<0$)")
         axes[1].set_title(r"$\langle n^2 \rangle$ (antiferro, $J>0$)")
-        
+
         for ax in axes:
             ax.set_xlabel("step")
             ax.set_ylim(-0.02, 1.03)
@@ -494,6 +494,444 @@ class ResultPlotter:
         ax_acf.set_title(rf"Energy autocorrelation at $J\approx{h_val:.1f}$ (antiferro critical)")
         ax_acf.grid(True, alpha=0.18)
         ax_acf.legend(frameon=False, loc="best", fontsize=9)
+
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
+        plt.close()
+
+    # =========================================================================
+    # NEW PLOTS
+    # =========================================================================
+
+    def plot_energy_variance(self, dataset: ExperimentDataset, save_path: Path) -> None:
+        """Variational energy variance per site.
+
+        Left panel: variance-per-site during training for every chain
+        (colour-coded by J, one sub-panel per system size).
+        Right panel: late-training variance per site as a function of J,
+        for every N. The variance is strictly zero only at an eigenstate,
+        so this is a fidelity proxy that peaks at the critical points,
+        where the variational ansatz has the hardest time.
+        """
+        N_values = dataset.N_values()
+        color_by_N = _cmap_for_N(N_values)
+        h_val = dataset.metadata["model_config"]["h"]
+
+        fig, axes = plt.subplots(1, 2, figsize=(15, 5.2), constrained_layout=True)
+        ax_train, ax_final = axes
+
+        # Left: envelope (mean over J) of var/N during training, per N
+        for N in N_values:
+            rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+            iters_ref = None
+            stack = []
+            for r in rs:
+                it = np.array(r.history.iters, dtype=float)
+                ev = np.array(r.history.e_var, dtype=float) / N
+                mask = np.isfinite(ev)
+                if not mask.any():
+                    continue
+                if iters_ref is None:
+                    iters_ref = it[mask]
+                stack.append(np.interp(iters_ref, it[mask], ev[mask]))
+            if not stack:
+                continue
+            arr = np.vstack(stack)
+            med = np.nanmedian(arr, axis=0)
+            q25 = np.nanquantile(arr, 0.25, axis=0)
+            q75 = np.nanquantile(arr, 0.75, axis=0)
+            c = color_by_N[N]
+            ax_train.plot(iters_ref, med, "-", lw=1.5, color=c, label=rf"$N={N}$")
+            ax_train.fill_between(iters_ref, q25, q75, color=c, alpha=0.18, linewidth=0)
+
+        ax_train.set_xlabel("training step")
+        ax_train.set_ylabel(r"$\sigma_E^2 / N$ (median $\pm$ IQR over $J$)")
+        ax_train.set_title(r"Energy variance per site during training")
+        ax_train.set_yscale("log")
+        ax_train.grid(True, which="both", alpha=0.18)
+        ax_train.legend(frameon=False, loc="best", fontsize=9)
+
+        # Right: late-training variance (last 20% of iterations) as a function of J
+        for N in N_values:
+            rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+            J_arr, var_arr = [], []
+            for r in rs:
+                ev = np.array(r.history.e_var, dtype=float)
+                mask = np.isfinite(ev)
+                if not mask.any():
+                    continue
+                tail = ev[mask][int(0.8 * mask.sum()):]
+                if tail.size == 0:
+                    continue
+                J_arr.append(r.J)
+                var_arr.append(float(np.nanmean(tail)) / N)
+            if not J_arr:
+                continue
+            order = np.argsort(J_arr)
+            J_arr = np.array(J_arr)[order]
+            var_arr = np.array(var_arr)[order]
+            ax_final.plot(J_arr, np.clip(var_arr, 1e-8, None), "-o", ms=4,
+                          color=color_by_N[N], label=rf"$N={N}$")
+
+        for J_c in (-h_val, h_val):
+            ax_final.axvline(J_c, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_final.set_xlabel(r"$J$")
+        ax_final.set_ylabel(r"$\sigma_E^2 / N$ (late-training mean)")
+        ax_final.set_title(r"Late-training variance vs $J$ (zero for eigenstate)")
+        ax_final.set_yscale("log")
+        ax_final.grid(True, which="both", alpha=0.18)
+        ax_final.legend(frameon=False, loc="best", fontsize=9)
+
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
+        plt.close()
+
+    def plot_binder_crossings(
+        self,
+        dataset: ExperimentDataset,
+        zoom_cfg: CriticalZoomConfig,
+        save_path: Path,
+    ) -> None:
+        """Binder cumulant zoomed around the ferro transition with explicit
+        pairwise-crossing estimates of J_c.
+
+        Left: Binder curves interpolated with a cubic spline on a fine J grid.
+        Estimated J_c is read off from the consecutive-N crossings
+        (N_1, N_2) -> J_c(N_1, N_2).
+
+        Right: J_c estimates as a function of 1/N_eff, with a linear
+        extrapolation to 1/N_eff -> 0 (i.e. N -> infinity).
+        """
+        from scipy.interpolate import interp1d
+
+        N_values = dataset.N_values()
+        color_by_N = _cmap_for_N(N_values)
+        h_val = dataset.metadata["model_config"]["h"]
+
+        J_center = -h_val
+        hw = zoom_cfg.zoom_halfwidth
+        J_lo, J_hi = J_center - hw, J_center + hw
+
+        # Build per-N interpolators on the zoom window
+        splines: dict[int, tuple[np.ndarray, np.ndarray]] = {}
+        for N in N_values:
+            rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+            J = np.array([r.J for r in rs])
+            U4 = np.array([r.binder_U4 for r in rs])
+            mask = np.isfinite(U4) & (J >= J_lo - 0.05) & (J <= J_hi + 0.05)
+            if mask.sum() < 4:
+                continue
+            J_m, U_m = J[mask], U4[mask]
+            order = np.argsort(J_m)
+            J_m, U_m = J_m[order], U_m[order]
+            J_grid = np.linspace(J_m.min(), J_m.max(), 400)
+            try:
+                U_grid = interp1d(J_m, U_m, kind="cubic")(J_grid)
+            except Exception:
+                U_grid = np.interp(J_grid, J_m, U_m)
+            splines[N] = (J_grid, U_grid)
+
+        fig, axes = plt.subplots(1, 2, figsize=(14, 5.2), constrained_layout=True)
+        ax_zoom, ax_extrap = axes
+
+        # Plot interpolated Binder curves
+        for N, (Jg, Ug) in splines.items():
+            ax_zoom.plot(Jg, Ug, "-", lw=1.4, color=color_by_N[N], label=rf"$N={N}$")
+            rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+            J = np.array([r.J for r in rs])
+            U4 = np.array([r.binder_U4 for r in rs])
+            mask = np.isfinite(U4) & (J >= J_lo) & (J <= J_hi)
+            ax_zoom.plot(J[mask], U4[mask], "o", ms=3, color=color_by_N[N], alpha=0.5)
+
+        # Find crossings between consecutive-N pairs
+        N_sorted = sorted(splines.keys())
+        crossings_list: list[tuple[int, int, float]] = []
+        J_common = None
+        for N1, N2 in zip(N_sorted[:-1], N_sorted[1:]):
+            J1, U1 = splines[N1]
+            J2, U2 = splines[N2]
+            J_common = np.linspace(
+                max(J1.min(), J2.min()), min(J1.max(), J2.max()), 600,
+            )
+            f1 = np.interp(J_common, J1, U1)
+            f2 = np.interp(J_common, J2, U2)
+            diff = f1 - f2
+            sign = np.sign(diff)
+            candidates = []
+            for i in range(len(diff) - 1):
+                if sign[i] == 0 or sign[i] * sign[i + 1] < 0:
+                    a, b = diff[i], diff[i + 1]
+                    if abs(b - a) < 1e-12:
+                        xc = J_common[i]
+                    else:
+                        xc = J_common[i] - a * (J_common[i + 1] - J_common[i]) / (b - a)
+                    candidates.append(xc)
+            if not candidates:
+                continue
+            # Keep only physically reasonable candidates (close to the
+            # expected critical point) and pick the closest one.
+            crossing_window = 0.15
+            candidates = [x for x in candidates
+                          if abs(x - J_center) < crossing_window]
+            if not candidates:
+                continue
+            xc_best = min(candidates, key=lambda x: abs(x - J_center))
+            crossings_list.append((N1, N2, xc_best))
+            y_c = float(np.interp(xc_best, J1, U1))
+            ax_zoom.plot([xc_best], [y_c], "k*", ms=8, zorder=6)
+
+        ax_zoom.axvline(J_center, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_zoom.axhline(2.0 / 3.0, color=self.colors["guide"], lw=0.7,
+                        linestyle="--", alpha=0.6)
+        ax_zoom.set_xlabel(r"$J$")
+        ax_zoom.set_ylabel(
+            r"$U_4 = 1 - \langle m^4\rangle/(3\langle m^2\rangle^2)$"
+        )
+        ax_zoom.set_title(rf"Binder cumulant near $J_c^{{\mathrm{{ferro}}}} = {J_center:.1f}$")
+        ax_zoom.set_xlim(J_lo, J_hi)
+        ax_zoom.set_ylim(-0.1, 0.75)
+        ax_zoom.grid(True, alpha=0.18)
+        ax_zoom.legend(frameon=False, loc="best", fontsize=9)
+
+        # Right panel: extrapolation in 1/N_eff = 2 / (1/N1 + 1/N2)
+        if crossings_list:
+            xs, ys, labels = [], [], []
+            for (N1, N2, xc) in crossings_list:
+                N_eff = 2.0 / (1.0 / N1 + 1.0 / N2)
+                xs.append(1.0 / N_eff)
+                ys.append(xc)
+                labels.append(f"({N1},{N2})")
+            xs_arr = np.array(xs)
+            ys_arr = np.array(ys)
+            ax_extrap.plot(xs_arr, ys_arr, "o", ms=8, color=self.colors["m2"], zorder=5)
+            for x, y, lab in zip(xs, ys, labels):
+                ax_extrap.annotate(lab, (x, y), xytext=(5, 4),
+                                   textcoords="offset points", fontsize=9)
+            if len(xs_arr) >= 2:
+                slope, intercept = np.polyfit(xs_arr, ys_arr, 1)
+                x_line = np.linspace(0, xs_arr.max() * 1.1, 50)
+                y_line = slope * x_line + intercept
+                ax_extrap.plot(x_line, y_line, "--", lw=1.2, color=self.colors["nqs"],
+                               label=rf"linear fit: $J_c^\infty={intercept:.3f}$")
+                ax_extrap.plot([0], [intercept], "*", ms=14, color=self.colors["nqs"],
+                               zorder=6)
+            ax_extrap.axhline(J_center, color=self.colors["guide"], lw=0.9,
+                              linestyle=":", label=rf"exact: $J_c={J_center:.1f}$")
+            ax_extrap.set_xlabel(
+                r"$1/N_{\mathrm{eff}} = \frac{1}{2}(1/N_1 + 1/N_2)$"
+            )
+            ax_extrap.set_ylabel(r"crossing $J_c(N_1, N_2)$")
+            ax_extrap.set_title(r"Finite-size extrapolation of the Binder crossing")
+            ax_extrap.grid(True, alpha=0.18)
+            ax_extrap.legend(frameon=False, loc="best", fontsize=9)
+        else:
+            ax_extrap.text(0.5, 0.5, "No clean crossings found",
+                           transform=ax_extrap.transAxes,
+                           ha="center", va="center")
+
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
+        plt.close()
+
+    def plot_fss_order_parameter(self, dataset: ExperimentDataset, save_path: Path) -> None:
+        """Log-log scaling of the order parameter at criticality.
+
+        At a second-order quantum phase transition, the order parameter
+        squared should decay with system size as a power law
+
+          <m^2>(J_c, N) ~ N^(-2 beta / nu)
+
+        For the 1D TFIM (= 2D classical Ising universality class) the
+        expected exponents are beta = 1/8 and nu = 1, so the expected
+        slope in log-log is -1/4 = -0.25.
+
+        Left:  <m^2>(N) at J ~ -h  (ferro critical)
+        Right: <n^2>(N) at J ~ +h  (antiferro critical)
+        """
+        N_values = dataset.N_values()
+        h_val = dataset.metadata["model_config"]["h"]
+
+        def _collect_at(J_center: float, field: str) -> tuple[np.ndarray, np.ndarray]:
+            xs, ys = [], []
+            for N in N_values:
+                rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+                idx = int(np.argmin([abs(r.J - J_center) for r in rs]))
+                val = getattr(rs[idx], field)
+                if np.isfinite(val) and val > 0:
+                    xs.append(N)
+                    ys.append(val)
+            return np.array(xs, dtype=float), np.array(ys, dtype=float)
+
+        fig, axes = plt.subplots(1, 2, figsize=(13, 5.2), constrained_layout=True)
+        ax_ferro, ax_af = axes
+
+        expected = -0.25  # -2 beta/nu for 2D Ising universality
+
+        for ax, J_c, field, label, panel_title in [
+            (ax_ferro, -h_val, "m2_final",
+             rf"$\langle m^2 \rangle$ at $J\approx-h$",
+             r"Ferro critical point ($J\approx -h$)"),
+            (ax_af, +h_val, "n2_final",
+             rf"$\langle n^2 \rangle$ at $J\approx+h$",
+             r"Antiferro critical point ($J\approx +h$)"),
+        ]:
+            Ns, ys = _collect_at(J_c, field)
+            if Ns.size < 2:
+                ax.text(0.5, 0.5, "insufficient data",
+                        transform=ax.transAxes, ha="center")
+                continue
+            ax.loglog(Ns, ys, "o", ms=8, color=self.colors["m2"], label="NQS")
+            slope, intercept = np.polyfit(np.log(Ns), np.log(ys), 1)
+            N_line = np.linspace(Ns.min() * 0.9, Ns.max() * 1.1, 100)
+            y_fit = np.exp(intercept) * N_line ** slope
+            ax.loglog(N_line, y_fit, "-", lw=1.3, color=self.colors["nqs"],
+                      label=rf"fit: slope $={slope:.3f}$")
+            # expected 2D-Ising slope reference, anchored at largest N
+            y_ref = ys[-1] * (N_line / Ns[-1]) ** expected
+            ax.loglog(N_line, y_ref, "--", lw=1.0, color=self.colors["thermo"],
+                      label=rf"2D Ising: slope $={expected}$")
+            ax.set_xlabel(r"$N$")
+            ax.set_ylabel(label)
+            ax.set_title(panel_title)
+            ax.grid(True, which="both", alpha=0.18)
+            ax.legend(frameon=False, loc="best", fontsize=9)
+
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")
+        plt.close()
+
+    def plot_curvature_peak_scaling(
+        self,
+        dataset: ExperimentDataset,
+        zoom_cfg: CriticalZoomConfig,
+        save_path: Path,
+    ) -> None:
+        """Peak of the energy curvature as a diagnostic of criticality.
+
+        For a second-order transition the second derivative of the
+        ground-state energy density with respect to J develops a
+        diverging peak at J_c in the thermodynamic limit. In the 2D
+        Ising universality class the specific heat exponent alpha = 0
+        means the divergence is logarithmic, so the peak height should
+        grow with system size roughly as log(N), and the peak location
+        converges to J_c with a finite-size shift that vanishes as
+        1/N.
+
+        Left:  -d^2 E_0/dJ^2 zoomed on the antiferro transition, with
+               peak positions marked.
+        Upper right: peak height vs log(N).
+        Lower right: peak location J*(N) vs 1/N, with linear
+               extrapolation to J_c^infty.
+        """
+        from scipy.signal import savgol_filter
+        from scipy.interpolate import interp1d
+
+        N_values = dataset.N_values()
+        color_by_N = _cmap_for_N(N_values)
+        h_val = dataset.metadata["model_config"]["h"]
+
+        J_af_center = +h_val
+        hw = zoom_cfg.zoom_halfwidth
+        Ja_lo, Ja_hi = J_af_center - hw, J_af_center + hw
+
+        fig = plt.figure(figsize=(14, 5.8))
+        gs = GridSpec(2, 2, width_ratios=[1.3, 1], hspace=0.45, wspace=0.28)
+        ax_curv = fig.add_subplot(gs[:, 0])
+        ax_hgt = fig.add_subplot(gs[0, 1])
+        ax_loc = fig.add_subplot(gs[1, 1])
+
+        peak_heights: list[tuple[int, float]] = []
+        peak_locations: list[tuple[int, float]] = []
+
+        for N in N_values:
+            rs = sorted(dataset.results_for_N(N), key=lambda r: r.J)
+            J = np.array([r.J for r in rs])
+            e = np.array([r.e_final for r in rs])
+            order = np.argsort(J)
+            J = J[order]
+            e = e[order]
+            if J.size < 5:
+                continue
+            J_uni = np.linspace(J.min(), J.max(), 4 * len(J))
+            try:
+                e_uni = interp1d(J, e, kind="cubic")(J_uni)
+            except Exception:
+                e_uni = np.interp(J_uni, J, e)
+            win = 11 if len(J_uni) >= 11 else (len(J_uni) // 2) * 2 + 1
+            win = max(win, 5)
+            delta = J_uni[1] - J_uni[0]
+            d2 = savgol_filter(e_uni, window_length=win, polyorder=3,
+                               deriv=2, delta=delta)
+            neg = -d2
+
+            # plot zoom
+            m_zoom = (J_uni >= Ja_lo - 0.1) & (J_uni <= Ja_hi + 0.1)
+            c = color_by_N[N]
+            ax_curv.plot(J_uni[m_zoom], neg[m_zoom], "-", lw=1.4,
+                         color=c, label=rf"$N={N}$")
+
+            # find peak in antiferro window
+            m_search = (J_uni >= Ja_lo) & (J_uni <= Ja_hi)
+            if not m_search.any():
+                continue
+            idx_rel = int(np.argmax(neg[m_search]))
+            J_peak = J_uni[m_search][idx_rel]
+            y_peak = neg[m_search][idx_rel]
+            ax_curv.plot([J_peak], [y_peak], "*", ms=12, color=c,
+                         markeredgecolor="k", markeredgewidth=0.5, zorder=6)
+            peak_heights.append((N, y_peak))
+            peak_locations.append((N, J_peak))
+
+        ax_curv.axvline(J_af_center, color=self.colors["guide"], lw=0.9, linestyle=":")
+        ax_curv.set_xlabel(r"$J$")
+        ax_curv.set_ylabel(r"$-d^2 E_0/dJ^2 \,/\, N$")
+        ax_curv.set_title(
+            rf"Energy curvature near $J_c^{{\mathrm{{AF}}}} = {J_af_center:.1f}$"
+        )
+        ax_curv.grid(True, alpha=0.18)
+        ax_curv.legend(frameon=False, loc="best", fontsize=9)
+
+        # Peak-height panel: log(N) on x-axis (alpha=0 -> log divergence)
+        if peak_heights:
+            Ns = np.array([p[0] for p in peak_heights], dtype=float)
+            hs = np.array([p[1] for p in peak_heights], dtype=float)
+            ax_hgt.semilogx(Ns, hs, "o", ms=8, color=self.colors["m2"])
+            if Ns.size >= 2:
+                slope, intercept = np.polyfit(np.log(Ns), hs, 1)
+                N_line = np.logspace(np.log10(Ns.min() * 0.9),
+                                     np.log10(Ns.max() * 1.1), 80)
+                ax_hgt.semilogx(
+                    N_line, slope * np.log(N_line) + intercept,
+                    "--", lw=1.2, color=self.colors["nqs"],
+                    label=rf"$a\,\log N + b$, $a={slope:.3f}$",
+                )
+                ax_hgt.legend(frameon=False, loc="best", fontsize=9)
+        ax_hgt.set_xlabel(r"$N$")
+        ax_hgt.set_ylabel(r"peak of $-d^2 E_0/dJ^2$")
+        ax_hgt.set_title(r"Peak height (expected $\sim\log N$ for $\alpha=0$)")
+        ax_hgt.grid(True, which="both", alpha=0.18)
+
+        # Peak-location panel: extrapolate in 1/N
+        if peak_locations:
+            Ns = np.array([p[0] for p in peak_locations], dtype=float)
+            Js = np.array([p[1] for p in peak_locations], dtype=float)
+            inv = 1.0 / Ns
+            ax_loc.plot(inv, Js, "o", ms=8, color=self.colors["m2"])
+            if Ns.size >= 2:
+                slope, intercept = np.polyfit(inv, Js, 1)
+                x_line = np.linspace(0, inv.max() * 1.1, 60)
+                ax_loc.plot(x_line, slope * x_line + intercept, "--",
+                            lw=1.2, color=self.colors["nqs"],
+                            label=rf"fit: $J_c^\infty={intercept:.3f}$")
+                ax_loc.plot([0], [intercept], "*", ms=14,
+                            color=self.colors["nqs"], zorder=6)
+            ax_loc.axhline(J_af_center, color=self.colors["guide"], lw=0.9,
+                           linestyle=":", label=rf"exact: $J_c={J_af_center:.1f}$")
+            ax_loc.legend(frameon=False, loc="best", fontsize=9)
+        ax_loc.set_xlabel(r"$1/N$")
+        ax_loc.set_ylabel(r"peak location $J^{\star}(N)$")
+        ax_loc.set_title(r"Peak location converges to $J_c$")
+        ax_loc.grid(True, alpha=0.18)
 
         save_path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(save_path, dpi=300, bbox_inches="tight", facecolor="white")

@@ -190,6 +190,18 @@ class TFIMMultiNApp:
         )
         self.plotter.plot_tau_corr_vs_step(dataset, od / self.output_cfg.tau_step_plot)
         self.plotter.plot_tau_int_vs_J(dataset, od / self.output_cfg.tau_vs_J_plot)
+        self.plotter.plot_energy_variance(
+        dataset, od / self.output_cfg.energy_variance_plot
+    )
+        self.plotter.plot_binder_crossings(
+            dataset, self.zoom_cfg, od / self.output_cfg.binder_crossings_plot
+        )
+        self.plotter.plot_fss_order_parameter(
+            dataset, od / self.output_cfg.fss_order_parameter_plot
+        )
+        self.plotter.plot_curvature_peak_scaling(
+            dataset, self.zoom_cfg, od / self.output_cfg.curvature_peak_scaling_plot
+        )
 
     def load_and_plot(self) -> ExperimentDataset:
         dataset = self.repo.load(self.output_cfg.output_dir / self.output_cfg.dataset_file)
