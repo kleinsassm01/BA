@@ -59,10 +59,7 @@ The transition from $f \approx 0.9$ to $f \approx 0.1$ spans roughly $\Delta r \
 In addition to the radial top-hat function $f(r)$, the script can visualise the **directional bubble-wall profile**
 
 $$
-B_{\mathrm{wall}}(x,y,z)
-=
-v_s\,\partial_x f(r)
-=
+B_{\mathrm{wall}}(x,y,z)=v_s\,\partial_x f(r)=
 v_s\,\frac{x}{r}\,\frac{df}{dr},
 \qquad
 r = \sqrt{x^2+y^2+z^2}.
@@ -73,12 +70,7 @@ This quantity measures the rate of change of the shift vector along the directio
 For the Hiscock tanh profile, the radial derivative is
 
 $$
-\frac{df}{dr}
-=
-\frac{\sigma}{2\tanh(\sigma R)}
-\left[
-\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)
--
+\frac{df}{dr}=\frac{\sigma}{2\tanh(\sigma R)}\left[\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)-
 \operatorname{sech}^2\!\bigl(\sigma(r-R)\bigr)
 \right].
 $$
@@ -86,12 +78,7 @@ $$
 The first $\operatorname{sech}^2$ term peaks near $r = 0$ (but is suppressed by the $x/r$ prefactor in $B_{\mathrm{wall}}$), while the second peaks at $r = R$, where the wall gradient is largest. Therefore,
 
 $$
-B_{\mathrm{wall}}(x,y,z)
-=
-\frac{v_s\,x\,\sigma}{2r\tanh(\sigma R)}
-\left[
-\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)
--
+B_{\mathrm{wall}}(x,y,z)=\frac{v_s\,x\,\sigma}{2r\tanh(\sigma R)}\left[\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)-
 \operatorname{sech}^2\!\bigl(\sigma(r-R)\bigr)
 \right].
 $$
@@ -203,41 +190,6 @@ All "subtracted" quantities remove a reference vacuum contribution so that only 
 
 ---
 
-## Running the Script
-
-```bash
-python 3p1_surface.py
-```
-
-### Key Command-Line Options
-
-| Flag | Default | Description |
-|---|---|---|
-| `--Nx`, `--Ny`, `--Nz` | 12 | Lattice points per axis |
-| `--Lx`, `--Ly`, `--Lz` | 24.0 | Physical domain size per axis |
-| `--v` | 0.6 | Bubble velocity $v_s$ |
-| `--R` | 4.0 | Bubble wall radius |
-| `--sigma` | 1.5 | Wall steepness |
-| `--mass` | 0.25 | Scalar field mass $m$ |
-| `--steps` | 4000 | Training iterations |
-| `--lr` | 8e-5 | Adam learning rate |
-| `--outdir` | `validation_3p1_surfaceplots_improved` | Output directory |
-| `--save-matrices` | off | Also save $M$, $N$ matrices to `.npz` |
-| `--bubble-compare-key` | `rho_sub_c` | Observable used as the colour/contour field on the bubble geometry plot |
-| `--bubble-surface-mode` | `wall` | Bubble height mode: `wall` plots $v_s\partial_x f$, `top_hat` plots $f(r)$ |
-| `--bubble-plot-points` | 181 | Plot-only resolution for the smooth analytic bubble geometry |
-| `--bubble-surface-target-relief` | 0.32 | Vertical exaggeration factor for the bubble geometry plot |
-| `--bubble-wire-stride` | 8 | Wireframe stride for the bubble geometry mesh |
-| `--bubble-observable-contours` | 13 | Number of contour levels projected onto the floor |
-
-### Requirements
-
-- Python ≥ 3.9
-- `numpy`, `torch`, `matplotlib`
-- Optional: `scipy` (used for eigensolver if available)
-
----
-
 ## Results
 
 All spatial plots show the **central $z$-slice** ($z = 0$ plane) of the 3D lattice, cropped to the bubble region. The dashed circle marks the warp-bubble wall at radius $R$. In all cases the NQS results (left panels) and the analytic results (right panels) are plotted on a shared colour scale for direct comparison.
@@ -263,10 +215,7 @@ The NQS energy (blue) converges to the analytic ground-state energy (dashed blac
 This figure displays the Alcubierre bubble geometry itself as a 3D surface, with a quantum observable mapped onto the surface as a colour field. The height is given by the directional wall profile
 
 $$
-B_{\mathrm{wall}}(x,y,z=0)
-=
-v_s\,\partial_x f(r)
-=
+B_{\mathrm{wall}}(x,y,z=0)=v_s\,\partial_x f(r)=
 v_s\,\frac{x}{r}\frac{df}{dr},
 $$
 
