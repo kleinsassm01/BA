@@ -6,5 +6,5 @@ The phases of the one-dimensional transverse-field Ising model using NQS and exa
 ### [nqs_nn_repr](./nqs_nn_repr/README.md)
 Representation-universality analysis for NQS on the 1D TFIM, comparing CNN, bidirectional RNN, and local message-passing GNN architectures via activation CKA, tangent/NTK similarity, Procrustes distance, saliency, decoding probes, and learned correlation functions.
 
-### [alcubierre_nqs](./alcubierre_nqs/README.md)  
+### [alcubierre_nqs_static](./alcubierre_nqs_static/README.md)  
 3+1D Alcubierre warp-drive scalar-field validation using NQS, comparing NQS and analytic ground states through energy convergence, stress-energy tensor observables, subtracted vacuum densities, line cuts, error heatmaps, and bubble-geometry surface plots with separate train/plot workflows.
