@@ -1,0 +1,350 @@
+{
+  "experiment": "NQS representation universality",
+  "hamiltonian": {
+    "name": "1D TFIM",
+    "N": 20,
+    "J": 1.0,
+    "h": 1.0,
+    "pbc": true
+  },
+  "training": {
+    "n_samples": 4096,
+    "n_iter": 800,
+    "lr": 0.005,
+    "optimizer": "Adam cosine decay",
+    "use_sr": false
+  },
+  "metrics": {
+    "activation_samples": 4096,
+    "uniform_probe_samples": 4096,
+    "tangent_samples": 256,
+    "saliency_samples": 1024,
+    "ridge_alpha": 0.001,
+    "probe_train_frac": 0.7,
+    "max_decode_distance": 10,
+    "max_corr_distance": 10
+  },
+  "model_order": [
+    "CNN-3layer-k3",
+    "CNN-5layer-k3",
+    "BiRNN-1layer",
+    "BiRNN-2layer",
+    "GNN-3layer-local"
+  ],
+  "models": {
+    "CNN-3layer-k3": {
+      "family": "CNN",
+      "n_params": 671,
+      "activation_layer_order": [
+        "input",
+        "conv1",
+        "conv2",
+        "conv3",
+        "readout_pre_sum"
+      ],
+      "tangent_layer_order": [
+        "conv1",
+        "conv2",
+        "conv3",
+        "readout"
+      ],
+      "parameter_block_order": [
+        "conv_1",
+        "conv_2",
+        "conv_3",
+        "readout"
+      ],
+      "final_energy": {
+        "repr": "-25.4377 \u00b1 0.0045 [\u03c3\u00b2=7.8e-02, R\u0302=1.004]",
+        "mean": -25.43770768707655,
+        "error_of_mean": 0.0045080868328177615,
+        "variance": 0.07780857165568254,
+        "R_hat": 1.0036461926463096,
+        "tau_corr": 0.03491780596433636
+      },
+      "channels": [
+        10,
+        10,
+        10
+      ],
+      "kernels": [
+        3,
+        3,
+        3
+      ],
+      "activation": "gelu",
+      "init_std": 0.02
+    },
+    "CNN-5layer-k3": {
+      "family": "CNN",
+      "n_params": 652,
+      "activation_layer_order": [
+        "input",
+        "conv1",
+        "conv2",
+        "conv3",
+        "conv4",
+        "conv5",
+        "readout_pre_sum"
+      ],
+      "tangent_layer_order": [
+        "conv1",
+        "conv2",
+        "conv3",
+        "conv4",
+        "conv5",
+        "readout"
+      ],
+      "parameter_block_order": [
+        "conv_1",
+        "conv_2",
+        "conv_3",
+        "conv_4",
+        "conv_5",
+        "readout"
+      ],
+      "final_energy": {
+        "repr": "-25.4370 \u00b1 0.0045 [\u03c3\u00b2=6.3e-02, R\u0302=1.003]",
+        "mean": -25.436978271896955,
+        "error_of_mean": 0.004527761272239032,
+        "variance": 0.0634144115320435,
+        "R_hat": 1.0029530354639058,
+        "tau_corr": 0.1620778010090428
+      },
+      "channels": [
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "kernels": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "activation": "gelu",
+      "init_std": 0.02
+    },
+    "BiRNN-1layer": {
+      "family": "BiRNN",
+      "n_params": 681,
+      "activation_layer_order": [
+        "input",
+        "rnn1",
+        "readout_pre_sum"
+      ],
+      "tangent_layer_order": [
+        "rnn1",
+        "readout"
+      ],
+      "parameter_block_order": [
+        "rnn_1",
+        "readout"
+      ],
+      "final_energy": {
+        "repr": "-24.985 \u00b1 0.019 [\u03c3\u00b2=1.3e+00, R\u0302=1.002]",
+        "mean": -24.984837033687157,
+        "error_of_mean": 0.019071720397653112,
+        "variance": 1.2769745386277598,
+        "R_hat": 1.0018782109107356,
+        "tau_corr": 0.08334765512354625
+      },
+      "n_layers": 1,
+      "hidden_dim": 17,
+      "init_std": 0.02
+    },
+    "BiRNN-2layer": {
+      "family": "BiRNN",
+      "n_params": 721,
+      "activation_layer_order": [
+        "input",
+        "rnn1",
+        "rnn2",
+        "readout_pre_sum"
+      ],
+      "tangent_layer_order": [
+        "rnn1",
+        "rnn2",
+        "readout"
+      ],
+      "parameter_block_order": [
+        "rnn_1",
+        "rnn_2",
+        "readout"
+      ],
+      "final_energy": {
+        "repr": "-25.160 \u00b1 0.018 [\u03c3\u00b2=1.0e+00, R\u0302=1.004]",
+        "mean": -25.15958657526329,
+        "error_of_mean": 0.01833647991831294,
+        "variance": 1.0445639695617082,
+        "R_hat": 1.0036731696677599,
+        "tau_corr": 0.15921464214054903
+      },
+      "n_layers": 2,
+      "hidden_dim": 9,
+      "init_std": 0.02
+    },
+    "GNN-3layer-local": {
+      "family": "GNN",
+      "n_params": 652,
+      "activation_layer_order": [
+        "input",
+        "gnn1",
+        "gnn2",
+        "gnn3",
+        "readout_pre_sum"
+      ],
+      "tangent_layer_order": [
+        "embed",
+        "gnn1",
+        "gnn2",
+        "gnn3",
+        "readout"
+      ],
+      "parameter_block_order": [
+        "embed",
+        "mp_1",
+        "mp_2",
+        "mp_3",
+        "readout"
+      ],
+      "final_energy": {
+        "repr": "-25.4496 \u00b1 0.0023 [\u03c3\u00b2=1.7e-02, R\u0302=1.005]",
+        "mean": -25.44956433102925,
+        "error_of_mean": 0.00230858796533535,
+        "variance": 0.016862745133015437,
+        "R_hat": 1.0049411617451376,
+        "tau_corr": 0.14728349175539934
+      },
+      "n_layers": 3,
+      "channels": 7,
+      "activation": "gelu",
+      "init_std": 0.02
+    }
+  },
+  "activation_keys": {
+    "physical": {
+      "CNN-3layer-k3": {
+        "input": "act_00000",
+        "conv1": "act_00001",
+        "conv2": "act_00002",
+        "conv3": "act_00003",
+        "readout_pre_sum": "act_00004"
+      },
+      "CNN-5layer-k3": {
+        "input": "act_00005",
+        "conv1": "act_00006",
+        "conv2": "act_00007",
+        "conv3": "act_00008",
+        "conv4": "act_00009",
+        "conv5": "act_00010",
+        "readout_pre_sum": "act_00011"
+      },
+      "BiRNN-1layer": {
+        "input": "act_00012",
+        "rnn1": "act_00013",
+        "readout_pre_sum": "act_00014"
+      },
+      "BiRNN-2layer": {
+        "input": "act_00015",
+        "rnn1": "act_00016",
+        "rnn2": "act_00017",
+        "readout_pre_sum": "act_00018"
+      },
+      "GNN-3layer-local": {
+        "input": "act_00019",
+        "gnn1": "act_00020",
+        "gnn2": "act_00021",
+        "gnn3": "act_00022",
+        "readout_pre_sum": "act_00023"
+      }
+    },
+    "uniform": {
+      "CNN-3layer-k3": {
+        "input": "act_00024",
+        "conv1": "act_00025",
+        "conv2": "act_00026",
+        "conv3": "act_00027",
+        "readout_pre_sum": "act_00028"
+      },
+      "CNN-5layer-k3": {
+        "input": "act_00029",
+        "conv1": "act_00030",
+        "conv2": "act_00031",
+        "conv3": "act_00032",
+        "conv4": "act_00033",
+        "conv5": "act_00034",
+        "readout_pre_sum": "act_00035"
+      },
+      "BiRNN-1layer": {
+        "input": "act_00036",
+        "rnn1": "act_00037",
+        "readout_pre_sum": "act_00038"
+      },
+      "BiRNN-2layer": {
+        "input": "act_00039",
+        "rnn1": "act_00040",
+        "rnn2": "act_00041",
+        "readout_pre_sum": "act_00042"
+      },
+      "GNN-3layer-local": {
+        "input": "act_00043",
+        "gnn1": "act_00044",
+        "gnn2": "act_00045",
+        "gnn3": "act_00046",
+        "readout_pre_sum": "act_00047"
+      }
+    }
+  },
+  "tangent_feature_keys": {
+    "full": {
+      "CNN-3layer-k3": "tan_00000",
+      "CNN-5layer-k3": "tan_00005",
+      "BiRNN-1layer": "tan_00012",
+      "BiRNN-2layer": "tan_00015",
+      "GNN-3layer-local": "tan_00019"
+    },
+    "layer": {
+      "CNN-3layer-k3": {
+        "conv1": "tan_00001",
+        "conv2": "tan_00002",
+        "conv3": "tan_00003",
+        "readout": "tan_00004"
+      },
+      "CNN-5layer-k3": {
+        "conv1": "tan_00006",
+        "conv2": "tan_00007",
+        "conv3": "tan_00008",
+        "conv4": "tan_00009",
+        "conv5": "tan_00010",
+        "readout": "tan_00011"
+      },
+      "BiRNN-1layer": {
+        "rnn1": "tan_00013",
+        "readout": "tan_00014"
+      },
+      "BiRNN-2layer": {
+        "rnn1": "tan_00016",
+        "rnn2": "tan_00017",
+        "readout": "tan_00018"
+      },
+      "GNN-3layer-local": {
+        "embed": "tan_00020",
+        "gnn1": "tan_00021",
+        "gnn2": "tan_00022",
+        "gnn3": "tan_00023",
+        "readout": "tan_00024"
+      }
+    }
+  },
+  "saliency_keys": {
+    "CNN-3layer-k3": "sal_CNN-3layer-k3",
+    "CNN-5layer-k3": "sal_CNN-5layer-k3",
+    "BiRNN-1layer": "sal_BiRNN-1layer",
+    "BiRNN-2layer": "sal_BiRNN-2layer",
+    "GNN-3layer-local": "sal_GNN-3layer-local"
+  }
+}

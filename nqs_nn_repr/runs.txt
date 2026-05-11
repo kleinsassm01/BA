@@ -1,0 +1,18 @@
+# 1) Train all active models from scratch and save analysis arrays
+uv run nqs-train --train all
+
+# 2) Train only the GNN and reuse existing CNN/RNN saved data
+uv run nqs-train --train gnn
+
+# 3) Train one exact model only
+uv run nqs-train --train_only CNN-3layer-k3
+uv run nqs-train --train_only CNN-5layer-k3
+uv run nqs-train --train_only BiRNN-1layer
+uv run nqs-train --train_only BiRNN-2layer
+uv run nqs-train --train_only GNN-3layer-local
+
+# 4) Regenerate plots only from saved data
+uv run nqs-plot
+
+# 5) Train and immediately regenerate plots
+uv run nqs-train --train gnn --make_plots

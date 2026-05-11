@@ -1,0 +1,51 @@
+1) Full run: train, validate, save matrices, and generate all plots
+
+    uv run train-validate \
+      --Nx 12 --Ny 12 --Nz 12 \
+      --v 1.2 \
+      --steps 750 \
+      --lr 2e-4 \
+      --outdir figures \
+      --save-matrices \
+      --bubble-compare-key Ttx_sub_c \
+      --bubble-plot-points 181 \
+      --bubble-surface-target-relief 0.55 \
+      --bubble-wire-stride 8 \
+      --surface-elev 26 \
+      --surface-azim -58 \
+      --heatmap-percentile 99.5
+
+
+2) Train only: save numerical data and matrices, but do not generate images
+
+    uv run train-validate \
+      --Nx 12 --Ny 12 --Nz 12 \
+      --v 1.2 \
+      --steps 3000 \
+      --lr 2e-4 \
+      --outdir bubble_saved \
+      --save-matrices \
+      --no-plots
+
+
+3) Plots only: regenerate images from saved matrices without retraining
+
+    uv run generate-plots \
+      --outdir bubble_saved \
+      --bubble-compare-key Ttx_sub_c \
+      --bubble-plot-points 241 \
+      --bubble-surface-target-relief 0.65 \
+      --bubble-wire-stride 8 \
+      --surface-elev 24 \
+      --surface-azim -55 \
+      --heatmap-percentile 99.5
+
+
+4) Quick run: generates plots, but adds --save-matrices to use plots-only mode later.
+
+    uv run train-validate \
+      --Nx 12 --Ny 12 --Nz 12 \
+      --v 1.2 \
+      --steps 750 \
+      --outdir bubble \
+      --save-matrices

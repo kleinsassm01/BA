@@ -1,0 +1,26 @@
+[project]
+name = "alcubierre_nqs_static"
+version = "0.1.0"
+description = "nqs comparison alcubierre drive with analytical solutions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jax[cuda13]==0.7.2",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.8",
+    "netket==3.21.0",
+    "pandas>=3.0.2",
+    "scienceplots>=2.2.1",
+    "scikit-image>=0.26.0",
+    "torch>=2.11.0",
+]
+
+[tool.setuptools]
+py-modules = ["alcubierre_nqs"]
+
+[project.scripts]
+train-validate = "alcubierre_nqs.train_validate:main"
+generate-plots = "alcubierre_nqs.generate_plots:main"
+
+[tool.uv]
+package = true
