@@ -70,16 +70,16 @@ This quantity measures the rate of change of the shift vector along the directio
 For the Hiscock tanh profile, the radial derivative is
 
 $$
-\frac{df}{dr}=\frac{\sigma}{2\tanh(\sigma R)}\left[\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)-
-\operatorname{sech}^2\!\bigl(\sigma(r-R)\bigr)
+\frac{df}{dr}=\frac{\sigma}{2\tanh(\sigma R)}\left[\text{sech}^2\!\bigl(\sigma(r+R)\bigr)-
+\text{sech}^2\!\bigl(\sigma(r-R)\bigr)
 \right].
 $$
 
-The first $\operatorname{sech}^2$ term peaks near $r = 0$ (but is suppressed by the $x/r$ prefactor in $B_{\mathrm{wall}}$), while the second peaks at $r = R$, where the wall gradient is largest. Therefore,
+The first $\text{sech}^2$ term peaks near $r = 0$ (but is suppressed by the $x/r$ prefactor in $B_{\mathrm{wall}}$), while the second peaks at $r = R$, where the wall gradient is largest. Therefore,
 
 $$
-B_{\mathrm{wall}}(x,y,z)=\frac{v_s\,x\,\sigma}{2r\tanh(\sigma R)}\left[\operatorname{sech}^2\!\bigl(\sigma(r+R)\bigr)-
-\operatorname{sech}^2\!\bigl(\sigma(r-R)\bigr)
+B_{\mathrm{wall}}(x,y,z)=\frac{v_s\,x\,\sigma}{2r\tanh(\sigma R)}\left[\text{sech}^2\!\bigl(\sigma(r+R)\bigr)-
+\text{sech}^2\!\bigl(\sigma(r-R)\bigr)
 \right].
 $$
 
@@ -150,6 +150,19 @@ $$
 $$
 
 The first term represents the momentum kinetic energy (since $\langle p^2 \rangle \propto M$), the second captures the additional kinetic energy from the phase correlations, the third is the potential energy (gradient + mass), and the fourth is the shift coupling energy. At convergence, the NQS reproduces the analytic $W$ to machine-level accuracy.
+
+```[python]
+L = torch.tril(self.raw_L)
+M = L @ L.T + 1e-8 * torch.eye(self.n)
+N = 0.5 * (self.raw_N + self.raw_N.T)
+```
+- `M` controls the **real Gaussian width** and is forced positive definite by $M = L L^T$
+
+- `N` controls the **imaginary phase/correlation** part.
+
+- `q` is the full field-configuration vector on the lattice.
+
+- The normalization constant \(\mathcal N\) is omitted because the energy formula is computed analytically from `M` and `N`.
 
 **Numerical example.** For the default parameters, the analytic ground-state energy is $E_{\mathrm{an}} \approx 367.15$ (in lattice units). The NQS converges to an energy error of $|E_{\mathrm{NQS}} - E_{\mathrm{an}}| \sim 10^{-7}$, corresponding to a relative error of $\sim 3 \times 10^{-10}$. The Riccati equation residual $\|W^2 + i(A^T W + W A) - K\| / \|K\|$ is typically $\sim 10^{-10}$, confirming that the analytic solution is exact to numerical precision. The minimum eigenvalue of $M$ is of order $\sim 0.2$, indicating that no mode is anomalously soft.
 
