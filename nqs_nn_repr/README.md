@@ -2,17 +2,17 @@
 
 > Different NQS neural-network architectures converge to the same internal representation when learning the ground state of the same Hamiltonian, because they all learn to mirror the Hamiltonian's circuit structure.
 
-In the first version, two CNNs, two bidirectional RNNs, and one local-message-passing GNN are tested on the 1D TIFM at the critical point \(h/J = 1\) with \(N=20\) spins and periodic boundary conditions:
+In the first version, two CNNs, two bidirectional RNNs, and one local-message-passing GNN are tested on the 1D TIFM at the critical point $h/J = 1$ with $N=20$ spins and periodic boundary conditions:
 
 ```math
 H = -J \sum_{\langle i,j \rangle} \sigma^z_i \sigma^z_j - h \sum_i \sigma^x_i
 ```
 
-All models parameterize \(\log \psi_\theta(\mathbf{s})\) and are trained with VMC to minimize \(\langle H \rangle\), where \(\mathbf{s}=(s_1,\dots,s_N)\) denotes a spin configuration in the \(\sigma^z\)-basis with \(s_i\in\{+1,-1\}\).
+All models parameterize $\log \psi_\theta(\mathbf{s})$ and are trained with VMC to minimize $\langle H \rangle$, where $\mathbf{s}=(s_1,\dots,s_N)$ denotes a spin configuration in the $\sigma^z$-basis with $s_i\in\{+1,-1\}$.
 
 ---
 
-All five models converge to comparable ground-state energies. The two CNNs reach \(E/N \approx -1.272\), the BiRNNs land at \(E/N \approx -1.249\) to \(-1.258\), and GNN-3layer-local achieves \(E/N \approx -1.273\). All models approximate the same ground state.
+All five models converge to comparable ground-state energies. The two CNNs reach $E/N \approx -1.272$, the BiRNNs land at $E/N \approx -1.249$ to $-1.258$, and GNN-3layer-local achieves $E/N \approx -1.273$. All models approximate the same ground state.
 
 ---
 
@@ -20,9 +20,9 @@ All five models converge to comparable ground-state energies. The two CNNs reach
 
 ![Cross-architecture activation CKA](results/figures/fig1_cross_activation_cka.png)
 
-**What it measures.** Linear Centered Kernel Alignment (CKA, [Kornblith et al. 2019](https://arxiv.org/pdf/1905.00414)) between the hidden-layer activations of every pair of models evaluated on the same set of spin configurations drawn from \(|\psi|^2\).
+**What it measures.** Linear Centered Kernel Alignment (CKA, [Kornblith et al. 2019](https://arxiv.org/pdf/1905.00414)) between the hidden-layer activations of every pair of models evaluated on the same set of spin configurations drawn from $|\psi|^2$.
 
-All models parameterize \(\log \psi_\theta(\mathbf{s})\) and are evaluated on the **same spin configurations** \(\mathbf{s}=(s_1,\dots,s_N)\), with \(s_i\in\{+1,-1\}\).
+All models parameterize $\log \psi_\theta(\mathbf{s})$ and are evaluated on the **same spin configurations** $\mathbf{s}=(s_1,\dots,s_N)$, with $s_i\in\{+1,-1\}$.
 
 Procedure:
 
@@ -42,13 +42,13 @@ For example, for a 6-spin system:
 
 2. Feed the **same samples** into two models, for example Model A = CNN and Model B = RNN.
 
-3. Suppose the RNN processes spins sequentially \(s_1 \to s_2 \to s_3 \to \cdots \to s_N\). The hidden state evolves as:
+3. Suppose the RNN processes spins sequentially $s_1 \to s_2 \to s_3 \to \cdots \to s_N$. The hidden state evolves as:
 
 ```math
 h_t = f(h_{t-1}, s_t),
 ```
 
-where \(s_t\) is the input spin at step \(t\), \(h_t\) is the hidden activation, and \(f\) is the recurrent update.
+where $s_t$ is the input spin at step $t$, $h_t$ is the hidden activation, and $f$ is the recurrent update.
 
 4. Example forward pass. For the input configuration
 
@@ -121,13 +121,13 @@ A high CKA value means that the two models organize spin configurations similarl
 
 ---
 
-CKA measures **representation similarity**, not just final energy accuracy. In general, given two centered activation matrices \(X \in \mathbb{R}^{n \times p}\) and \(Y \in \mathbb{R}^{n \times q}\):
+CKA measures **representation similarity**, not just final energy accuracy. In general, given two centered activation matrices $X \in \mathbb{R}^{n \times p}$ and $Y \in \mathbb{R}^{n \times q}$:
 
 ```math
 \mathrm{CKA}(X,Y)=\frac{\|Y^\top X\|_F^2}{\|X^\top X\|_F\,\|Y^\top Y\|_F}.
 ```
 
-CKA is invariant to isotropic scaling. Suppose all activations are multiplied by a constant, \(\tilde H = 5H\). Then every neuron output becomes 5 times larger, for example:
+CKA is invariant to isotropic scaling. Suppose all activations are multiplied by a constant, $\tilde H = 5H$. Then every neuron output becomes 5 times larger, for example:
 
 ```math
 h =
@@ -151,9 +151,9 @@ The representation is fundamentally the same; only the scale changed. CKA gives 
 \mathrm{CKA}(H_A,H_B)=\mathrm{CKA}(5H_A,H_B).
 ```
 
-It equals 1 when \(X\) and \(Y\) span the same column space and 0 when they induce orthogonal kernel matrices.
+It equals 1 when $X$ and $Y$ span the same column space and 0 when they induce orthogonal kernel matrices.
 
-**Numerical example.** Suppose \(X\) and \(Y\) are \(4 \times 2\) centered matrices. The numerator is \(\|Y^\top X\|_F^2\): compute the \(2 \times 2\) product \(Y^\top X\), square each entry, and sum. If
+**Numerical example.** Suppose $X$ and $Y$ are $4 \times 2$ centered matrices. The numerator is $\|Y^\top X\|_F^2$: compute the $2 \times 2$ product $Y^\top X$, square each entry, and sum. If
 
 ```math
 Y^\top X =
@@ -163,7 +163,7 @@ Y^\top X =
 \end{bmatrix},
 ```
 
-then \(\|Y^\top X\|_F^2 = 9+1+0+4 = 14\). The denominator is \(\|X^\top X\|_F \cdot \|Y^\top Y\|_F\). If these equal 4.0 and 3.7, then:
+then $\|Y^\top X\|_F^2 = 9+1+0+4 = 14$. The denominator is $\|X^\top X\|_F \cdot \|Y^\top Y\|_F$. If these equal 4.0 and 3.7, then:
 
 ```math
 \mathrm{CKA}=\frac{14}{4.0\times3.7}\approx0.95.
@@ -171,10 +171,10 @@ then \(\|Y^\top X\|_F^2 = 9+1+0+4 = 14\). The denominator is \(\|X^\top X\|_F \c
 
 **Results.** The activation CKA reveals a clear split between *functional convergence at the output* and *architectural divergence at early layers*:
 
-- **Within-family CNN pairs** (CNN-3layer-k3 vs CNN-5layer-k3): warm throughout, with CKA \(\gtrsim 0.6\) even between early layers. The same kernel size produces similar intermediate features regardless of depth.
-- **CNN↔BiRNN pairs**: uniformly high CKA \((\gtrsim 0.7)\) across all layer pairs. CNN intermediate layers align well with the BiRNN hidden layers, suggesting that the hidden representations share substantial structure even across architecture families.
-- **CNN↔GNN pairs**: the input layers of both architectures show near-zero CKA due to different embedding strategies, but the hidden and output layers recover to CKA \(\approx 0.6\)–\(0.8\). The GNN's output layer aligns poorly with CNN layer 1, with CKA \(\approx 0.2\)–\(0.3\), reflecting architectural divergence in how information is routed to the final readout.
-- **BiRNN↔GNN pairs**: BiRNN hidden layers show moderate CKA \((\approx 0.5\)–\(0.7)\) with GNN hidden layers, but the GNN output layer again stands out with very low CKA relative to BiRNN input layers. The BiRNN-1layer ↔ GNN-3layer-local pair shows particularly low CKA at the input-to-output cross \((\approx 0.1)\), reflecting that the GNN's message-passing output compresses information very differently from the BiRNN's sequential readout.
+- **Within-family CNN pairs** (CNN-3layer-k3 vs CNN-5layer-k3): warm throughout, with CKA $\gtrsim 0.6$ even between early layers. The same kernel size produces similar intermediate features regardless of depth.
+- **CNN↔BiRNN pairs**: uniformly high CKA $(\gtrsim 0.7)$ across all layer pairs. CNN intermediate layers align well with the BiRNN hidden layers, suggesting that the hidden representations share substantial structure even across architecture families.
+- **CNN↔GNN pairs**: the input layers of both architectures show near-zero CKA due to different embedding strategies, but the hidden and output layers recover to CKA $\approx 0.6$–$0.8$. The GNN's output layer aligns poorly with CNN layer 1, with CKA $\approx 0.2$–$0.3$, reflecting architectural divergence in how information is routed to the final readout.
+- **BiRNN↔GNN pairs**: BiRNN hidden layers show moderate CKA $(\approx 0.5$–$0.7)$ with GNN hidden layers, but the GNN output layer again stands out with very low CKA relative to BiRNN input layers. The BiRNN-1layer ↔ GNN-3layer-local pair shows particularly low CKA at the input-to-output cross $(\approx 0.1)$, reflecting that the GNN's message-passing output compresses information very differently from the BiRNN's sequential readout.
 - **BiRNN↔BiRNN**: high CKA at corresponding depths. The input layer of BiRNN-1layer shows near-zero CKA with deeper layers of BiRNN-2layer, reflecting that the raw input encoding has not yet been processed.
 
 **Verdict:** Activation-level universality is **moderate**. Within CNN and BiRNN families, representations are highly similar. Cross-family pairs, especially CNN↔BiRNN, maintain moderate-to-high CKA. The GNN introduces the largest activation-level divergence, particularly at early and output layers, despite strong tangent-space convergence in Figure 2.
@@ -191,7 +191,7 @@ then \(\|Y^\top X\|_F^2 = 9+1+0+4 = 14\). The denominator is \(\|X^\top X\|_F \c
 J(\mathbf{s}) = \frac{\partial \log \psi_\theta(\mathbf{s})}{\partial \theta}
 ```
 
-instead of hidden activations. For each sampled spin configuration \(\mathbf{s}\), the tangent vector measures how the wavefunction changes if the model parameters are infinitesimally perturbed. Thus, these methods compare the **local geometry of the variational manifold** learned by different neural quantum states.
+instead of hidden activations. For each sampled spin configuration $\mathbf{s}$, the tangent vector measures how the wavefunction changes if the model parameters are infinitesimally perturbed. Thus, these methods compare the **local geometry of the variational manifold** learned by different neural quantum states.
 
 Procedure:
 
@@ -203,15 +203,15 @@ Procedure:
 
 2. Feed the same samples into two models.
 
-3. For each sampled configuration \(\mathbf{s}^{(i)}\), compute the variational tangent vector:
+3. For each sampled configuration $\mathbf{s}^{(i)}$, compute the variational tangent vector:
 
 ```math
 J(\mathbf{s}^{(i)}) = \frac{\partial \log \psi_\theta(\mathbf{s}^{(i)})}{\partial \theta}.
 ```
 
-Here, \(\theta\) denotes all trainable parameters, and \(J(\mathbf{s})\) is the gradient of the wavefunction log-amplitude with respect to those parameters.
+Here, $\theta$ denotes all trainable parameters, and $J(\mathbf{s})$ is the gradient of the wavefunction log-amplitude with respect to those parameters.
 
-4. Concrete RNN example. Suppose the RNN outputs \(\log \psi_\theta(\mathbf{s}) = f_\theta(\mathbf{s})\) for the sampled configuration \(\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)\). Assume the RNN has 3 trainable parameters, \(\theta=(\theta_1,\theta_2,\theta_3)\). After backpropagation, the tangent vector may be:
+4. Concrete RNN example. Suppose the RNN outputs $\log \psi_\theta(\mathbf{s}) = f_\theta(\mathbf{s})$ for the sampled configuration $\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)$. Assume the RNN has 3 trainable parameters, $\theta=(\theta_1,\theta_2,\theta_3)$. After backpropagation, the tangent vector may be:
 
 ```math
 J(\mathbf{s}^{(1)})=
@@ -222,7 +222,7 @@ J(\mathbf{s}^{(1)})=
 \end{bmatrix}.
 ```
 
-This means that increasing \(\theta_1\) strongly increases \(\log\psi\), \(\theta_2\) decreases it, and \(\theta_3\) moderately increases it.
+This means that increasing $\theta_1$ strongly increases $\log\psi$, $\theta_2$ decreases it, and $\theta_3$ moderately increases it.
 
 5. Build tangent matrices. For Model A and Model B, each row corresponds to one sampled spin configuration and each column corresponds to one trainable parameter:
 
@@ -290,7 +290,7 @@ H = I - \frac1n\mathbf{1}\mathbf{1}^\top.
 
 A high kernel alignment means the two models induce similar similarity structure over configuration space, optimization updates couple configurations similarly, and the models possess similar learning geometry.
 
-**Numerical example.** For tangent-space CKA, suppose \(J_A\) and \(J_B\) are tangent matrices built from the same \(n=3\) sampled spin configurations, with \(J_A,J_B\in\mathbb{R}^{3\times2}\). If
+**Numerical example.** For tangent-space CKA, suppose $J_A$ and $J_B$ are tangent matrices built from the same $n=3$ sampled spin configurations, with $J_A,J_B\in\mathbb{R}^{3\times2}$. If
 
 ```math
 J_B^\top J_A =
@@ -306,7 +306,7 @@ then:
 \|J_B^\top J_A\|_F^2 = 3^2+1^2+0^2+2^2=14.
 ```
 
-If \(\|J_A^\top J_A\|_F=4.0\) and \(\|J_B^\top J_B\|_F=3.7\), then:
+If $\|J_A^\top J_A\|_F=4.0$ and $\|J_B^\top J_B\|_F=3.7$, then:
 
 ```math
 \mathrm{CKA}(J_A,J_B)=\frac{14}{4.0\times3.7}\approx0.95.
@@ -314,7 +314,7 @@ If \(\|J_A^\top J_A\|_F=4.0\) and \(\|J_B^\top J_B\|_F=3.7\), then:
 
 This indicates that the two models have highly similar tangent-space geometry.
 
-For NTK kernel alignment, build \(K_A=J_AJ_A^\top\in\mathbb{R}^{n\times n}\), then compute centered kernel alignment as above.
+For NTK kernel alignment, build $K_A=J_AJ_A^\top\in\mathbb{R}^{n\times n}$, then compute centered kernel alignment as above.
 
 **Results.** This is the strongest evidence **for** the hypothesis. Both panels are nearly identical, and all entries are remarkably high:
 
@@ -324,7 +324,7 @@ For NTK kernel alignment, build \(K_A=J_AJ_A^\top\in\mathbb{R}^{n\times n}\), th
 - **BiRNN ↔ GNN-3layer-local:** 0.95–0.98. The lowest value, 0.95, occurs for BiRNN-1layer ↔ GNN-3layer-local.
 - **Minimum:** BiRNN-1layer ↔ GNN-3layer-local at 0.95, still very high.
 
-The tangent vector \(\partial \log \psi / \partial \theta\) determines how the wavefunction changes when parameters are perturbed. High tangent CKA means that the set of accessible directions of variation spans essentially the same functional subspace in Hilbert space. The models have converged to the same region of the variational manifold, just parameterized through different coordinate systems.
+The tangent vector $\partial \log \psi / \partial \theta$ determines how the wavefunction changes when parameters are perturbed. High tangent CKA means that the set of accessible directions of variation spans essentially the same functional subspace in Hilbert space. The models have converged to the same region of the variational manifold, just parameterized through different coordinate systems.
 
 **Verdict:** Functional-level universality is **strong**. The hypothesis holds decisively at the tangent-space level across all three architecture families.
 
@@ -340,7 +340,7 @@ The tangent vector \(\partial \log \psi / \partial \theta\) determines how the w
 K = JJ^\top.
 ```
 
-The eigenvalues \(\lambda_1 \geq \lambda_2 \geq \ldots\) determine the effective dimensionality of the learned kernel. The \(k\)-th eigenvalue measures how much the model's output varies along the \(k\)-th principal direction in configuration space.
+The eigenvalues $\lambda_1 \geq \lambda_2 \geq \ldots$ determine the effective dimensionality of the learned kernel. The $k$-th eigenvalue measures how much the model's output varies along the $k$-th principal direction in configuration space.
 
 Procedure:
 
@@ -402,7 +402,7 @@ K = JJ^\top =
 \end{bmatrix}.
 ```
 
-The eigenvalues are \(\lambda_1=4\), \(\lambda_2=2\), and \(\lambda_3=1\). The total kernel variance is:
+The eigenvalues are $\lambda_1=4$, $\lambda_2=2$, and $\lambda_3=1$. The total kernel variance is:
 
 ```math
 \sum_i \lambda_i = 4+2+1=7.
@@ -422,10 +422,10 @@ Most variation is concentrated in the first principal kernel direction, suggesti
 
 **Results.** The spectra show good agreement at the top and clear architecture-dependent tails:
 
-- **Top 3–5 eigenvalues:** All five models agree closely \((\lambda_1 \approx 10^4)\). The dominant directions of variation are universal.
+- **Top 3–5 eigenvalues:** All five models agree closely $(\lambda_1 \approx 10^4)$. The dominant directions of variation are universal.
 - **Ranks 5–15:** The spectra begin to separate. CNN-3layer-k3 and CNN-5layer-k3 track each other closely. BiRNN-2layer has a slightly flatter decay.
-- **GNN-3layer-local:** Shows a distinctly flatter spectral tail than the CNNs and BiRNN-2layer. Its eigenvalues remain above \(10^{-7}\) out to rank 50, about 1–2 orders of magnitude above the CNN tails at the same rank. This indicates that the GNN distributes representational capacity more broadly across configuration-space modes.
-- **BiRNN-1layer:** Shows a strikingly steep drop at rank \(\approx5\), falling more than 4 orders below the other models by rank 10. This indicates that the single-layer BiRNN concentrates representational capacity in very few modes.
+- **GNN-3layer-local:** Shows a distinctly flatter spectral tail than the CNNs and BiRNN-2layer. Its eigenvalues remain above $10^{-7}$ out to rank 50, about 1–2 orders of magnitude above the CNN tails at the same rank. This indicates that the GNN distributes representational capacity more broadly across configuration-space modes.
+- **BiRNN-1layer:** Shows a strikingly steep drop at rank $\approx5$, falling more than 4 orders below the other models by rank 10. This indicates that the single-layer BiRNN concentrates representational capacity in very few modes.
 
 **Interpretation.** The high tangent CKA in Figure 2 is driven by the top eigenvalues, which are shared. The spectral tails differ: the models agree on *what matters most* but disagree on the fine structure. The BiRNN-1layer's rapid spectral decay suggests a very low-dimensional but effective parameterization, whereas the GNN's flat tail suggests a higher effective dimensionality.
 
@@ -437,7 +437,7 @@ Most variation is concentrated in the first principal kernel direction, suggesti
 
 ![Procrustes distance](results/figures/fig4_procrustes_distance.png)
 
-**What it measures.** A stricter test than CKA. After centering and normalizing, find the orthogonal rotation \(R\) that best aligns the two representations, then measure the residual:
+**What it measures.** A stricter test than CKA. After centering and normalizing, find the orthogonal rotation $R$ that best aligns the two representations, then measure the residual:
 
 ```math
 d_{\mathrm{Proc}}(X,Y)
@@ -450,7 +450,7 @@ d_{\mathrm{Proc}}(X,Y)
 \right\|_F.
 ```
 
-CKA is invariant to any invertible linear transform; Procrustes is invariant only to orthogonal transforms. Therefore, \(d_{\mathrm{Proc}}=0\) means the representations are geometrically identical up to rotation, while \(\mathrm{CKA}=1\) only means they span the same subspace. Procrustes is therefore a stricter notion of representational similarity ([Ding et al. 2023](https://arxiv.org/pdf/2305.06329)).
+CKA is invariant to any invertible linear transform; Procrustes is invariant only to orthogonal transforms. Therefore, $d_{\mathrm{Proc}}=0$ means the representations are geometrically identical up to rotation, while $\mathrm{CKA}=1$ only means they span the same subspace. Procrustes is therefore a stricter notion of representational similarity ([Ding et al. 2023](https://arxiv.org/pdf/2305.06329)).
 
 Procedure:
 
@@ -544,9 +544,9 @@ R^*=
 \end{bmatrix}.
 ```
 
-If \(\|\hat X R^* - \hat Y\|_F=0.06\), then \(d_{\mathrm{Proc}}(X,Y)=0.06\), which means the two representations are nearly geometrically identical up to rotation.
+If $\|\hat X R^* - \hat Y\|_F=0.06$, then $d_{\mathrm{Proc}}(X,Y)=0.06$, which means the two representations are nearly geometrically identical up to rotation.
 
-A value of 0 indicates perfect geometric alignment; \(\sqrt{2}\approx1.414\) is the theoretical maximum.
+A value of 0 indicates perfect geometric alignment; $\sqrt{2}\approx1.414$ is the theoretical maximum.
 
 **Results.**
 
@@ -582,7 +582,7 @@ A value of 0 indicates perfect geometric alignment; \(\sqrt{2}\approx1.414\) is 
 g_i(\mathbf{s}) = \frac{\partial \log \psi_\theta(\mathbf{s})}{\partial \sigma_i}
 ```
 
-measures how sensitive the log-wavefunction amplitude is to the spin at site \(i\). Large \(|g_i|\) means changing spin \(i\) strongly affects \(\log\psi_\theta\), so the model considers that site important. Saliency therefore probes which spatial structures the NQS relies on ([saliency reference](https://arxiv.org/pdf/1711.00867)).
+measures how sensitive the log-wavefunction amplitude is to the spin at site $i$. Large $|g_i|$ means changing spin $i$ strongly affects $\log\psi_\theta$, so the model considers that site important. Saliency therefore probes which spatial structures the NQS relies on ([saliency reference](https://arxiv.org/pdf/1711.00867)).
 
 Procedure:
 
@@ -594,7 +594,7 @@ Procedure:
 
 2. Feed the same sampled spin configurations into all models.
 
-3. For each sampled configuration \(\mathbf{s}^{(k)}\), compute the input gradients:
+3. For each sampled configuration $\mathbf{s}^{(k)}$, compute the input gradients:
 
 ```math
 g_i(\mathbf{s}^{(k)})=\frac{\partial \log \psi_\theta(\mathbf{s}^{(k)})}{\partial \sigma_i}.
@@ -614,7 +614,7 @@ g_N(\mathbf{s}^{(k)})
 
 Each entry measures sensitivity to one lattice site.
 
-**Numerical example.** Suppose for a 6-spin configuration \(\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)\), the model produces:
+**Numerical example.** Suppose for a 6-spin configuration $\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)$, the model produces:
 
 ```math
 g(\mathbf{s}^{(1)})=
@@ -628,7 +628,7 @@ g(\mathbf{s}^{(1)})=
 \end{bmatrix}.
 ```
 
-Sites 1 and 6 strongly affect \(\log\psi_\theta\), while site 4 is less important. This type of edge enhancement is characteristic of sequential BiRNN processing.
+Sites 1 and 6 strongly affect $\log\psi_\theta$, while site 4 is less important. This type of edge enhancement is characteristic of sequential BiRNN processing.
 
 ### Panel a: Mean saliency profile
 
@@ -638,9 +638,9 @@ For each site:
 \langle |g_i| \rangle = \frac1M\sum_{k=1}^M |g_i(\mathbf{s}^{(k)})|.
 ```
 
-This measures the average importance of site \(i\) across sampled configurations.
+This measures the average importance of site $i$ across sampled configurations.
 
-**Numerical example.** Suppose for site \(i=3\):
+**Numerical example.** Suppose for site $i=3$:
 
 ```math
 |g_3(\mathbf{s}^{(1)})|=0.60,
@@ -666,7 +666,7 @@ Compute:
 G(d)=\frac1N\sum_i \mathrm{Cov}_{\mathbf{s}}[g_i,g_{i+d}].
 ```
 
-This measures how correlated the saliency fluctuations are between sites separated by distance \(d\).
+This measures how correlated the saliency fluctuations are between sites separated by distance $d$.
 
 **Numerical example.** Suppose for nearest neighbors:
 
@@ -680,13 +680,13 @@ The covariance is:
 \mathrm{Cov}(g_1,g_2)=\langle g_1g_2\rangle-\langle g_1\rangle\langle g_2\rangle.
 ```
 
-If \(\langle g_1g_2\rangle=0.44\), \(\langle g_1\rangle=0.70\), and \(\langle g_2\rangle=0.60\), then:
+If $\langle g_1g_2\rangle=0.44$, $\langle g_1\rangle=0.70$, and $\langle g_2\rangle=0.60$, then:
 
 ```math
 \mathrm{Cov}(g_1,g_2)=0.44-(0.70)(0.60)=0.02.
 ```
 
-Large covariance at small \(d\) means nearby sites influence the wavefunction together.
+Large covariance at small $d$ means nearby sites influence the wavefunction together.
 
 ### Panel c: Saliency CKA
 
@@ -733,7 +733,7 @@ Then:
 \|G_B^\top G_A\|_F^2=2^2+1^2+1^2+2^2=10.
 ```
 
-If \(\|G_A^\top G_A\|_F=3.1\) and \(\|G_B^\top G_B\|_F=3.3\), then:
+If $\|G_A^\top G_A\|_F=3.1$ and $\|G_B^\top G_B\|_F=3.3$, then:
 
 ```math
 \mathrm{CKA}=\frac{10}{3.1\times3.3}\approx0.98.
@@ -747,7 +747,7 @@ Construct the covariance matrix:
 C_{ij}=\mathrm{Cov}_{\mathbf{s}}[g_i,g_j].
 ```
 
-Each entry measures how strongly saliency fluctuations at sites \(i\) and \(j\) are correlated.
+Each entry measures how strongly saliency fluctuations at sites $i$ and $j$ are correlated.
 
 **Numerical example.** Suppose:
 
@@ -764,25 +764,25 @@ The strongest values occur on the diagonal, nearest neighbors have strong covari
 
 **Results.**
 
-**Panel a, mean saliency profile:** The two CNNs show approximately flat mean saliency across sites \((\langle|g_i|\rangle \approx 0.50\)–\(0.55)\), as expected from the translational symmetry of the PBC Hamiltonian. The BiRNNs show higher overall saliency \((\approx 0.65\)–\(0.75)\), with BiRNN-2layer showing a pronounced dip in the middle and peaks at the edges. GNN-3layer-local shows mean saliency \(\approx 0.55\), close to the CNN level, with an approximately flat profile.
+**Panel a, mean saliency profile:** The two CNNs show approximately flat mean saliency across sites $(\langle|g_i|\rangle \approx 0.50$–$0.55)$, as expected from the translational symmetry of the PBC Hamiltonian. The BiRNNs show higher overall saliency $(\approx 0.65$–$0.75)$, with BiRNN-2layer showing a pronounced dip in the middle and peaks at the edges. GNN-3layer-local shows mean saliency $\approx 0.55$, close to the CNN level, with an approximately flat profile.
 
-**Panel b, saliency covariance vs distance:** All five models show a clear peak at \(d=0\) and rapid decay. CNNs show a sharp drop from \(d=0\) to \(d=1\), consistent with their kernel-3 receptive field. BiRNN-1layer shows near-zero covariance at all distances. BiRNN-2layer shows intermediate decay. GNN-3layer-local shows the highest covariance at \(d=0\) and a steep but smooth decay, reaching near-zero by \(d\approx4\). All models converge to near-zero covariance by \(d\geq5\), confirming that none have learned spurious long-range couplings absent from the Hamiltonian.
+**Panel b, saliency covariance vs distance:** All five models show a clear peak at $d=0$ and rapid decay. CNNs show a sharp drop from $d=0$ to $d=1$, consistent with their kernel-3 receptive field. BiRNN-1layer shows near-zero covariance at all distances. BiRNN-2layer shows intermediate decay. GNN-3layer-local shows the highest covariance at $d=0$ and a steep but smooth decay, reaching near-zero by $d\approx4$. All models converge to near-zero covariance by $d\geq5$, confirming that none have learned spurious long-range couplings absent from the Hamiltonian.
 
 **Panel c, saliency CKA:** Cross-model saliency CKA is high within the CNN family (0.99) and moderate-to-high for CNN↔BiRNN (0.87–0.92). GNN-3layer-local shows CKA of 0.91 with CNN-3layer-k3, 0.95 with CNN-5layer-k3 and BiRNN-2layer, and 0.77 with BiRNN-1layer.
 
-**Panels d-h, saliency covariance heatmaps:** All models show a banded structure centered on the diagonal, with the strongest off-diagonal entries at \(|i-j|=1\). This mirrors the Hamiltonian's nearest-neighbor \(\sigma_i^z\sigma_j^z\) coupling. The GNN shows the broadest and most intense banded structure, with off-diagonal coupling extending visibly to \(|i-j|\approx3\), consistent with its 3-layer message-passing receptive field.
+**Panels d-h, saliency covariance heatmaps:** All models show a banded structure centered on the diagonal, with the strongest off-diagonal entries at $|i-j|=1$. This mirrors the Hamiltonian's nearest-neighbor $\sigma_i^z\sigma_j^z$ coupling. The GNN shows the broadest and most intense banded structure, with off-diagonal coupling extending visibly to $|i-j|\approx3$, consistent with its 3-layer message-passing receptive field.
 
 **Verdict:** Strong support. All architectures have learned to couple nearest-neighbor sites most strongly, mirroring the Hamiltonian graph. The saliency *content* is similar, but the *profile* differs.
 
 ---
 
-## Figure 6 - Multi-distance \(z_i z_{i+d}\) decoding
+## Figure 6 - Multi-distance $z_i z_{i+d}$ decoding
 
 ![Multi-distance decoding](results/figures/fig6_multidistance_decoding.png)
 
-**What it measures.** For each model's first hidden layer, train a ridge-regression probe to predict the correlator \(z_i z_{i+d}\) at distances \(d=1,\dots,10\). The probe's coefficient of determination \(R^2\) measures how much information about the distance-\(d\) interaction is linearly decodable from the first hidden layer.
+**What it measures.** For each model's first hidden layer, train a ridge-regression probe to predict the correlator $z_i z_{i+d}$ at distances $d=1,\dots,10$. The probe's coefficient of determination $R^2$ measures how much information about the distance-$d$ interaction is linearly decodable from the first hidden layer.
 
-Large \(R^2\) means the hidden layer explicitly encodes the correlator, the architecture can represent interactions at distance \(d\), and the receptive field reaches that separation.
+Large $R^2$ means the hidden layer explicitly encodes the correlator, the architecture can represent interactions at distance $d$, and the receptive field reaches that separation.
 
 Procedure:
 
@@ -798,7 +798,7 @@ or
 P(\mathbf{s})=2^{-N}.
 ```
 
-2. Feed the same sampled configurations into a trained model and extract the first hidden-layer activations \(h^{(1)}(\mathbf{s}^{(k)})\in\mathbb{R}^p\). Build:
+2. Feed the same sampled configurations into a trained model and extract the first hidden-layer activations $h^{(1)}(\mathbf{s}^{(k)})\in\mathbb{R}^p$. Build:
 
 ```math
 H=
@@ -811,7 +811,7 @@ h^{(1)}(\mathbf{s}^{(M)})
 \in\mathbb{R}^{M\times p}.
 ```
 
-3. For a chosen distance \(d\), compute the target correlator with periodic boundary conditions:
+3. For a chosen distance $d$, compute the target correlator with periodic boundary conditions:
 
 ```math
 y^{(k)}_{(d)} = z_i^{(k)}z_{i+d}^{(k)}.
@@ -829,9 +829,9 @@ y^{(k)}_{(d)} = z_i^{(k)}z_{i+d}^{(k)}.
 R^2 = 1-\frac{\sum_k (y_k-\hat y_k)^2}{\sum_k (y_k-\bar y)^2}.
 ```
 
-Interpretation: \(R^2=1\) means perfect decoding, \(R^2=0\) means no predictive information, and larger \(R^2\) means stronger encoded correlator signal.
+Interpretation: $R^2=1$ means perfect decoding, $R^2=0$ means no predictive information, and larger $R^2$ means stronger encoded correlator signal.
 
-**Numerical example.** Suppose \(\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)\). For distance \(d=1\), the nearest-neighbor correlators include:
+**Numerical example.** Suppose $\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)$. For distance $d=1$, the nearest-neighbor correlators include:
 
 ```math
 (+1)(-1)=-1,
@@ -841,13 +841,13 @@ Interpretation: \(R^2=1\) means perfect decoding, \(R^2=0\) means no predictive 
 (+1)(+1)=+1.
 ```
 
-For distance \(d=3\):
+For distance $d=3$:
 
 ```math
 y^{(1)}_{(3)}=z_1z_4=(+1)(+1)=+1.
 ```
 
-For \(R^2\), suppose:
+For $R^2$, suppose:
 
 ```math
 y=
@@ -867,21 +867,21 @@ y=
 \end{bmatrix}.
 ```
 
-If \(\sum_k(y_k-\hat y_k)^2=0.10\) and \(\sum_k(y_k-\bar y)^2=1.00\), then:
+If $\sum_k(y_k-\hat y_k)^2=0.10$ and $\sum_k(y_k-\bar y)^2=1.00$, then:
 
 ```math
 R^2=1-\frac{0.10}{1.00}=0.90.
 ```
 
-**Left panel, physical samples:** The probe is trained using configurations sampled from \(|\psi(\mathbf{s})|^2\). These samples already contain physical correlations, so some long-distance predictability may come from the data distribution itself.
+**Left panel, physical samples:** The probe is trained using configurations sampled from $|\psi(\mathbf{s})|^2$. These samples already contain physical correlations, so some long-distance predictability may come from the data distribution itself.
 
-**Right panel, uniform samples:** Spins are sampled independently with \(P(\mathbf{s})=2^{-N}\), so any nonzero decoding performance must come from the architecture itself. This isolates the model's receptive field.
+**Right panel, uniform samples:** Spins are sampled independently with $P(\mathbf{s})=2^{-N}$, so any nonzero decoding performance must come from the architecture itself. This isolates the model's receptive field.
 
 **Results.**
 
-**Left panel, physical samples:** All models achieve \(R^2 \geq 0.9\) at \(d=1\), except GNN-3layer-local, which achieves \(R^2\approx0.67\). CNNs drop to \(\sim0.35\) by \(d=2\), BiRNNs maintain information across several sites, and all models converge to \(R^2\approx0.33\) by \(d\geq7\). This residual plateau reflects inherent correlations in physical samples.
+**Left panel, physical samples:** All models achieve $R^2 \geq 0.9$ at $d=1$, except GNN-3layer-local, which achieves $R^2\approx0.67$. CNNs drop to $\sim0.35$ by $d=2$, BiRNNs maintain information across several sites, and all models converge to $R^2\approx0.33$ by $d\geq7$. This residual plateau reflects inherent correlations in physical samples.
 
-**Right panel, uniform samples:** CNNs achieve \(R^2\approx1.0\) at \(d=1\) and drop to nearly zero by \(d=2\). BiRNNs maintain nonzero decoding at several distances because sequential memory propagates information. GNN-3layer-local achieves \(R^2\approx0.63\) at \(d=1\) and drops near zero by \(d=2\), closely tracking the CNNs' sharp cutoff.
+**Right panel, uniform samples:** CNNs achieve $R^2\approx1.0$ at $d=1$ and drop to nearly zero by $d=2$. BiRNNs maintain nonzero decoding at several distances because sequential memory propagates information. GNN-3layer-local achieves $R^2\approx0.63$ at $d=1$ and drops near zero by $d=2$, closely tracking the CNNs' sharp cutoff.
 
 **Conclusion:** Kernel-3 CNNs encode nearest neighbors extremely well and sharply lose information beyond the kernel radius. BiRNNs maintain information across several sites. GNNs show broader behavior only after multiple message-passing layers; the first GNN layer has radius approximately 1, similar to a kernel-3 CNN.
 
@@ -893,7 +893,7 @@ R^2=1-\frac{0.10}{1.00}=0.90.
 
 ![Local decoding](results/figures/fig7_local_decoding.png)
 
-**What it measures.** Layer-by-layer \(R^2\) for a ridge probe predicting the nearest-neighbor Ising term \(z_i z_{i+1}\) from hidden activations. The dashed line is the baseline obtained from the raw input. If a hidden layer has \(R^2\) above the dashed line, then that layer encodes the local Hamiltonian term more explicitly than the input representation alone.
+**What it measures.** Layer-by-layer $R^2$ for a ridge probe predicting the nearest-neighbor Ising term $z_i z_{i+1}$ from hidden activations. The dashed line is the baseline obtained from the raw input. If a hidden layer has $R^2$ above the dashed line, then that layer encodes the local Hamiltonian term more explicitly than the input representation alone.
 
 Procedure:
 
@@ -905,7 +905,7 @@ Procedure:
 
 2. Feed the same sampled configurations into one trained model.
 
-3. Extract hidden activations layer by layer, \(h^{(\ell)}(\mathbf{s}^{(k)})\), and build:
+3. Extract hidden activations layer by layer, $h^{(\ell)}(\mathbf{s}^{(k)})$, and build:
 
 ```math
 H^{(\ell)}=
@@ -959,7 +959,7 @@ At the raw input layer, the ridge probe predicts:
 \end{bmatrix},
 ```
 
-which gives \(R^2_{\mathrm{in}}=0.23\). At the first hidden layer, suppose:
+which gives $R^2_{\mathrm{in}}=0.23$. At the first hidden layer, suppose:
 
 ```math
 \hat y_1=
@@ -971,7 +971,7 @@ which gives \(R^2_{\mathrm{in}}=0.23\). At the first hidden layer, suppose:
 \end{bmatrix}.
 ```
 
-If \(\sum_k(y_k-\hat y_{1,k})^2=0.03\) and \(\sum_k(y_k-\bar y)^2=3.00\), then:
+If $\sum_k(y_k-\hat y_{1,k})^2=0.03$ and $\sum_k(y_k-\bar y)^2=3.00$, then:
 
 ```math
 R^2_1=1-\frac{0.03}{3.00}=0.99.
@@ -981,9 +981,9 @@ The first hidden layer almost perfectly encodes the nearest-neighbor Hamiltonian
 
 **Results.**
 
-**Top row, physical samples:** Every model shows the same qualitative pattern: \(R^2\) jumps sharply at the first hidden layer, peaks there or at the second hidden layer, and then decays toward the readout. The readout layer has lower \(R^2\) because it compresses per-site features into a single scalar for the log-amplitude sum.
+**Top row, physical samples:** Every model shows the same qualitative pattern: $R^2$ jumps sharply at the first hidden layer, peaks there or at the second hidden layer, and then decays toward the readout. The readout layer has lower $R^2$ because it compresses per-site features into a single scalar for the log-amplitude sum.
 
-**Bottom row, uniform samples:** The same pattern appears, but the input baseline drops to \(R^2\approx0\). The first hidden layer achieves \(R^2\approx0.95\)–1.0 for the CNNs and BiRNNs, and \(R^2\approx0.80\) for GNN-3layer-local. This is strong evidence that all models have hardwired the nearest-neighbor interaction, since uniform samples remove the input-correlation confound.
+**Bottom row, uniform samples:** The same pattern appears, but the input baseline drops to $R^2\approx0$. The first hidden layer achieves $R^2\approx0.95$–1.0 for the CNNs and BiRNNs, and $R^2\approx0.80$ for GNN-3layer-local. This is strong evidence that all models have hardwired the nearest-neighbor interaction, since uniform samples remove the input-correlation confound.
 
 **Verdict:** Strong support. The “first hidden layer = Hamiltonian term encoder” pattern is universal across all five architectures.
 
@@ -999,7 +999,7 @@ The first hidden layer almost perfectly encodes the nearest-neighbor Hamiltonian
 C(d)=\frac1N\sum_i \langle \sigma_i^z\sigma_{i+d}^z\rangle
 ```
 
-computed from MCMC samples drawn from each model's probability distribution \(|\psi_\theta(\mathbf{s})|^2\). It measures how strongly spins separated by distance \(d\) are correlated.
+computed from MCMC samples drawn from each model's probability distribution $|\psi_\theta(\mathbf{s})|^2$. It measures how strongly spins separated by distance $d$ are correlated.
 
 Procedure:
 
@@ -1009,7 +1009,7 @@ Procedure:
 \mathbf{s}^{(1)},\dots,\mathbf{s}^{(M)}\sim |\psi_\theta(\mathbf{s})|^2.
 ```
 
-2. Choose a distance \(d\).
+2. Choose a distance $d$.
 
 3. For each sampled configuration, compute the site-averaged correlator:
 
@@ -1023,7 +1023,7 @@ C^{(k)}(d)=\frac1N\sum_i s_i^{(k)}s_{i+d}^{(k)}.
 C(d)=\frac1{MN}\sum_{k=1}^M\sum_i s_i^{(k)}s_{i+d}^{(k)}.
 ```
 
-5. Repeat for all distances \(d=0,1,2,\dots,10\).
+5. Repeat for all distances $d=0,1,2,\dots,10$.
 
 **Numerical example.** Suppose:
 
@@ -1031,7 +1031,7 @@ C(d)=\frac1{MN}\sum_{k=1}^M\sum_i s_i^{(k)}s_{i+d}^{(k)}.
 \mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1).
 ```
 
-For distance \(d=1\), the nearest-neighbor products are:
+For distance $d=1$, the nearest-neighbor products are:
 
 ```math
 s_1s_2=-1,
@@ -1053,7 +1053,7 @@ Therefore:
 C^{(1)}(1)=\frac16(-1-1+1-1-1+1)=-\frac26=-0.33.
 ```
 
-If a second sample gives \(C^{(2)}(1)=0.67\), then:
+If a second sample gives $C^{(2)}(1)=0.67$, then:
 
 ```math
 C(1)=\frac{-0.33+0.67}{2}=0.17.
@@ -1063,12 +1063,12 @@ With many MCMC samples, this estimate converges to the model's learned nearest-n
 
 **Results.** The correlation functions split into three groups:
 
-- **CNN-3layer-k3 and CNN-5layer-k3:** nearly identical, with \(C(1)\approx0.66\) decaying to \(C(10)\approx0.52\).
-- **BiRNN-1layer:** systematically higher and flatter, with \(C(1)\approx0.74\) and \(C(d)\approx0.74\) for all \(d\geq1\). The correlator barely decays, indicating that the BiRNN-1layer wavefunction overestimates long-range order.
-- **BiRNN-2layer:** similar to BiRNN-1layer but slightly lower, with \(C(d)\approx0.73\) at long range.
-- **GNN-3layer-local:** shows the steepest decay, with \(C(1)\approx0.64\) dropping to \(C(10)\approx0.45\). The GNN captures more of the critical algebraic decay structure than the other architectures.
+- **CNN-3layer-k3 and CNN-5layer-k3:** nearly identical, with $C(1)\approx0.66$ decaying to $C(10)\approx0.52$.
+- **BiRNN-1layer:** systematically higher and flatter, with $C(1)\approx0.74$ and $C(d)\approx0.74$ for all $d\geq1$. The correlator barely decays, indicating that the BiRNN-1layer wavefunction overestimates long-range order.
+- **BiRNN-2layer:** similar to BiRNN-1layer but slightly lower, with $C(d)\approx0.73$ at long range.
+- **GNN-3layer-local:** shows the steepest decay, with $C(1)\approx0.64$ dropping to $C(10)\approx0.45$. The GNN captures more of the critical algebraic decay structure than the other architectures.
 
-The spread between models indicates that the BiRNNs have settled into slightly different solutions than the CNNs and GNN. The energy is dominated by the \(d=0\) and \(d=1\) terms, so \(E/N\) can be similar even when \(C(d>2)\) differs.
+The spread between models indicates that the BiRNNs have settled into slightly different solutions than the CNNs and GNN. The energy is dominated by the $d=0$ and $d=1$ terms, so $E/N$ can be similar even when $C(d>2)$ differs.
 
 **Verdict:** Moderate concern, likely optimization-related. The CNN pair and GNN have converged to consistent states with appropriate decay, but the BiRNNs produce flatter correlations with higher long-range order. The representation comparisons remain valid: high tangent CKA shows the models occupy the same variational manifold even if they have not converged to exactly the same point on it.
 
@@ -1082,11 +1082,11 @@ The spread between models indicates that the BiRNNs have settled into slightly d
 
 **Results.**
 
-- **CNN-3layer-k3:** CKA decays gradually with layer distance. The input-to-output CKA is 0.64, and adjacent hidden layers have CKA \(\geq0.76\). The representation changes smoothly across depth.
-- **CNN-5layer-k3:** A similar pattern appears but with a more pronounced gradient due to greater depth. Input-to-output CKA is 0.61. Early layers have high CKA with the input, while deeper layers progressively diverge. Adjacent layers maintain CKA \(\geq0.75\).
-- **BiRNN-1layer:** Very high CKA across all layer pairs \((\geq0.96)\). With only one hidden layer and a readout, the representation undergoes minimal transformation.
-- **BiRNN-2layer:** High CKA throughout \((\geq0.92)\). The second recurrent layer refines the representation only mildly compared to the first.
-- **GNN-3layer-local:** Shows the most dramatic depth effect. The input and gnn1 layers have high mutual CKA \((\approx0.88)\), but deeper GNN layers diverge sharply. The input-to-output CKA is only 0.26, and gnn1-to-output is 0.21, the lowest within-model values in the experiment.
+- **CNN-3layer-k3:** CKA decays gradually with layer distance. The input-to-output CKA is 0.64, and adjacent hidden layers have CKA $\geq0.76$. The representation changes smoothly across depth.
+- **CNN-5layer-k3:** A similar pattern appears but with a more pronounced gradient due to greater depth. Input-to-output CKA is 0.61. Early layers have high CKA with the input, while deeper layers progressively diverge. Adjacent layers maintain CKA $\geq0.75$.
+- **BiRNN-1layer:** Very high CKA across all layer pairs $(\geq0.96)$. With only one hidden layer and a readout, the representation undergoes minimal transformation.
+- **BiRNN-2layer:** High CKA throughout $(\geq0.92)$. The second recurrent layer refines the representation only mildly compared to the first.
+- **GNN-3layer-local:** Shows the most dramatic depth effect. The input and gnn1 layers have high mutual CKA $(\approx0.88)$, but deeper GNN layers diverge sharply. The input-to-output CKA is only 0.26, and gnn1-to-output is 0.21, the lowest within-model values in the experiment.
 
 **Interpretation.** The within-model CKA gradient is inversely related to effective depth: BiRNNs have nearly flat CKA profiles, CNNs have moderate gradients, and the GNN has the steepest gradient. Despite this, all five models achieve comparable energies and near-identical tangent CKA, demonstrating that functional equivalence can emerge from different representational processing depths.
 
@@ -1104,7 +1104,7 @@ The Gaussian RBF kernel is:
 K^{\mathrm{RBF}}_{ij}=\exp\left(-\frac{\|x_i-x_j\|^2}{2\sigma^2}\right),
 ```
 
-where \(x_i,x_j\) are feature vectors, \(\|x_i-x_j\|^2\) is the squared Euclidean distance, and \(\sigma\) controls the neighborhood scale. Nearby points produce kernel values near 1, while distant points produce values near 0.
+where $x_i,x_j$ are feature vectors, $\|x_i-x_j\|^2$ is the squared Euclidean distance, and $\sigma$ controls the neighborhood scale. Nearby points produce kernel values near 1, while distant points produce values near 0.
 
 **Numerical example.** Suppose two tangent vectors are:
 
@@ -1120,7 +1120,7 @@ Their squared distance is small:
 \|x_i-x_j\|^2=(1-1.1)^2+(2-2.2)^2=0.05.
 ```
 
-Then \(K^{\mathrm{RBF}}_{ij}\approx1\). For a distant point such as \(x_k=(10,-5)^\top\), \(\|x_i-x_k\|^2\gg1\), so \(K^{\mathrm{RBF}}_{ik}\approx0\).
+Then $K^{\mathrm{RBF}}_{ij}\approx1$. For a distant point such as $x_k=(10,-5)^\top$, $\|x_i-x_k\|^2\gg1$, so $K^{\mathrm{RBF}}_{ik}\approx0$.
 
 Procedure:
 
@@ -1213,9 +1213,9 @@ H=I-\frac1n\mathbf{1}\mathbf{1}^\top.
 | NTK spectrum (Fig 3) | Kernel dimensionality | Top eigenvalues shared; tails diverge | ⚠️ Partial universality |
 | Procrustes (Fig 4) | Geometric alignment | Low in tangent space; high in activations | ⚠️ Subspace shared, geometry differs |
 | Saliency (Fig 5) | Site-level sensitivity | All models couple nearest neighbors; CKA 0.77–0.99 | ✅ Strong universality |
-| Multi-\(d\) decoding (Fig 6) | Interaction range | All encode \(d=1\); range set by architecture | ⚠️ Partial universality |
+| Multi-$d$ decoding (Fig 6) | Interaction range | All encode $d=1$; range set by architecture | ⚠️ Partial universality |
 | Local decoding (Fig 7) | Depth of encoding | First hidden layer = peak in all models | ✅ Strong universality |
-| Correlation functions (Fig 8) | Physical state control | CNNs and GNN show decay; BiRNNs show flatter \(C(d)\) | ⚠️ Moderate concern |
+| Correlation functions (Fig 8) | Physical state control | CNNs and GNN show decay; BiRNNs show flatter $C(d)$ | ⚠️ Moderate concern |
 | Within-model CKA (Fig 9) | Internal processing depth | CNNs/BiRNNs have gradual change; GNN has steep CKA gradient | 📊 Architecture-dependent |
 | Linear vs RBF CKA (Fig 10) | Nonlinear tangent structure | RBF CKA ≥ 0.92 across all pairs; matches linear CKA closely | ✅ Strong universality |
 
@@ -1229,9 +1229,9 @@ The hypothesis is **largely confirmed**, with a clear pattern emerging across al
 
 **Processing depth varies dramatically.** Within-model CKA reveals that the five architectures reach functional equivalence through very different internal trajectories. The GNN transforms its representation the most aggressively, while the BiRNN-1layer barely transforms it at all. Despite this range in effective processing depth, all models converge to the same tangent-space manifold.
 
-**The mechanism is Hamiltonian mirroring.** All architectures encode the nearest-neighbor \(z_i z_{i+1}\) interaction in their first hidden layer, and their input saliency couples nearest-neighbor sites most strongly. This is the Hamiltonian's circuit structure imprinted into the network's sensitivity pattern.
+**The mechanism is Hamiltonian mirroring.** All architectures encode the nearest-neighbor $z_i z_{i+1}$ interaction in their first hidden layer, and their input saliency couples nearest-neighbor sites most strongly. This is the Hamiltonian's circuit structure imprinted into the network's sensitivity pattern.
 
-**The boundary of universality is the receptive field.** While all models encode \(d=1\) interactions, the range of encoded interactions is determined by the architecture's receptive field: kernel size for CNNs, sequential memory for RNNs, and message-passing hops for GNNs. Universality holds for *what* is encoded, namely the Hamiltonian's local terms, but not for *how far* each layer sees.
+**The boundary of universality is the receptive field.** While all models encode $d=1$ interactions, the range of encoded interactions is determined by the architecture's receptive field: kernel size for CNNs, sequential memory for RNNs, and message-passing hops for GNNs. Universality holds for *what* is encoded, namely the Hamiltonian's local terms, but not for *how far* each layer sees.
 
 ---
 
