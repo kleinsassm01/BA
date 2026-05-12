@@ -1,22 +1,16 @@
 # NQS Representation Universality Analysis
 
-## Hypothesis
+> Different NQS nn architectures converge to the same internal representation when learning the ground state of the same Hamiltonian, because they all learn to mirror the Hamiltonian's circuit structure.
 
-> Different neural quantum state (NQS) architectures converge to the same internal representation when learning the ground state of the same Hamiltonian, because they all learn to mirror the Hamiltonian's circuit structure.
-
-Five architectures - two CNNs, two bidirectional RNNs, and one local message-passing GNN - are tested on the 1D transverse-field Ising model (TFIM) at the quantum critical point $h/J = 1$:
+In the first version, two CNN, two bidirectional RNN and one local-message-passing GNN are tested on the 1D TIFM at critical point $h/J = 1$ with $N=20$ spins and periodic boundary conditions:
 
 $$H = -J \sum_{\langle i,j \rangle} \sigma^z_i \sigma^z_j \;-\; h \sum_i \sigma^x_i$$
 
-with $N=20$ spins and periodic boundary conditions.
-
-All models parameterize $\log \psi_\theta(\mathbf{s})$ and are trained via VMC to minimize $\langle H \rangle$.
+All models parameterize $\log \psi_\theta(\mathbf{s})$ and are trained with VMC to minimize $\langle H \rangle$, where $\mathbf{s}=(s_1,\dots,s_N)$ denotes a spin configuration in the $\sigma^z$-basis with $s_i\in\{+1,-1\}$.
 
 ---
 
-## Results and Interpretation
-
-All five models converge to comparable ground-state energies. The two CNNs reach $E/N \approx -1.272$, the BiRNNs land at $E/N \approx -1.249$ to $-1.258$, and GNN-3layer-local achieves $E/N \approx -1.273$. The small spread between families reflects the difficulty of VMC optimization at the critical point rather than fundamentally different solutions - all models approximate the same ground state, as confirmed by the high tangent-space similarity (Fig 2). This validates the premise: the comparisons below concern representations of the *same* wave function, not different solutions.
+All five models converge to comparable ground-state energies. The two CNNs reach $E/N \approx -1.272$, the BiRNNs land at $E/N \approx -1.249$ to $-1.258$, and GNN-3layer-local achieves $E/N \approx -1.273$. All models approximate the same ground state.
 
 ---
 
@@ -24,11 +18,110 @@ All five models converge to comparable ground-state energies. The two CNNs reach
 
 ![Cross-architecture activation CKA](results/figures/fig1_cross_activation_cka.png)
 
-**What it measures.** Linear Centered Kernel Alignment (CKA) between the hidden-layer activations of every pair of models, evaluated on the same set of spin configurations drawn from $|\psi|^2$. Given two centered activation matrices $X \in \mathbb{R}^{n \times p}$ and $Y \in \mathbb{R}^{n \times q}$:
+**What it measures.** Linear Centered Kernel Alignment (CKA, https://arxiv.org/pdf/1905.00414) between the hidden-layer activations of every pair of models evaluated on the same set of spin configurations drawn from $|\psi|^2$. 
+
+---
+All models parameterize $\log \psi_\theta(\mathbf{s})$ and are evaluated on the **same spin configurations** $\mathbf{s}=(s_1,\dots,s_N)$ with $s_i\in\{+1,-1\}.$ Procedure:
+1. Draw configurations from the Born distribution: $\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2$, for example for a 6-spin system:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1) \quad \mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)$$
+2. Feed the SAME samples into two models, for example Model A = CNN, Model B = RNN, receiving exactly the same spin configurations.
+3. Suppose the RNN processes spins sequentially $s_1 \to s_2 \to s_3 \to \cdots \to s_N$, the hidden state evolves as $h_t = f(h_{t-1}, s_t)$ where:
+    - $s_t$ = input spin at step $t$
+    - $h_t$ = hidden activation
+    - $f$ = recurrent update
+4. Example forward pass: Input configuration: $\mathbf{s}^{(1)}=
+(+1,-1,+1,+1,-1,+1)$, the RNN computes:
+$$
+h_1 = f(h_0,+1), \quad h_2 = f(h_1,-1), \quad h_3 = f(h_2,+1) \cdots
+$$
+Suppose the hidden dimension is 3, the activations might become:
+$$
+h_1 =
+\begin{bmatrix}
+0.2\\
+-0.1\\
+0.7
+\end{bmatrix}
+\quad 
+h_2 =
+\begin{bmatrix}
+0.5\\
+0.3\\
+-0.2
+\end{bmatrix}
+\quad
+h_3 =
+\begin{bmatrix}
+0.9\\
+0.1\\
+0.4
+\end{bmatrix}
+$$ These vectors are the **hidden-layer activations**. They encode information about: previous spins, correlations, entanglement structure, ...
+5. Build activation matrices. For Model A, $H_A$ and Model B, $H_B$ each row corresponds to the hidden representation of one sampled spin configuration.:
+$$H_A=
+\begin{bmatrix}
+h_A(\mathbf{s}^{(1)}) \\
+h_A(\mathbf{s}^{(2)}) \\
+\vdots \\
+h_A(\mathbf{s}^{(M)})
+\end{bmatrix} \quad
+H_B=
+\begin{bmatrix}
+h_B(\mathbf{s}^{(1)}) \\
+h_B(\mathbf{s}^{(2)}) \\
+\vdots \\
+h_B(\mathbf{s}^{(M)})
+\end{bmatrix}
+$$
+6. Compute the linear CKA: Linear CKA compares the similarity between the two representation matrices:
+$$
+\mathrm{CKA}(H_A,H_B)
+=
+\frac{
+\|H_A^\top H_B\|_F^2
+}{
+\|H_A^\top H_A\|_F
+\,
+\|H_B^\top H_B\|_F
+}
+$$
+
+A high CKA value means:
+- the two models organize spin configurations similarly
+- they learned similar many-body correlations
+- their internal representations are aligned
+  
+---
+CKA measures **representation similarity**, not just final energy accuracy.
+In general, given two centered activation matrices $X \in \mathbb{R}^{n \times p}$ and $Y \in \mathbb{R}^{n \times q}$:
 
 $$\mathrm{CKA}(X, Y) = \frac{\|Y^\top X\|_F^2}{\|X^\top X\|_F \;\|Y^\top Y\|_F}$$
 
-CKA is invariant to invertible linear transforms and isotropic scaling. It equals 1 when $X$ and $Y$ span the same column space (up to linear mixing), and 0 when they induce orthogonal kernel matrices.
+CKA is invariant to invertible linear transforms and isotropic scaling: Suppose all activations are multiplied by a constant:$\tilde H = 5H$, then every neuron output becomes 5 times larger f.ex.:
+$$
+h =
+\begin{bmatrix}
+1\\
+2\\
+3
+\end{bmatrix}
+\quad\to\quad
+\tilde h =
+\begin{bmatrix}
+5\\
+10\\
+15
+\end{bmatrix}
+$$
+
+The representation is fundamentally the same — only the scale changed. CKA gives the same similarity score, so CKA ignores global magnitude differences.
+
+$$\mathrm{CKA}(H_A,H_B)=
+\mathrm{CKA}(5H_A,H_B)
+$$
+It equals 1 when $X$ and $Y$ span the same column space and 0 when they induce orthogonal kernel matrices.
 
 **Numerical example.** Suppose $X$ and $Y$ are $4 \times 2$ centered matrices. The numerator is $\|Y^\top X\|_F^2$: compute the $2 \times 2$ product $Y^\top X$, square each entry, and sum. If $Y^\top X = \bigl[\begin{smallmatrix}3 & 1\\0 & 2\end{smallmatrix}\bigr]$, then $\|Y^\top X\|_F^2 = 9+1+0+4 = 14$. The denominator is $\|X^\top X\|_F \cdot \|Y^\top Y\|_F$; if these equal $4.0$ and $3.7$, then $\mathrm{CKA} = 14 / (4.0 \times 3.7) \approx 0.95$.
 
@@ -48,9 +141,183 @@ CKA is invariant to invertible linear transforms and isotropic scaling. It equal
 
 ![Tangent and NTK similarity](results/figures/fig2_tangent_ntk_similarity.png)
 
-**What it measures.** Two model×model similarity matrices computed from the full variational tangent vectors $J(\mathbf{s}) = \partial \log \psi_\theta(\mathbf{s}) / \partial \theta$.
+**What it measures.** Two model×model similarity matrices computed from the full variational tangent vectors 
 
+These metrics compare models using their **variational tangent vectors** $J(\mathbf{s}) = \partial \log \psi_\theta(\mathbf{s}) / \partial \theta$ instead of hidden activations. For each sampled spin configuration $\mathbf{s}$, the tangent vector measures, ow does the wavefunction change if the model parameters are infinitesimally perturbed?. Thus, these methods compare the **local geometry of the variational manifold** learned by different neural quantum states. All models parameterize $\log \psi_\theta(\mathbf{s})$ and are evaluated on the SAME sampled spin configurations $\mathbf{s}=(s_1,\dots,s_N)$ with $s_i\in\{+1,-1\}$. Procedure:
+1. Draw configurations from the Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+for example for a 6-spin system:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)
+$$
+
+2. Feed the SAME samples into two models, for example Model A = CNN and Model B = RNN, receiving exactly the same spin configurations.
+
+3. For each sampled configuration $\mathbf{s}^{(i)}$, compute the variational tangent vector:
+$$
+J(\mathbf{s}^{(i)})
+=
+\frac{\partial \log \psi_\theta(\mathbf{s}^{(i)})}{\partial \theta}
+$$
+- $\theta$ = all trainable parameters
+- $J(\mathbf{s})$ = gradient of the wavefunction with respect to parameters
+
+4. Concrete RNN example. Suppose the RNN outputs:
+$
+\log \psi_\theta(\mathbf{s}) = f_\theta(\mathbf{s})
+$
+for the sampled configuration
+$
+\mathbf{s}^{(1)}
+=
+(+1,-1,+1,+1,-1,+1).
+$
+Assume the RNN has 3 trainable parameters:
+$
+\theta=(\theta_1,\theta_2,\theta_3).
+$ After backpropagation, the tangent vector may become:
+$$
+J(\mathbf{s}^{(1)})
+=
+\begin{bmatrix}
+0.8 \\
+-0.2 \\
+0.5
+\end{bmatrix}
+$$
+- increasing $\theta_1$ strongly increases $\log\psi$
+- $\theta_2$ decreases it
+- $\theta_3$ moderately increases it
+
+5. Build tangent matrices. For Model A and Model B each row corresponds to one sampled spin configuration and each column corresponds to one trainable parameter.
+$$
+J_A=
+\begin{bmatrix}
+J_A(\mathbf{s}^{(1)}) \\
+J_A(\mathbf{s}^{(2)}) \\
+\vdots \\
+J_A(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{n\times d_A}
+\qquad 
+J_B=
+\begin{bmatrix}
+J_B(\mathbf{s}^{(1)}) \\
+J_B(\mathbf{s}^{(2)}) \\
+\vdots \\
+J_B(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{n\times d_B}
+$$ 
+
+6. Compute tangent-space CKA:
+$$
+\mathrm{CKA}(J_A,J_B)
+=
+\frac{
+\|J_B^\top J_A\|_F^2
+}{
+\|J_A^\top J_A\|_F
+\,
+\|J_B^\top J_B\|_F
+}
+$$
+
+7. A high tangent-space CKA means:
+- the two models respond similarly to parameter perturbations
+- they span similar variational subspaces
+- they induce similar local wavefunction deformations
+
+8. Construct the Neural Tangent Kernel (NTK, https://en.wikipedia.org/wiki/Neural_tangent_kernel) 
+$
+K_A = J_A J_A^\top,
+$ and $
+K_B = J_B J_B^\top
+$
+where the following expression measures how similarly the model responds to two spin configurations.
+$$
+(K_A)_{ij}
+=
+J(\mathbf{s}^{(i)})^\top
+J(\mathbf{s}^{(j)})
+$$
+9. Center the kernels: $\tilde K = H K H$
+with centering matrix
+$$
+H = I - \frac1n\mathbf1\mathbf1^\top.
+$$
+
+10. Compute kernel alignment:
+$$
+\mathrm{KA}(K_A,K_B)
+=
+\frac{
+\mathrm{tr}(\tilde K_A \tilde K_B)
+}{
+\sqrt{
+\mathrm{tr}(\tilde K_A^2)
+\;
+\mathrm{tr}(\tilde K_B^2)
+}
+}
+$$
+
+A high kernel alignment means:
+- the two models induce similar similarity structure over configuration space
+- optimization updates couple configurations similarly
+- the models possess similar learning geometry
+
+---
 *Left panel (tangent CKA):* Treat $J_A \in \mathbb{R}^{n \times d_A}$ and $J_B \in \mathbb{R}^{n \times d_B}$ as feature matrices (rows = configurations, columns = parameter gradients), then compute CKA. This measures whether the two models' variational derivatives span the same functional subspace over configuration space.
+
+**Numerical example.** For tangent-space CKA, suppose $J_A$ and $J_B$ are tangent matrices built from the same $n=3$ sampled spin configurations. Let
+$
+J_A \in \mathbb{R}^{3\times 2}
+$
+and
+$
+J_B \in \mathbb{R}^{3\times 2}
+$.
+The numerator is $\|J_B^\top J_A\|_F^2$. If
+
+$$
+J_B^\top J_A
+=
+\begin{bmatrix}
+3 & 1\\
+0 & 2
+\end{bmatrix},
+$$
+
+then
+
+$$
+\|J_B^\top J_A\|_F^2
+=
+3^2+1^2+0^2+2^2
+=
+14.
+$$
+
+The denominator is
+$
+\|J_A^\top J_A\|_F \cdot \|J_B^\top J_B\|_F
+$.
+If these equal $4.0$ and $3.7$, then
+
+$$
+\mathrm{CKA}(J_A,J_B)
+=
+\frac{14}{4.0\times 3.7}
+\approx 0.95.
+$$
+
+This indicates that the two models have highly similar tangent-space geometry, meaning their parameter gradients span very similar variational directions over the sampled spin configurations.
 
 *Right panel (NTK kernel alignment):* Build the neural tangent kernel $K_A = J_A J_A^\top \in \mathbb{R}^{n \times n}$, then compute centered kernel alignment:
 
@@ -78,7 +345,126 @@ The tangent vector $\partial \log \psi / \partial \theta$ determines how the wav
 
 ![NTK eigenspectrum](results/figures/fig3_ntk_eigenspectrum.png)
 
-**What it measures.** The eigenvalue spectrum of each model's neural tangent kernel $K = J J^\top$. The eigenvalues $\lambda_1 \geq \lambda_2 \geq \ldots$ determine the effective dimensionality of the learned kernel. The $k$-th eigenvalue measures how much the model's output varies along the $k$-th principal direction in configuration space.
+**What it measures.** The eigenvalue spectrum of each model's neural tangent kernel
+$
+K = JJ^\top
+$.
+The eigenvalues
+$
+\lambda_1 \geq \lambda_2 \geq \ldots
+$
+determine the effective dimensionality of the learned kernel. The $k$-th eigenvalue measures how much the model's output varies along the $k$-th principal direction in configuration space. Procedure:
+
+---
+1. Draw configurations from the Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+for example for a 6-spin system:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)
+$$
+
+2. Feed the same sampled spin configurations into a model, for example a CNN, RNN, or GNN neural quantum state.
+
+3. For each sampled configuration $\mathbf{s}^{(i)}$, compute the variational tangent vector, each tangent vector measures how sensitively the wavefunction changes under infinitesimal parameter perturbations.
+$$
+J(\mathbf{s}^{(i)})
+=
+\frac{\partial \log \psi_\theta(\mathbf{s}^{(i)})}{\partial \theta}.
+$$
+
+4. Build the tangent matrix, where $n$ = number of sampled spin configurations and $d$ = number of trainable parameters. Each row corresponds to one sampled configuration and each column corresponds to one parameter derivative.
+$$
+J=
+\begin{bmatrix}
+J(\mathbf{s}^{(1)}) \\
+J(\mathbf{s}^{(2)}) \\
+\vdots \\
+J(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{n\times d},
+$$
+
+5. Construct the Neural Tangent Kernel:
+$
+K = JJ^\top
+\in \mathbb{R}^{n\times n}.
+$. The following kernel entry measures how similarly the model responds to configurations $\mathbf{s}^{(i)}$ and $\mathbf{s}^{(j)}$.
+$$
+K_{ij}
+=
+J(\mathbf{s}^{(i)})^\top
+J(\mathbf{s}^{(j)})
+$$
+
+
+
+6. Compute the eigenvalue decomposition, where $\Lambda =
+\mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)$ contains the eigenvalues ordered as
+$
+\lambda_1 \geq \lambda_2 \geq \cdots
+$
+$$
+K = U \Lambda U^\top,
+$$
+7. The eigenvalues determine how strongly the model varies along different directions in configuration space. Large leading eigenvalues indicate dominant collective deformation modes of the wavefunction.
+
+---
+
+**Numerical example.** Suppose for one model the NTK
+
+$$
+K = JJ^\top
+=
+\begin{bmatrix}
+2 & 1 & 0\\
+1 & 3 & 1\\
+0 & 1 & 2
+\end{bmatrix}.
+$$
+
+The eigenvalues of this kernel are $
+\lambda_1 = 4,
+\lambda_2 = 2,
+\lambda_3 = 1.
+$
+Since $
+\lambda_1 \geq \lambda_2 \geq \lambda_3,
+$
+the first direction explains the largest amount of variation in the model's tangent responses over configuration space. The total kernel variance is
+
+$$
+\sum_i \lambda_i = 4+2+1 = 7.
+$$
+
+So the fraction explained by each direction is
+
+$$
+\frac{\lambda_1}{\sum_i \lambda_i}
+=
+\frac{4}{7}
+\approx 0.57,
+$$
+
+$$
+\frac{\lambda_2}{\sum_i \lambda_i}
+=
+\frac{2}{7}
+\approx 0.29,
+$$
+
+$$
+\frac{\lambda_3}{\sum_i \lambda_i}
+=
+\frac{1}{7}
+\approx 0.14.
+$$
+
+Therefore most variation is concentrated in the first principal kernel direction. This suggests that the model's tangent space is relatively low-dimensional: parameter updates mainly deform $\log\psi_\theta(\mathbf{s})$ along a few dominant directions in configuration space.
 
 **Results.** The spectra show good agreement at the top and clear architecture-dependent tails:
 
@@ -99,11 +485,144 @@ The tangent vector $\partial \log \psi / \partial \theta$ determines how the wav
 
 **What it measures.** A stricter test than CKA. After centering and normalizing, find the orthogonal rotation $R$ that best aligns the two representations, then measure the residual:
 
-$$d_{\mathrm{Proc}}(X, Y) = \min_{R^\top R = I} \left\| \frac{X}{\|X\|_F} R - \frac{Y}{\|Y\|_F} \right\|_F$$
+$$
+d_{\mathrm{Proc}}(X, Y)
+=
+\min_{R^\top R = I}
+\left\|
+\frac{X}{\|X\|_F}R
+-
+\frac{Y}{\|Y\|_F}
+\right\|_F
+$$
 
-CKA is invariant to *any* invertible linear transform; Procrustes is invariant only to orthogonal transforms. So Procrustes = 0 means the representations are geometrically identical up to rotation, while CKA = 1 only means they span the same subspace.
+CKA is invariant to *any* invertible linear transform; Procrustes is invariant only to orthogonal transforms. So:
+- $d_{\mathrm{Proc}}=0$ means the representations are geometrically identical up to rotation
+- $\mathrm{CKA}=1$ only means they span the same subspace
 
-**Numerical example.** Given centered, Frobenius-normalized $X, Y \in \mathbb{R}^{4 \times 3}$ (so $\|X\|_F = \|Y\|_F = 1$), compute the SVD of $X^\top Y = U \Sigma V^\top$, set $R = U V^\top$, and evaluate $d = \|X R - Y\|_F$. If the singular values of $X^\top Y$ are $(0.95, 0.90, 0.80)$, then $d = \sqrt{2(3 - 0.95 - 0.90 - 0.80)} = \sqrt{2 \times 0.35} \approx 0.84$. A value of 0 indicates perfect geometric alignment; $\sqrt{2} \approx 1.414$ is the theoretical maximum.
+Therefore, Procrustes (https://arxiv.org/pdf/2305.06329) is a stricter notion of representational similarity.
+
+---
+
+1. Draw configurations from the Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+for example for a 6-spin system:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)
+$$
+
+2. Feed the SAME sampled spin configurations into two models, for example Model A = CNN and Model B = RNN.
+
+3. Extract hidden-layer activations from both models. For Model A and Model B each row corresponds to one sampled spin configuration and each column corresponds to one hidden feature.
+$$
+X=
+\begin{bmatrix}
+x(\mathbf{s}^{(1)}) \\
+x(\mathbf{s}^{(2)}) \\
+\vdots \\
+x(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{n\times p} \qquad 
+Y=
+\begin{bmatrix}
+y(\mathbf{s}^{(1)}) \\
+y(\mathbf{s}^{(2)}) \\
+\vdots \\
+y(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{n\times q}.
+$$
+
+4. Center the representations by subtracting the mean feature vector:
+$
+X_c = HX$ and $
+Y_c = HY
+$ with the following centering matrix removes global offsets in the activations.
+$$
+H = I - \frac1n\mathbf1\mathbf1^\top.
+$$
+
+5. Normalize the centered matrices using the Frobenius norm, which removes overall scale differences between representations
+$$
+\hat X = \frac{X_c}{\|X_c\|_F},
+\qquad
+\hat Y = \frac{Y_c}{\|Y_c\|_F}.
+$$
+6. Find the orthogonal rotation $R^\top R = I$ that best aligns the two normalized representations, typically $R^*$ is obtained from the singular value decomposition (SVD) of $\hat X^\top \hat Y.$:
+$$
+R^*
+=
+\arg\min_{R^\top R=I}
+\|\hat X R - \hat Y\|_F.
+$$
+
+7. Compute the Procrustes distance:
+$$
+d_{\mathrm{Proc}}(X,Y)
+=
+\|\hat X R^* - \hat Y\|_F.
+$$
+
+A small Procrustes distance means the two models represent spin configurations almost identically after a pure rotation.
+
+---
+
+**Numerical example.** Suppose after centering and normalization following matrices are obtained:
+$$
+\hat X =
+\begin{bmatrix}
+0.6 & 0.1\\
+0.2 & 0.7\\
+-0.5 & -0.4
+\end{bmatrix},
+\qquad
+\hat Y =
+\begin{bmatrix}
+0.58 & 0.12\\
+0.18 & 0.69\\
+-0.52 & -0.41
+\end{bmatrix}.
+$$
+
+Suppose the optimal orthogonal alignment matrix is
+
+$$
+R^*
+=
+\begin{bmatrix}
+0.99 & -0.05\\
+0.05 & 0.99
+\end{bmatrix}.
+$$
+
+Applying the rotation gives:
+
+$$
+\hat X R^*
+\approx
+\hat Y.
+$$
+
+If
+
+$$
+\|\hat X R^* - \hat Y\|_F
+=
+0.06,
+$$
+
+then
+
+$$
+d_{\mathrm{Proc}}(X,Y)=0.06.
+$$
+
+Since the distance is very small, the two representations are nearly geometrically identical up to rotation. This means the two neural quantum states organize spin configurations almost identically in representation space, not merely within the same subspace as measured by CKA. A value of 0 indicates perfect geometric alignment; $\sqrt{2} \approx 1.414$ is the theoretical maximum and the worst result.
 
 **Results.**
 
@@ -127,7 +646,312 @@ CKA is invariant to *any* invertible linear transform; Procrustes is invariant o
 
 ![Saliency analysis](results/figures/fig5_saliency_analysis.png)
 
-**What it measures.** The input gradient $g_i(\mathbf{s}) = \partial \log \psi_\theta(\mathbf{s}) / \partial \sigma_i$ measures how sensitive the log-amplitude is to the spin at site $i$.
+
+**What it measures.** The input gradient
+
+$$
+g_i(\mathbf{s})
+=
+\frac{\partial \log \psi_\theta(\mathbf{s})}{\partial \sigma_i}
+$$
+
+measures how sensitive the log-wavefunction amplitude is to the spin at site $i$.
+
+Large $|g_i|$ means:
+- changing spin $i$ strongly affects $\log\psi_\theta$
+- the model considers that site important
+- the wavefunction is locally sensitive there
+
+Therefore, saliency (https://arxiv.org/pdf/1711.00867) probes which spatial structures the NQS relies on. procedure:
+
+1. Draw configurations from the Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+for example for a 6-spin system:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)
+$$
+
+2. Feed the same sampled spin configurations into all models (CNN, BiRNN, GNN).
+
+3. For each sampled configuration $\mathbf{s}^{(k)}$, compute the input gradients:
+$$
+g_i(\mathbf{s}^{(k)})
+=
+\frac{\partial \log \psi_\theta(\mathbf{s}^{(k)})}{\partial \sigma_i}.
+$$
+
+4. Collect the saliency vector:
+$$
+g(\mathbf{s}^{(k)})
+=
+\begin{bmatrix}
+g_1(\mathbf{s}^{(k)}) \\
+g_2(\mathbf{s}^{(k)}) \\
+\vdots \\
+g_N(\mathbf{s}^{(k)})
+\end{bmatrix}.
+$$
+
+Each entry measures sensitivity to one lattice site.
+
+**Numerical example.** Suppose for a 6-spin configuration:
+
+$$
+\mathbf{s}^{(1)}
+=
+(+1,-1,+1,+1,-1,+1)
+$$
+
+the model produces:
+
+$$
+g(\mathbf{s}^{(1)})
+=
+\begin{bmatrix}
+0.72\\
+0.65\\
+0.61\\
+0.58\\
+0.63\\
+0.71
+\end{bmatrix}.
+$$
+
+Interpretation:
+- sites 1 and 6 strongly affect $\log\psi_\theta$
+- site 4 is less important
+- the model is most sensitive near the edges
+
+This type of edge enhancement is characteristic of sequential BiRNN processing.
+
+---
+
+**Panel a: Mean saliency profile** 
+
+For each site:
+$$
+\langle |g_i| \rangle
+=
+\frac1M
+\sum_{k=1}^M
+|g_i(\mathbf{s}^{(k)})|.
+$$
+
+This measures the average importance of site $i$ across sampled configurations.
+
+**numerical example** 
+
+Suppose for site $i=3$ following saliencies obtained:
+
+$$
+|g_3(\mathbf{s}^{(1)})|=0.60,
+\quad
+|g_3(\mathbf{s}^{(2)})|=0.55,
+\quad
+|g_3(\mathbf{s}^{(3)})|=0.65.
+$$
+
+Then:
+
+$$
+\langle |g_3| \rangle
+=
+\frac{0.60+0.55+0.65}{3}
+=
+0.60.
+$$
+
+Plotting this for all sites produces the mean saliency profile. Interpretation:
+- Flat profile $\rightarrow$ translation-equivariant sensitivity
+- Edge peaks $\rightarrow$ sequential processing asymmetry
+- Broad plateaus $\rightarrow$ spatially uniform correlation structure
+
+---
+
+**Panel b: Saliency covariance vs distance** 
+
+Compute:
+
+$$
+G(d)
+=
+\frac1N
+\sum_i
+\mathrm{Cov}_{\mathbf{s}}
+[g_i,g_{i+d}].
+$$
+
+This measures how correlated the saliency fluctuations are between sites separated by distance $d$.
+
+**Numerical example** 
+
+Suppose for nearest neighbors:
+
+$$
+(g_1,g_2)
+=
+(0.7,0.6),
+(0.8,0.7),
+(0.6,0.5).
+$$
+
+The covariance is:
+
+$$
+\mathrm{Cov}(g_1,g_2)
+=
+\langle g_1g_2\rangle
+-
+\langle g_1\rangle
+\langle g_2\rangle.
+$$
+
+If:
+
+$$
+\langle g_1g_2\rangle = 0.44,
+\qquad
+\langle g_1\rangle = 0.70,
+\qquad
+\langle g_2\rangle = 0.60,
+$$
+
+then:
+
+$$
+\mathrm{Cov}(g_1,g_2)
+=
+0.44-(0.70)(0.60)
+=
+0.02.
+$$
+
+A large covariance at small $d$ means nearby sites influence the wavefunction together. Interpretation:
+
+- Fast decay $\rightarrow$ local receptive field
+- Long tails $\rightarrow$ long-range sensitivity
+- Strong nearest-neighbor covariance $\rightarrow$ Hamiltonian locality learned correctly
+
+---
+**Panel c: Saliency CKA** 
+
+Treat saliency vectors as feature representations:
+
+$$
+G_A=
+\begin{bmatrix}
+g_A(\mathbf{s}^{(1)}) \\
+g_A(\mathbf{s}^{(2)}) \\
+\vdots
+\end{bmatrix},
+\qquad
+G_B=
+\begin{bmatrix}
+g_B(\mathbf{s}^{(1)}) \\
+g_B(\mathbf{s}^{(2)}) \\
+\vdots
+\end{bmatrix}.
+$$
+
+Compute:
+
+$$
+\mathrm{CKA}(G_A,G_B)
+=
+\frac{
+\|G_B^\top G_A\|_F^2
+}{
+\|G_A^\top G_A\|_F
+\,
+\|G_B^\top G_B\|_F
+}.
+$$
+
+This measures whether two models organize saliency patterns similarly.
+
+**numerical example:** 
+
+Suppose:
+
+$$
+G_B^\top G_A
+=
+\begin{bmatrix}
+2 & 1\\
+1 & 2
+\end{bmatrix}.
+$$
+
+Then:
+
+$$
+\|G_B^\top G_A\|_F^2
+=
+2^2+1^2+1^2+2^2
+=
+10.
+$$
+
+If:
+
+$$
+\|G_A^\top G_A\|_F=3.1,
+\qquad
+\|G_B^\top G_B\|_F=3.3,
+$$
+
+then:
+
+$$
+\mathrm{CKA}
+=
+\frac{10}{3.1\times3.3}
+\approx0.98.
+$$
+
+This indicates highly similar saliency structure between the two models.
+
+---
+**Panels (d–h) — Saliency covariance heatmaps**
+
+Construct the covariance matrix:
+
+$$
+C_{ij}
+=
+\mathrm{Cov}_{\mathbf{s}}
+[g_i,g_j].
+$$
+
+Each entry measures how strongly saliency fluctuations at sites $i$ and $j$ are correlated.
+
+**numerical example**
+
+Suppose:
+
+$$
+C=
+\begin{bmatrix}
+0.05 & 0.03 & 0.01\\
+0.03 & 0.05 & 0.03\\
+0.01 & 0.03 & 0.05
+\end{bmatrix}.
+$$
+
+Interpretation:
+- strongest values occur on the diagonal
+- nearest neighbors have strong covariance
+- distant sites are weakly coupled
+
+This produces a banded heatmap centered on the diagonal.
+
+---
+**Results.**
 
 **Panel (a) - Mean saliency profile:**
 
@@ -157,7 +981,224 @@ All models show a banded structure centered on the diagonal, with the strongest 
 
 ![Multi-distance decoding](results/figures/fig6_multidistance_decoding.png)
 
-**What it measures.** For each model's first hidden layer, train a ridge probe to predict the correlator $z_i z_{i+d}$ at distances $d = 1, \ldots, 10$. The $R^2$ at each distance indicates how much information about the $d$-distant interaction the first hidden layer has extracted.
+**What it measures.** For each model's first hidden layer, train a ridge-regression probe to predict the correlator $z_i z_{i+d}$ at distances $d=1,\dots,10$. The probe's coefficient of determination $R^2$ measures how much information about the distance-$d$ interaction is linearly decodable from the first hidden layer.
+
+Large $R^2$ means:
+- the hidden layer explicitly encodes the correlator
+- the architecture can represent interactions at distance $d$
+- the receptive field reaches that separation
+
+---
+1. Draw spin configurations:
+- either from the physical Born distribution
+$$
+\mathbf{s}^{(1)},\dots,\mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$$
+- or from a uniform random distribution over spins
+
+For example:
+$$
+\mathbf{s}^{(1)}
+=
+(+1,-1,+1,+1,-1,+1)
+$$
+
+$$
+\mathbf{s}^{(2)}
+=
+(-1,-1,+1,-1,+1,+1).
+$$
+
+2. Feed the SAME sampled configurations into a trained model (CNN, BiRNN, or GNN). Extract the first hidden-layer activations $
+h^{(1)}(\mathbf{s}^{(k)})
+\in
+\mathbb{R}^p.
+$ For all samples, build the hidden-feature matrix, where each row corresponds to one sampled configuration.
+
+$$
+H=
+\begin{bmatrix}
+h^{(1)}(\mathbf{s}^{(1)}) \\
+h^{(1)}(\mathbf{s}^{(2)}) \\
+\vdots \\
+h^{(1)}(\mathbf{s}^{(M)})
+\end{bmatrix}
+\in \mathbb{R}^{M\times p}.
+$$
+
+3. For a chosen distance $d$, compute the target correlator for periodic boundary conditions: $i+d \mod N.$
+
+$$
+y^{(k)}_{(d)}
+=
+z_i^{(k)}z_{i+d}^{(k)}.
+$$
+
+**numerical example**
+
+Suppose $\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)$ for distance $d=1$
+the nearest-neighbor correlators are:
+
+$$
+(+1)(-1)=-1,
+$$
+
+$$
+(-1)(+1)=-1,
+$$
+
+$$
+(+1)(+1)=+1,
+$$
+
+etc.
+
+Suppose for one site $
+y^{(1)}_{(1)} = z_2 z_3 = (-1)(+1)=-1.
+$ for distance: $d=3$ to obtain:
+$$
+y^{(1)}_{(3)}
+=
+z_1 z_4
+=
+(+1)(+1)
+=
++1.
+$$
+
+These correlators become the regression targets.
+
+4. Train a ridge-regression probe: $\hat y = HW+b$ to predict the correlators from the hidden activations. If the probe is linear:
+- it cannot invent information
+- it only tests what is already encoded in the hidden layer
+
+5. Evaluate decoding performance using:
+
+$$
+R^2
+=
+1-
+\frac{
+\sum_k (y_k-\hat y_k)^2
+}{
+\sum_k (y_k-\bar y)^2
+}.
+$$
+
+Interpretation:
+- $R^2=1$ → perfect decoding
+- $R^2=0$ → no predictive information
+- larger $R^2$ → stronger encoded correlator signal
+
+**Numerical example for $R^2$**
+
+Suppose the true correlators are:
+
+$$
+y=
+\begin{bmatrix}
+1\\
+-1\\
+1\\
+1
+\end{bmatrix}
+$$
+
+and the probe predicts:
+
+$$
+\hat y=
+\begin{bmatrix}
+0.9\\
+-0.8\\
+0.7\\
+0.95
+\end{bmatrix}.
+$$
+
+Suppose:
+
+$$
+\sum_k (y_k-\hat y_k)^2 = 0.10,
+$$
+
+and
+
+$$
+\sum_k (y_k-\bar y)^2 = 1.00.
+$$
+
+Then:
+
+$$
+R^2
+=
+1-\frac{0.10}{1.00}
+=
+0.90.
+$$
+
+This means the hidden layer explains 90% of the variance in the correlator.
+
+---
+
+**Left panel — Physical samples**
+
+The probe is trained using configurations sampled from:
+
+$$
+|\psi(\mathbf{s})|^2.
+$$
+
+These samples already contain physical correlations from the quantum state.
+
+Therefore:
+- some long-distance predictability may come from the data distribution itself
+- even architectures with local receptive fields can partially predict distant correlators
+
+**Numerical interpretation**
+
+Suppose:
+- CNN first-layer features only encode nearest neighbors
+- but the physical samples themselves contain long-range correlations
+
+Then decoding at $d=5$ may still give $R^2\approx0.35$ because:
+$
+z_i
+$
+already partially predicts
+$
+z_{i+5}.
+$ Therefore the residual plateau at large distance reflects physical correlations in the data.
+
+---
+
+**Right panel — Uniform samples**
+
+Now spins are sampled independently:
+
+$$
+P(\mathbf{s})=
+2^{-N}.
+$$
+
+There are NO physical correlations.
+
+Therefore:
+- any nonzero decoding performance must come entirely from the architecture itself
+- this isolates the model's receptive field
+
+**Numerical interpretation**
+
+Suppose a kernel-3 CNN sees only nearest neighbors. Then: 
+- decoding at $d=1$ may give $R^2\approx1$
+- decoding at $d=2$ collapses to $R^2\approx0$
+
+
+This proves:
+- the first hidden layer encodes exactly one bond distance
+- no hidden long-range information exists
 
 **Results.**
 
@@ -180,6 +1221,22 @@ All models show a banded structure centered on the diagonal, with the strongest 
 
 The uniform-sample panel is the more diagnostic test because it removes the confound of input correlations. The fact that $R^2 > 0$ at $d=1$ on uniform samples - where spins are independent - proves the network has **hardwired** the nearest-neighbor interaction into its weights, not just learned to exploit input statistics.
 
+*Conclusion:* 
+
+**Kernel-3 CNNs:** The results reflects the convolutional receptive field:
+- encode nearest neighbors extremely well
+- sharply lose information beyond the kernel radius
+
+**BiRNNs:** even the first hidden layer contains multi-distance information:
+- maintain information across several sites
+- sequential hidden-state memory propagates correlations farther
+
+**GNNs:** the broader behavior emerges only after multiple message-passing layers:
+- The first GNN layer aggregates self node and nearest neighbors
+- Therefore effective radius is approximately 1, similar to a kernel-3 CNN
+
+The architectural receptive field determines encoded interaction range, not the Hamiltonian alone. All architectures mirror the Hamiltonian locality, but through fundamentally different computational mechanisms.
+
 **Verdict:** Strong support with nuance. All architectures encode the nearest-neighbor Hamiltonian term in their first hidden layer, but the *range* of encoded interactions differs: k=3 CNNs and the GNN's first layer encode exactly one bond, while BiRNNs encode several. The interaction range is determined by the architectural receptive field, not by the Hamiltonian. All architectures "mirror the Hamiltonian's circuit structure" but through different windows.
 
 ---
@@ -188,7 +1245,152 @@ The uniform-sample panel is the more diagnostic test because it removes the conf
 
 ![Local decoding](results/figures/fig7_local_decoding.png)
 
-**What it measures.** Layer-by-layer $R^2$ for a ridge probe predicting $z_i z_{i+1}$ (the nearest-neighbor Ising term) from hidden activations. Dashed line = baseline from raw input.
+**What it measures.** Layer-by-layer $R^2$ for a ridge probe predicting the nearest-neighbor Ising term $z_i z_{i+1}$ from hidden activations. The dashed line is the baseline obtained from the raw input. If a hidden layer has $R^2$ above the dashed line, then that layer encodes the local Hamiltonian term more explicitly than the input representation alone.
+
+---
+
+1. Draw spin configurations from either the physical Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+or from the uniform distribution over spin configurations. f.ex: $\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1)
+$
+
+2. Feed the same sampled configurations into *one* trained model. f.ex. CNN-3layer-k3
+
+3. Extract hidden activations layer by layer: $h^{(\ell)}(\mathbf{s}^{(k)})$, where $\ell$ = layer index and $k$ = sampled configuration index. For each layer, build the activation matrix:
+$$
+H^{(\ell)}
+=
+\begin{bmatrix}
+h^{(\ell)}(\mathbf{s}^{(1)}) \\
+h^{(\ell)}(\mathbf{s}^{(2)}) \\
+\vdots \\
+h^{(\ell)}(\mathbf{s}^{(M)})
+\end{bmatrix}.
+$$
+
+4. For each sampled configuration, compute the nearest-neighbor target. With periodic boundary conditions, the final bond is: $z_N z_1.$
+$$
+y^{(k)}
+=
+z_i^{(k)}z_{i+1}^{(k)}.
+$$
+
+5. Train a ridge-regression probe at each layer. The probe is linear, so it tests whether the nearest-neighbor term is already linearly encoded in that layer.
+$$
+\hat y^{(k)}
+=
+W^\top h^{(\ell)}(\mathbf{s}^{(k)}) + b.
+$$
+
+6. Evaluate the probe using:
+$$
+R^2
+=
+1-
+\frac{
+\sum_k (y^{(k)}-\hat y^{(k)})^2
+}{
+\sum_k (y^{(k)}-\bar y)^2
+}.
+$$
+
+Interpretation:
+- $R^2=1$ means perfect decoding
+- $R^2=0$ means no better than predicting the mean
+- larger $R^2$ means the layer encodes $z_i z_{i+1}$ more clearly
+- High $R^2$ in early layers means the architecture rapidly extracts the nearest-neighbor interaction.
+
+---
+
+**Numerical example**
+
+Suppose for four sampled configurations, the true nearest-neighbor targets are:
+
+$$
+y=
+\begin{bmatrix}
+1\\
+-1\\
+1\\
+1
+\end{bmatrix}.
+$$
+
+At the raw input layer, the ridge probe predicts:
+
+$$
+\hat y_{\mathrm{in}}
+=
+\begin{bmatrix}
+0.2\\
+-0.1\\
+0.3\\
+0.1
+\end{bmatrix}.
+$$
+
+Suppose this gives:
+
+$$
+R^2_{\mathrm{in}}=0.23.
+$$
+
+This corresponds to the dashed baseline in the figure.
+
+Now suppose at the first hidden layer, the probe predicts:
+
+$$
+\hat y_{1}
+=
+\begin{bmatrix}
+0.95\\
+-0.90\\
+0.98\\
+0.88
+\end{bmatrix}.
+$$
+
+If:
+
+$$
+\sum_k (y_k-\hat y_{1,k})^2 = 0.03
+$$
+
+and
+
+$$
+\sum_k (y_k-\bar y)^2 = 3.00,
+$$
+
+then:
+
+$$
+R^2_1
+=
+1-\frac{0.03}{3.00}
+=
+0.99.
+$$
+
+So the first hidden layer almost perfectly encodes the nearest-neighbor Hamiltonian term.
+
+At a later output layer, suppose:
+
+$$
+R^2_{\mathrm{out}}=0.35.
+$$
+
+Then the local bond information is still present, but less explicitly linearly decodable after deeper nonlinear processing.
+
+---
+Each small plot corresponds to one model. The x-axis is the layer: $\text{in}, 1,2,\dots,\text{out}$ or for RNN/GNN: $\text{in}, r1,r2,\text{out}$ or $\text{in}, g1,g2,g3,\text{out}$. The y-axis is the decoding score: $R^2$ for predicting $z_i z_{i+1}.$ The top row uses physical samples from $|\psi|^2$. The bottom row uses uniform samples.
+
+---
 
 **Results.**
 
@@ -208,7 +1410,121 @@ Same pattern, but the input baseline drops to $R^2 \approx 0$. The first hidden 
 
 ![Correlation functions](results/figures/fig8_correlation_functions.png)
 
-**What it measures.** The two-point correlator $C(d) = \frac{1}{N}\sum_i \langle \sigma^z_i \sigma^z_{i+d} \rangle$ computed from MCMC samples drawn from each model's $|\psi_\theta|^2$.
+**What it measures.** The two-point correlator $C(d)=\frac{1}{N}\sum_i\langle \sigma_i^z \sigma_{i+d}^z \rangle$ computed from MCMC samples drawn from each model's probability distribution $|\psi_\theta(\mathbf{s})|^2$. It measures how strongly spins separated by distance $d$ are correlated.
+
+---
+
+1. Draw spin configurations from the trained model: $\mathbf{s}^{(1)},\dots,\mathbf{s}^{(M)}\sim |\psi_\theta(\mathbf{s})|^2$ f.ex, for a 6-spin system: $\mathbf{s}^{(1)}=(+1,-1,+1,+1,-1,+1)$ and $\mathbf{s}^{(2)}=(-1,-1,+1,-1,+1,+1)$.
+2. Choose a distance $d$. f.ex. $d=1$ measures nearest-neighbor correlations, while $d=5$ measures longer-range correlations.
+3. For each sampled configuration, compute the site-averaged correlator With periodic boundary conditions $i+d \equiv i+d \mod N.$
+
+$$
+C^{(k)}(d)
+=
+\frac{1}{N}
+\sum_i
+s_i^{(k)}s_{i+d}^{(k)}.
+$$
+
+4. Average over all sampled configurations:
+
+$$
+C(d)
+=
+\frac{1}{MN}
+\sum_{k=1}^M
+\sum_i
+s_i^{(k)}s_{i+d}^{(k)}.
+$$
+
+5. Repeat this for all distances:
+
+$$
+d=0,1,2,\dots,10.
+$$
+
+6. Plot $C(d)$ versus $d$ for each model.
+
+Interpretation:
+- slow decay means long-range order
+- fast decay means weaker long-range correlations
+- $C(0)=1$ because $s_i^2=1$
+- differences at large $d$ reveal whether models learned the same physical state
+
+**numerical example:**
+
+Suppose a 6-spin configuration:
+
+$$
+\mathbf{s}^{(1)}
+=
+(+1,-1,+1,+1,-1,+1).
+$$
+
+For distance $d=1$, compute nearest-neighbor products:
+
+$$
+s_1s_2=(+1)(-1)=-1,
+$$
+
+$$
+s_2s_3=(-1)(+1)=-1,
+$$
+
+$$
+s_3s_4=(+1)(+1)=+1,
+$$
+
+$$
+s_4s_5=(+1)(-1)=-1,
+$$
+
+$$
+s_5s_6=(-1)(+1)=-1,
+$$
+
+$$
+s_6s_1=(+1)(+1)=+1.
+$$
+
+Therefore:
+
+$$
+C^{(1)}(1)
+=
+\frac{1}{6}
+(-1-1+1-1-1+1)
+=
+-\frac{2}{6}
+=
+-0.33.
+$$
+
+Now suppose a second sample gives:
+
+$$
+C^{(2)}(1)=0.67.
+$$
+
+Then the Monte Carlo estimate is:
+
+$$
+C(1)
+=
+\frac{C^{(1)}(1)+C^{(2)}(1)}{2}
+=
+\frac{-0.33+0.67}{2}
+=
+0.17.
+$$
+
+With many MCMC samples, this estimate converges to the model's learned nearest-neighbor correlation.
+
+---
+
+The x-axis is the distance $d$. The y-axis is the learned correlation $C(d)$. At distance $d=0$ all models have $C(0)=1$ because $\sigma_i^z\sigma_i^z=1$. For $d>0$, the decay of $C(d)$ shows how much long-range spin order each model has learned.
+
+---
 
 **Results.**
 
@@ -221,7 +1537,7 @@ The correlation functions split into three groups:
 
 The spread between the models ($\Delta C(10) \approx 0.29$, from GNN at 0.45 to BiRNN-1layer at 0.74) indicates that the BiRNN models have settled into slightly different solutions than the CNNs and GNN. The energy is dominated by the $d=0$ and $d=1$ terms, so $E/N$ can be similar even when $C(d>2)$ differs. The BiRNNs' flatter correlation functions suggest they capture less of the critical decay structure, consistent with their slightly higher energies ($E/N \approx -1.25$ vs $-1.27$). The GNN's steeper decay is the most physically realistic profile among the five models.
 
-**Verdict:** Partial concern. The CNN pair and GNN have converged to consistent states with appropriate decay, but the BiRNNs produce flatter correlations with higher long-range order. This is a known challenge for sequential architectures at criticality. The representation comparisons (Figs 1–7) remain valid - the high tangent CKA (0.95–1.00) shows the models occupy the same variational manifold even if they have not converged to exactly the same point on it.
+**Verdict:** concern, but may full under the category optimization. The CNN pair and GNN have converged to consistent states with appropriate decay, but the BiRNNs produce flatter correlations with higher long-range order. This is a known challenge for sequential architectures at criticality. The representation comparisons (Figs 1–7) remain valid - the high tangent CKA (0.95–1.00) shows the models occupy the same variational manifold even if they have not converged to exactly the same point on it.
 
 ---
 
@@ -249,7 +1565,299 @@ The spread between the models ($\Delta C(10) \approx 0.29$, from GNN at 0.45 to 
 
 ![Linear vs RBF CKA](results/figures/fig10_linear_vs_rbf_cka.png)
 
-**What it measures.** A comparison of linear CKA (left) and RBF (radial basis function) CKA (right) on the full tangent features. Linear CKA measures whether two representations span the same linear subspace. RBF CKA replaces the linear kernel with a Gaussian kernel:
+The Gaussian (RBF) kernel is:
+
+$$
+K^{\mathrm{RBF}}_{ij}
+=
+\exp\!\left(
+-\frac{\|x_i-x_j\|^2}{2\sigma^2}
+\right)
+$$
+
+where:
+- $x_i,x_j$ are feature vectors
+- $\|x_i-x_j\|^2$ is the squared Euclidean distance
+- $\sigma$ controls the neighborhood scale
+
+Nearby points produce kernel values near 1, while distant points produce values near 0. Therefore, the RBF kernel converts distances into similarity scores.
+
+---
+
+**Gaussian kernel**
+
+Suppose two tangent vectors are:
+
+$$
+x_i=
+\begin{bmatrix}
+1\\
+2
+\end{bmatrix},
+\qquad
+x_j=
+\begin{bmatrix}
+1.1\\
+2.2
+\end{bmatrix}.
+$$
+
+Their squared distance is small:
+
+$$
+\|x_i-x_j\|^2
+=
+(1-1.1)^2+(2-2.2)^2
+=
+0.05.
+$$
+
+Then:
+
+$$
+K^{\mathrm{RBF}}_{ij}
+=
+\exp(-0.05/(2\sigma^2))
+\approx 1.
+$$
+
+So for the kernel, these two configurations are represented similarly. Now consider a distant point:
+
+$$
+x_k=
+\begin{bmatrix}
+10\\
+-5
+\end{bmatrix}.
+$$
+
+Then:
+
+$$
+\|x_i-x_k\|^2
+\gg 1,
+$$
+
+so:
+
+$$
+K^{\mathrm{RBF}}_{ik}
+\approx 0.
+$$
+
+Therefore:
+- nearby feature vectors become highly connected
+- distant vectors become weakly connected
+
+The Gaussian kernel therefore captures nonlinear neighborhood geometry.
+
+---
+
+1. Draw configurations from the Born distribution:
+$
+\mathbf{s}^{(1)}, \dots, \mathbf{s}^{(M)}
+\sim |\psi(\mathbf{s})|^2
+$,
+for example:
+$$
+\mathbf{s}^{(1)} = (+1,-1,+1,+1,-1,+1)
+\quad
+\mathbf{s}^{(2)} = (-1,-1,+1,-1,+1,+1).
+$$
+
+2. Feed the same sampled configurations into two models.
+
+3. Compute tangent vectors for each sampled configuration:
+$$
+J(\mathbf{s}^{(i)})
+=
+\frac{\partial \log\psi_\theta(\mathbf{s}^{(i)})}{\partial\theta}.
+$$
+
+4. Build tangent feature matrices for Model A and B, each row corresponds to one sampled spin configuration.
+$$
+X=
+\begin{bmatrix}
+J_A(\mathbf{s}^{(1)})\\
+J_A(\mathbf{s}^{(2)})\\
+\vdots
+\end{bmatrix}
+\in\mathbb{R}^{n\times d_A} \qquad
+Y=
+\begin{bmatrix}
+J_B(\mathbf{s}^{(1)})\\
+J_B(\mathbf{s}^{(2)})\\
+\vdots
+\end{bmatrix}
+\in\mathbb{R}^{n\times d_B}
+$$
+
+5. Compute pairwise squared-distance matrices: $D^X_{ij}=\|x_i-x_j\|^2$ and $D^Y_{ij}=\|y_i-y_j\|^2$. These matrices measure how far apart configurations are in tangent-feature space.
+
+**Numerical example for distances**
+
+Suppose:
+
+$$
+x_1=
+\begin{bmatrix}
+1\\
+2
+\end{bmatrix},
+\qquad
+x_2=
+\begin{bmatrix}
+2\\
+3
+\end{bmatrix}.
+$$
+
+Then:
+
+$$
+D^X_{12}
+=
+(1-2)^2+(2-3)^2
+=
+2.
+$$
+
+Repeating this for all pairs produces the full distance matrix:
+
+$$
+D^X=
+\begin{bmatrix}
+0 & 2 & 5\\
+2 & 0 & 1\\
+5 & 1 & 0
+\end{bmatrix}.
+$$
+
+6. Choose the Gaussian bandwidth:
+
+$$
+\sigma^2
+=
+0.5\times\mathrm{median}(D).
+$$
+
+The median distance sets the characteristic neighborhood scale.
+
+Interpretation:
+- small $\sigma$ → only very close points are similar
+- large $\sigma$ → many points become similar
+
+7. Construct the RBF kernels:
+
+$$
+K^{\mathrm{RBF}}_{ij}
+=
+\exp\!\left(
+-\frac{D_{ij}}{2\sigma^2}
+\right).
+$$
+
+**Numerical example for the RBF kernel**
+
+Suppose:
+
+$$
+D=
+\begin{bmatrix}
+0 & 2\\
+2 & 0
+\end{bmatrix},
+\qquad
+\sigma^2=1.
+$$
+
+Then:
+
+$$
+K^{\mathrm{RBF}}
+=
+\begin{bmatrix}
+1 & e^{-1}\\
+e^{-1} & 1
+\end{bmatrix}
+\approx
+\begin{bmatrix}
+1 & 0.37\\
+0.37 & 1
+\end{bmatrix}.
+$$
+
+Interpretation:
+- diagonal entries are always 1
+- off-diagonal entries measure nonlinear similarity
+
+8. Center the kernels:
+
+$$
+\tilde K
+=
+HKH
+$$
+
+with centering matrix
+
+$$
+H
+=
+I-\frac1n\mathbf1\mathbf1^\top.
+$$
+
+This removes global offsets in similarity.
+
+9. Compute RBF CKA:
+
+$$
+\mathrm{CKA}_{\mathrm{RBF}}
+=
+\frac{
+\mathrm{tr}(\tilde K_1^{\mathrm{RBF}}
+\tilde K_2^{\mathrm{RBF}})
+}{
+\sqrt{
+\mathrm{tr}\!\left(
+(\tilde K_1^{\mathrm{RBF}})^2
+\right)
+\;
+\mathrm{tr}\!\left(
+(\tilde K_2^{\mathrm{RBF}})^2
+\right)
+}
+}.
+$$
+
+**Numerical example for RBF CKA**
+
+Suppose after centering:
+
+$$
+\mathrm{tr}(\tilde K_1\tilde K_2)=5.2,
+$$
+
+$$
+\mathrm{tr}(\tilde K_1^2)=6.0,
+\qquad
+\mathrm{tr}(\tilde K_2^2)=5.8.
+$$
+
+Then:
+
+$$
+\mathrm{CKA}_{\mathrm{RBF}}
+=
+\frac{5.2}{\sqrt{6.0\times5.8}}
+\approx0.88.
+$$
+
+This means the two models preserve very similar nonlinear neighborhood structure in tangent space.
+
+--- 
+
+A comparison of linear CKA (left) and RBF (radial basis function) CKA (right) on the full tangent features. Linear CKA measures whether two representations span the same linear subspace. RBF CKA replaces the linear kernel with a Gaussian kernel:
 
 $$K^{\mathrm{RBF}}_{ij} = \exp\!\left(-\frac{\|x_i - x_j\|^2}{2 \sigma^2}\right)$$
 
