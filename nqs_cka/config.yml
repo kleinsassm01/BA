@@ -1,0 +1,96 @@
+seed: 0
+out_dir: results
+cache_dir: cache
+
+model:
+  features: 16
+  blocks: 2
+  residual: true
+  use_prenorm: true
+  layerscale_init: null
+  learned_layerscale: true
+  gated_updates: true
+  use_diag_messages: false
+  include_self_in_message: true
+  symmetrize_spin_flip_output: true
+  dtype: float32
+
+training:
+  n_iter: 120
+  n_samples: 768
+  n_chains: 16
+  chunk_size: 128
+  learning_rate: 0.02
+  min_learning_rate: 0.004
+  diag_shift: 0.04
+  depth_adaptive: true
+  lr_depth_power: 0.5
+  diag_shift_depth_power: 0.5
+  retries: 1
+  retry_lr_decay: 0.5
+  retry_diag_mult: 2.0
+  retry_layerscale_decay: 0.7
+
+analysis:
+  depth_multipliers: [1, 2, 4, 8]
+  blocks_per_unit: 2
+  seeds_per_depth: 1
+  probe_samples: 2048
+  probe_rows: 40000
+  probe_train_frac: 0.6
+  probe_val_frac: 0.2
+  probe_r2_threshold: 0.35
+  max_probe_distance: null
+  max_exact_spins: 20
+
+physics:
+  main:
+    name: critical_2d_tfim
+    dimension: 2
+    length: 8
+    J: 1.0
+    h: 3.044
+    J2: 0.0
+  simple:
+    name: simple_2d_ising
+    dimension: 2
+    length: 4
+    J: 1.0
+    h: 2.0
+    J2: 0.0
+
+figures:
+  figure1:
+    enabled: true
+    depth_multiplier: 1
+    layer: post1
+    seeds: 2
+  figure3:
+    enabled: true
+    problem: main
+    cka_kind: delta
+    probe_kind: post
+    probe_target: local_shell
+    long_range_min_distance: 3
+  figure4:
+    enabled: true
+    problem: simple
+    cka_kind: post_with_embed
+    probe_kind: post_with_embed
+    probe_target: logpsi
+  figure5:
+    enabled: true
+    problem: main
+    activation_kind: delta
+    drop_first_layers: 1
+    seeds_per_arch: 1
+    archs:
+      - {label: res-4x, residual: true, multiplier: 4}
+      - {label: res-8x, residual: true, multiplier: 8}
+      - {label: plain-4x, residual: false, multiplier: 4}
+      - {label: plain-8x, residual: false, multiplier: 8}
+    pairs:
+      - [res-4x, res-8x]
+      - [plain-4x, plain-8x]
+      - [plain-4x, res-4x]
+      - [plain-8x, res-8x]

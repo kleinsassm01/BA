@@ -4,5 +4,6 @@
 .ipynb_checkpoints/
 */__pycache__/
 *.xml
-*.idea
 *.iml
+*.npz
+*.gz
