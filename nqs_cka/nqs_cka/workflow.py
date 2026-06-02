@@ -108,7 +108,6 @@ class AnalysisRunner:
         self.random_generator = np.random.default_rng(config.seed)
 
     def run(self) -> list[Any]:
-        print("hello")
         Path(self.config.out_dir).mkdir(parents=True, exist_ok=True)
         figure_paths: list[Any] = []
 
@@ -124,7 +123,6 @@ class AnalysisRunner:
         return figure_paths
 
     def _load_main_problem_context(self) -> ProblemContext:
-        print("hello")
         logger.info("[1] Main problem training/loading")
         context = self._train_depth_sweep(self.config.figures.figure3.problem, residual=True)
 
@@ -477,5 +475,4 @@ class AnalysisRunner:
 
 
 def run(config: Config, *, force: bool = False, plot_only: bool = False):
-    print("hello1")
     return AnalysisRunner(config, force=force, plot_only=plot_only).run()
