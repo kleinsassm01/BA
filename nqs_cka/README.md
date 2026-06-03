@@ -137,7 +137,7 @@ It is invariant to isotropic scaling and to orthogonal transformations of the fe
 **What it measures.** Whether each layer adds *new long-range* correlation information beyond a trivial local baseline. For every distance shell $r$ on the periodic lattice, a target correlator is built for each site,
 
 ```math
-y_{a,i,r} = s_a(i)\cdot \operatorname*{mean}_{j:\,d(i,j)=r} s_a(j),
+y_{a,i,r} = s_a(i)\cdot \mathrm{mean}_{j:\,d(i,j)=r} s_a(j),
 ```
 
 where $d(i,j)$ is the periodic Manhattan graph distance. A ridge-regression probe predicts $y_{\cdot,\cdot,r}$ first from a **baseline** of cheap local features — the site spin $s_a(i)$, its nearest-neighbor average, and the global magnetization $m(\mathbf{s}_a)$ — and then from the baseline **plus** the node activations of layer $\ell$. The extra explanatory power of the layer is
